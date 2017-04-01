@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get "/team" => "pages#team"
   get "/contact" => "pages#contact"
 
-  get "/users" => "users#index"
-  get "/users/:id" => "users#show"
+  resources :users
+  resources :demandeurs, only: [:new, :create, :destroy]
+  resources :fournisseurs, only: [:new, :create, :destroy]
+  resources :liste_demandeurs, only: [:new, :create, :index, :show, :destroy]
+  resources :liste_fournisseurs, only: [:new, :create, :index, :show, :destroy]
 
 end
