@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <h1>Nouvel utilisateur</h1>
+
+      <%= simple_form_for @user do |u| %>
+        <%= u.input :name, placeholder: "Nom", label: "Nom"%>
+        <%= u.input :email, placeholder: "Email", label: "Email"%>
+        <%= u.input :passwd, placeholder: "Mot de passe", label: "Mot de passe"%>
+        <%= u.button :submit, "Créer", class: "btn btn-primary"%>
+      <% end %>
+
+    </div>
+  </div>
+</div>
