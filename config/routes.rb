@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get "/contact" => "pages#contact"
 
   get "/users" => "users#index"
-  get "/articles" => "articles#index"
-  get "/lists" => "lists#index"
-  get "/shops" => "shops#index"
+  get "/users/:id" => "users#show"
 
 end
