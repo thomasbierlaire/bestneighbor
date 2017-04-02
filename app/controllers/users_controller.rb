@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   # Action de visualisation
   def index
     @users = User.all
   end
 
   def show
-    @id = params[:id]
-    @user = User.find(params[:id])
   end
 
   # Actions de création
@@ -26,11 +26,9 @@ class UsersController < ApplicationController
 
   # Actions de modification
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path
     else
@@ -38,11 +36,21 @@ class UsersController < ApplicationController
     end
   end
 
+# Actions de suppression
+  def destroy
+    @user.destroy
+    redirect_to users_path
+  end
+
   private
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def user_params
     params.require(:user).permit(:nom, :prenom, :email, :notel, :passwd)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

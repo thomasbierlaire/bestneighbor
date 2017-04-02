@@ -1,20 +1,20 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
-    Bestneighbor
+    <i class="fa fa-handshake-o" aria-hidden="true"></i>
   </a>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Text link -->
-    <a href="" class="navbar-wagon-item navbar-wagon-link"><%= link_to "Contact", contact_path %></a>
+    <%= link_to "Contact", contact_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
     <!-- Text link -->
-    <a href="" class="navbar-wagon-item navbar-wagon-link"><%= link_to "Aide", aide_path %></a>
+    <%= link_to "Aide", aide_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
 
-    <!-- Profile picture and dropdown -->
+        <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
         <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
@@ -39,4 +39,5 @@
       </ul>
     </div>
   </div>
+
 </div>
