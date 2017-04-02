@@ -5,11 +5,17 @@
       <h1>Nouvel utilisateur</h1>
 
       <%= simple_form_for @user do |u| %>
-        <%= u.input :name, placeholder: "Nom", label: "Nom"%>
+        <%= u.input :nom, placeholder: "Nom", label: "Nom"%>
+        <%= u.input :prenom, placeholder: "Prénom", label: "Prénom"%>
         <%= u.input :email, placeholder: "Email", label: "Email"%>
+        <%= u.input :notel, placeholder: "Tél.", label: "Tél."%>
         <%= u.input :passwd, placeholder: "Mot de passe", label: "Mot de passe"%>
         <%= u.button :submit, "Créer", class: "btn btn-primary"%>
       <% end %>
+
+      <div class="spacer"></div>
+
+      <%= link_to "Déjà inscrit ?", root_path, class: "btn btn-primary" %>
 
     </div>
   </div>

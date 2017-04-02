@@ -10,44 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401061800) do
+ActiveRecord::Schema.define(version: 20170402061751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "demandeurs", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
+    t.string   "nom"
+    t.float    "prix"
+    t.integer  "quantite"
+    t.integer  "liste_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liste_id"], name: "index_articles_on_liste_id", using: :btree
+  end
+
+  create_table "listes", force: :cascade do |t|
+    t.string   "nom"
+    t.integer  "takenby"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_demandeurs_on_user_id", using: :btree
-  end
-
-  create_table "fournisseurs", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_fournisseurs_on_user_id", using: :btree
-  end
-
-  create_table "liste_demandeurs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "demandeur_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["demandeur_id"], name: "index_liste_demandeurs_on_demandeur_id", using: :btree
-  end
-
-  create_table "liste_fournisseurs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "fournisseur_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["fournisseur_id"], name: "index_liste_fournisseurs_on_fournisseur_id", using: :btree
+    t.index ["user_id"], name: "index_listes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "nom"
+    t.string   "prenom"
     t.string   "email"
+    t.string   "notel"
     t.string   "passwd"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -16,14 +16,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.save
-    redirect_to users_path
+    redirect_to choix_path
   end
 
   private
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def user_params
-    params.require(:user).permit(:name, :email, :passwd)
+    params.require(:user).permit(:nom, :prenom, :email, :notel, :passwd)
   end
 
 end

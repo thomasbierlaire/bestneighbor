@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  get "/team" => "pages#team"
+  get "/aide" => "pages#aide"
   get "/contact" => "pages#contact"
+  get "/choix" => "pages#choix"
 
   resources :users
-  resources :demandeurs, only: [:new, :create, :destroy]
-  resources :fournisseurs, only: [:new, :create, :destroy]
-  resources :liste_demandeurs, only: [:new, :create, :index, :show, :destroy]
-  resources :liste_fournisseurs, only: [:new, :create, :index, :show, :destroy]
+  resources :listes
+  resources :articles
 
 end

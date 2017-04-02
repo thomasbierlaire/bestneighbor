@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
 
   end
-  def team
+  def aide
 
   end
   def contact

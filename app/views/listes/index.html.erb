@@ -1,0 +1,16 @@
+<div class = "container text-center">
+
+  <h1>Listes</h1>
+
+  <ul>
+
+    <% @listes.each do |ld| %>
+      <li>
+        <p><%= ld.nom %> <%= User.find(ld.user_id).nom %></p>
+      </li>
+    <% end %>
+
+  </ul>
+
+</div>
+
