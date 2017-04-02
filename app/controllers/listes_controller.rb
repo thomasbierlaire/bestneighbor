@@ -4,6 +4,11 @@ class ListesController < ApplicationController
     @listes = Liste.all
   end
 
+  def show
+    @id = params[:id]
+    @liste = Liste.find(params[:id])
+  end
+
   def new
     @liste = Liste.new
   end
@@ -17,9 +22,17 @@ class ListesController < ApplicationController
     end
   end
 
-  def show
-    @id = params[:id]
+  def edit
     @liste = Liste.find(params[:id])
+  end
+
+  def update
+    @liste = Liste.find(params[:id])
+    if @liste.update(liste_params)
+      redirect_to listes_path
+    else
+      render :edit
+    end
   end
 
   private

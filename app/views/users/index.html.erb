@@ -9,13 +9,17 @@
 
         <tr>
             <th>Nom</th>
+            <th>Prénom</th>
             <th>Email</th>
+            <th>Tél.</th>
         </tr>
 
         <% @users.each do |user| %>
           <tr>
             <td><%= user.nom %></td>
+            <td><%= user.prenom %></td>
             <td><%= user.email %></td>
+            <td><%= user.notel %></td>
           </tr>
         <% end %>
 

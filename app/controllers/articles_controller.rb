@@ -4,6 +4,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
+  def show
+    @id = params[:id]
+    @article = Article.find(params[:id])
+  end
+
   def new
     @article = Article.new
   end
@@ -17,10 +22,19 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-    @id = params[:id]
+  def edit
     @article = Article.find(params[:id])
   end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to articles_path
+    else
+      render :edit
+    end
+  end
+
 
   private
   # Cette fonction permet de protéger le formulaire
