@@ -1,15 +1,19 @@
-<div class = "container text-center">
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <h1>Liste n°<%= @id %></h1>
+  <div class = "container text-center">
 
-  <ul>
+    <h1>Liste n°<%= @id %></h1>
 
-    <li>
-      <p><strong><%= @liste.nom %></strong>
-    </li>
+    <ul>
 
-  </ul>
+      <li>
+        <p><strong><%= @liste.nom %></strong></p>
+      </li>
 
-  <%= link_to "Toutes les listes", listes_path %>
+    </ul>
+
+    <%= link_to "Toutes les listes", listes_path %>
+
+  </div>
 
 </div>

@@ -1,15 +1,21 @@
-<div class = "container text-center">
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <h1>Articles list</h1>
+  <div class = "container text-center">
 
-  <ul>
+    <h1>Articles list</h1>
 
-    <% @articles.each do |article| %>
-      <li>
-        <p><strong><%= article.nom %></strong> <%= article.prix %> <%= article.quantite %></p>
-      </li>
-    <% end %>
+    <ul>
 
-  </ul>
+      <% @articles.each do |article| %>
+        <li>
+          <p><strong><%= article.nom %></strong> <%= article.prix %> <%= article.quantite %></p>
+        </li>
+      <% end %>
+
+    </ul>
+
+    <%= link_to "Nouvel article", new_article_path, class: "btn btn-primary btn-lg" %>
+
+  </div>
 
 </div>

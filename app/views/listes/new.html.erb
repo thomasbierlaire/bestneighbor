@@ -1,15 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-      <h1>Nouvelle liste</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <%= simple_form_for @liste do |l| %>
-        <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-        <%= l.input :user_id %>
-        <%= l.button :submit, "Créer", class: "btn btn-primary" %>
-      <% end %>
+        <h1>Nouvelle liste</h1>
 
+        <%= simple_form_for @liste do |l| %>
+          <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
+          <%= l.input :user_id %>
+          <%= l.button :submit, "Créer", class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
     </div>
   </div>
-</div>
+
+ </div>

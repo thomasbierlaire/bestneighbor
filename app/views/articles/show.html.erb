@@ -1,13 +1,18 @@
-<div class = "container text-center">
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <h1>Article n° <%= @id %></h1>
+  <div class = "container text-center">
 
-  <ul>
+    <h1>Article n° <%= @id %></h1>
 
-    <li>
-      <p><strong><%= @article.nom %></strong> <%= @article.prix %> <%= @article.quantite %></p>
-    </li>
+    <ul>
 
-  </ul>
+      <li>
+        <p><strong><%= @article.nom %></strong> <%= @article.prix %> <%= @article.quantite %></p>
+      </li>
+
+    </ul>
+
+  </div>
 
 </div>
+

@@ -10,8 +10,11 @@ class ListesController < ApplicationController
 
   def create
     @liste = Liste.new(liste_params)
-    @liste.save
-    redirect_to choix_path
+    if @liste.save
+      redirect_to new_article_path
+    else
+      render :new
+    end
   end
 
   def show
