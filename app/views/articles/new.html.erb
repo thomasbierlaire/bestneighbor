@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <h1>Nouvel article</h1>
+
+      <%= simple_form_for @article do |u| %>
+        <%= u.input :nom, placeholder: "Nom", label: "Nom"%>
+        <%= u.input :prix, placeholder: "Prix", label: "Prix"%>
+        <%= u.input :quantite, placeholder: "Quantité", label: "Quantité"%>
+        <%= u.input :liste_id %>
+        <%= u.button :submit, "Créer", class: "btn btn-primary"%>
+      <% end %>
+
+    </div>
+  </div>
+</div>
