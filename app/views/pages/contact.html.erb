@@ -1,7 +1,45 @@
 <div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <div class = "container text-center">
-    <h1>"Contact us"</h1>
-  </div>
+<!-- Contenu de la page contact : carte googlemap à gauche et adresse à droite -->
 
- </div>
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+
+              <div id="map" style="width: 100%; height: 400px;"></div>
+
+              <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVrUPqj4-QyaX6faBDDbn3yU3dL5wmnBQ"></script>
+
+              <!-- Dans le script ci-dessous on remplace la ligne 104 styles: [] par styles: éléments récupérés sur le site   snazzymaps.com-->
+              <script type="text/javascript">
+                var myLatlng = new google.maps.LatLng(48.7132400,7.7963000);
+
+                var myOptions = {
+                    zoom: 14,
+                    center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    styles: [{"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ff0000"}]}]
+                };
+
+                var map = new google.maps.Map(document.getElementById('map'), myOptions);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: "You are here!"
+                });
+              </script>
+
+            </div>
+
+            <div class="col-sm-6">
+              <h2>Contact</h2>
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 15 rue du test 67720 Weyersheim</p>
+              <p><i class="fa fa-mobile" aria-hidden="true"></i> 06 00 00 00 00</p>
+            </div>
+
+          </div>
+
+        </div>
