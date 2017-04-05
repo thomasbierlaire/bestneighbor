@@ -1,19 +1,41 @@
 <div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <div class = "container text-center">
+<div class="container">
 
-    <h1>Liste n°<%= @id %></h1>
+  <div class="row">
 
-    <ul>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <li>
-        <p><strong><%= @liste.nom %></strong></p>
-      </li>
+      <h1 class="text-center">Liste <%= @liste.nom %> </h1>
 
-    </ul>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%= @liste.nom %></h3>
+              </div>
+              <ul class="list-inline product-controls hidden-sm hidden-xs">
+                 <li>
+                   <% if @liste.takenby != 0 %>
+                    <% @liste.takenby = 0 %>
+                   <% else %>
+                    <% @liste.takenby = 42 %>
+                   <% end %>
 
-    <%= link_to "Toutes les listes", listes_path %>
+                   <% @liste.save %>
+
+                   <%= link_to listes_path do %>
+                    <i class="fa fa-pencil"></i>
+                   <% end %>
+                  </li>
+              </ul>
+            </div>
+
+            <%= link_to "Toutes les listes", listes_path %>
+
+     </div>
 
   </div>
 
 </div>
+
+
+

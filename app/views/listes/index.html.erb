@@ -1,18 +1,47 @@
 <div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
-  <div class = "container text-center">
+<div class="container">
 
-    <h1>Listes</h1>
+  <div class="row">
 
-    <ul>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <% @listes.each do |ld| %>
-        <li>
-          <p><%= ld.nom %> <%= User.find(ld.user_id).nom %></p>
-        </li>
-      <% end %>
+      <h1 class="text-center">Listes disponibles</h1>
 
-    </ul>
+        <% @listesd.each do |ld| %>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%= ld.nom %></h3>
+              </div>
+              <ul class="list-inline product-controls hidden-sm hidden-xs">
+                 <li>
+                   <%= link_to liste_path(ld) do %>
+                    <i class="fa fa-eye"></i>
+                   <% end %>
+                 </li>
+              </ul>
+            </div>
+        <% end %>
+
+
+      <h1 class="text-center">Listes prises</h1>
+
+        <% @listesp.each do |lp| %>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%= lp.nom %></h3>
+              </div>
+              <ul class="list-inline product-controls hidden-sm hidden-xs">
+                 <li>
+                   <%= link_to liste_path(lp) do %>
+                    <i class="fa fa-eye"></i>
+                   <% end %>
+                 </li>
+              </ul>
+            </div>
+        <% end %>
+
+     </div>
 
   </div>
 
