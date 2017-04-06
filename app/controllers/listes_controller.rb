@@ -2,6 +2,7 @@ class ListesController < ApplicationController
 
   before_action :select_listes_dispo, only: [:index]
   before_action :select_listes_prises, only: [:index]
+  before_action :find_liste, only: [:show, :edit, :update, :destroy]
 
   def index
     @listesd = @listes_dispo
@@ -10,7 +11,6 @@ class ListesController < ApplicationController
 
   def show
     @id = params[:id]
-    @liste = Liste.find(params[:id])
   end
 
   def new
@@ -27,11 +27,10 @@ class ListesController < ApplicationController
   end
 
   def edit
-    @liste = Liste.find(params[:id])
+
   end
 
   def update
-    @liste = Liste.find(params[:id])
     if @liste.update(liste_params)
       redirect_to listes_path
     else
@@ -49,6 +48,10 @@ class ListesController < ApplicationController
   # Seules les données permises seront sauvegardées en base
   def liste_params
     params.require(:liste).permit(:nom, :user_id)
+  end
+
+  def find_liste
+    @liste = Liste.find(params[:id])
   end
 
   def select_listes_dispo

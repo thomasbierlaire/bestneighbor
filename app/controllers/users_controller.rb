@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  # Connexion utilisateur existant
+  def login
 
-  # Action de visualisation
-  def index
-    @users = User.all
   end
 
-  def show
+  def check
+    @current_user = User.where(nom: params[:nom], passwd: params[:passwd]).first
+    if @current_user
+      #flash[:info] = "Bienvenue #{@current_user.nom} !"
+      redirect_to choix_path
+    else
+      flash[:info] = "Echec de la connexion"
+      redirect_to users_login_path
+    end
   end
 
-  # Actions de création
+  # Enregistrement nouvel utilisateur
   def new
     @user = User.new
   end
@@ -24,33 +30,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # Actions de modification
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to users_path
-    else
-      render :edit
-    end
-  end
-
-# Actions de suppression
-  def destroy
-    @user.destroy
-    redirect_to users_path
-  end
-
   private
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def user_params
     params.require(:user).permit(:nom, :prenom, :email, :notel, :passwd)
-  end
-
-  def find_user
-    @user = User.find(params[:id])
   end
 
 end

@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get "/contact" => "pages#contact"
   get "/choix" => "pages#choix"
 
-  resources :users
+  get "/users/login" => "users#login"
+  post "/users/login" => "users#check"
+  get "/users/new" => "users#new"
+  post "/users" => "users#create"
+
   resources :listes
   resources :articles
 
