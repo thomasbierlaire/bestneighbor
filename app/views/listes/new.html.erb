@@ -8,7 +8,8 @@
 
         <%= simple_form_for @liste do |l| %>
           <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-          <%= l.input :user_id %>
+          <%= l.input :magasin, placeholder: "Magasin", label: "Magasin" %>
+          <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date livraison" %>
           <%= l.button :submit, "Créer", class: "btn btn-primary" %>
         <% end %>
 

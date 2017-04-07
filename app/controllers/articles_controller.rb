@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
 
+  before_action :select_liste_articles, only: [:index]
+
   def index
-    @articles = Article.all
+    @articles = @liste_articles
   end
 
   def show
@@ -41,6 +43,10 @@ class ArticlesController < ApplicationController
   # Seules les données permises seront sauvegardées en base
   def article_params
     params.require(:article).permit(:nom, :prix, :quantite, :liste_id)
+  end
+
+  def select_liste_articles
+    @liste_articles = Article.where(liste_id: @liste.id)
   end
 
 end

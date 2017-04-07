@@ -11,18 +11,12 @@
             <div class="product">
               <div class='product-body'>
                 <h3><%= @liste.nom %></h3>
+                <h3><%= @liste.magasin %></h3>
+                <h3><%= @liste.date_livraison %></h3>
               </div>
               <ul class="list-inline product-controls hidden-sm hidden-xs">
                  <li>
-                   <% if @liste.takenby != 0 %>
-                    <% @liste.takenby = 0 %>
-                   <% else %>
-                    <% @liste.takenby = 42 %>
-                   <% end %>
-
-                   <% @liste.save %>
-
-                   <%= link_to listes_path do %>
+                   <%= link_to articles_path do %>
                     <i class="fa fa-pencil"></i>
                    <% end %>
                   </li>

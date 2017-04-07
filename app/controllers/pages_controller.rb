@@ -8,4 +8,7 @@ class PagesController < ApplicationController
   def contact
 
   end
+  def choix
+
+  end
 end

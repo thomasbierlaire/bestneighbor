@@ -6,7 +6,7 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <h1 class="text-center">Listes disponibles</h1>
+      <h1 class="text-center">Listes proposées</h1>
 
         <% @listesd.each do |ld| %>
             <div class="product">
@@ -19,12 +19,17 @@
                     <i class="fa fa-eye"></i>
                    <% end %>
                  </li>
+                 <li>
+                   <%= link_to liste_path(ld), method: :takenby do %>
+                    <i class="fa fa-handshake-o"></i>
+                   <% end %>
+                 </li>
               </ul>
             </div>
         <% end %>
 
 
-      <h1 class="text-center">Listes prises</h1>
+      <h1 class="text-center">J'ai pris en charge ces listes</h1>
 
         <% @listesp.each do |lp| %>
             <div class="product">
@@ -35,6 +40,11 @@
                  <li>
                    <%= link_to liste_path(lp) do %>
                     <i class="fa fa-eye"></i>
+                   <% end %>
+                 </li>
+                 <li>
+                   <%= link_to liste_path(lp), method: :delete do %>
+                    <i class="fa fa-trash"></i>
                    <% end %>
                  </li>
               </ul>

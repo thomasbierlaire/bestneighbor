@@ -19,9 +19,12 @@ User.create!(nom: "nom3", prenom: "prenom3", email: "email3", notel: "0101010103
 @l2 = User.find_by_email('email2').id
 @l3 = User.find_by_email('email3').id
 
-Liste.create!(nom: "liste1user1", takenby: "nil", user_id: @l1)
-Liste.create!(nom: "liste1user2", takenby: "nil", user_id: @l2)
-Liste.create!(nom: "liste1user3", takenby: "nil", user_id: @l3)
+Liste.create!(nom: "liste1user1", magasin: "Auchan", date_livraison: "20170425", takenby: "nil", user_id: @l1)
+Liste.create!(nom: "liste1user2", magasin: "Auchan", date_livraison: "20170425",takenby: "nil", user_id: @l2)
+Liste.create!(nom: "liste1user3", magasin: "Auchan", date_livraison: "20170425",takenby: "nil", user_id: @l3)
+Liste.create!(nom: "liste4takenbyuser3", magasin: "Auchan", date_livraison: "20170425",takenby: @l3, user_id: @l1)
+Liste.create!(nom: "liste5takenbyuser1", magasin: "Auchan", date_livraison: "20170425",takenby: @l1, user_id: @l2)
+Liste.create!(nom: "liste6takenbyuser2", magasin: "Auchan", date_livraison: "20170425",takenby: @l2, user_id: @l3)
 
 @a1 = Liste.find_by_nom('liste1user1').id
 @a2 = Liste.find_by_nom('liste1user2').id

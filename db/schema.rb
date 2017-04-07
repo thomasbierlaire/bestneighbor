@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20170402061751) do
 
   create_table "listes", force: :cascade do |t|
     t.string   "nom"
+    t.string   "magasin"
+    t.date     "date_livraison"
     t.integer  "takenby"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["user_id"], name: "index_listes_on_user_id", using: :btree
   end
 
