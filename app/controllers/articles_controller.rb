@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
 
   before_action :select_liste_articles, only: [:index]
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :find_liste, only: [:create]
 
   def index
     @articles = @liste_articles
@@ -17,8 +18,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.liste_id = @liste.id
     if @article.save
-      redirect_to articles_path
+      redirect_to new_article_path
     else
       render :new
     end
@@ -50,6 +52,10 @@ class ArticlesController < ApplicationController
 
   def find_article
     @article = Article.find(params[:id])
+  end
+
+  def find_liste
+    @liste = Liste.find_by_user_id(@current_user.id)
   end
 
 end

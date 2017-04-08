@@ -6,7 +6,7 @@
 
       <h1>Connexion</h1>
 
-      <%= form_tag "/users/login", method: :post do %>
+      <%= form_tag users_login_path, method: :post do %>
         <input type="text" name="nom" />
         <input type="password" name="passwd" />
         <input type="submit", value="Se connecter", class="btn btn-primary" />
@@ -14,7 +14,7 @@
 
       <div class="spacer"></div>
 
-      <%= link_to "Pas encore inscrit ?", users_new_path, class: "btn btn-primary" %>
+      <%= link_to "Pas encore inscrit ?", users_new_path %>
 
     </div>
   </div>
