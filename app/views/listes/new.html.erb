@@ -4,13 +4,49 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-        <h1>Nouvelle liste</h1>
+        <% if @ma_liste.present? %>
 
-        <%= simple_form_for @liste do |l| %>
-          <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-          <%= l.input :magasin, placeholder: "Magasin", label: "Magasin" %>
-          <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date livraison" %>
-          <%= l.button :submit, "Créer", class: "btn btn-primary" %>
+          <h1>Ma liste</h1>
+
+          <% @ma_liste.each do |liste| %>
+
+                   <div class="product">
+                      <div class='product-body'>
+                        <h3><%= liste.nom %></h3>
+                      </div>
+
+                      <ul class="list-inline product-controls hidden-sm hidden-xs">
+                         <li>
+                           <%= link_to liste_path(liste) do %>
+                            <i class="fa fa-eye"></i>
+                           <% end %>
+                         </li>
+                         <li>
+                           <%= link_to liste_path(liste), method: :delete do %>
+                            <i class="fa fa-trash"></i>
+                           <% end %>
+                         </li>
+                         <li>
+                           <%= link_to edit_liste_path(liste) do %>
+                            <i class="fa fa-pencil"></i>
+                           <% end %>
+                         </li>
+                      </ul>
+
+                   </div>
+          <% end %>
+
+        <% else %>
+
+          <h1>Nouvelle liste</h1>
+
+          <%= simple_form_for @liste do |l| %>
+            <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
+            <%= l.input :magasin, placeholder: "Magasin", label: "Magasin" %>
+            <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date livraison" %>
+            <%= l.button :submit, "Créer", class: "btn btn-primary" %>
+          <% end %>
+
         <% end %>
 
       </div>

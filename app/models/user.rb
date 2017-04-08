@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :listes
+  has_one :liste
 
   validates :email, presence: true, uniqueness: true
   validates :passwd, presence: true

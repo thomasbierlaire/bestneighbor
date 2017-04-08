@@ -2,7 +2,9 @@ class ListesController < ApplicationController
 
   before_action :select_listes_dispo, only: [:index]
   before_action :select_listes_prises, only: [:index]
+  before_action :select_user_liste, only: [:new]
   before_action :find_liste, only: [:show, :edit, :update, :destroy, :takenby]
+  before_action :find_articles, only: [:show]
 
   def index
     @listesd = @listes_dispo
@@ -10,11 +12,13 @@ class ListesController < ApplicationController
   end
 
   def show
+    @articles = @liste_articles
     @id = params[:id]
   end
 
   def new
     @liste = Liste.new
+    @ma_liste = @liste_user
   end
 
   def create
@@ -34,22 +38,25 @@ class ListesController < ApplicationController
 
   def update
     if @liste.update(liste_params)
-      redirect_to listes_path
+      redirect_to choix_path
     else
       render :edit
     end
   end
 
   def takenby
-    @liste.takenby = @current_user.id
+    if @liste.takenby != @current_user.id
+      @liste.takenby = @current_user.id
+    else
+      @liste.takenby = 0
+    end
     @liste.save
     redirect_to listes_path
   end
 
   def destroy
-    @liste.takenby = 0
-    @liste.save
-    redirect_to listes_path
+    @liste.destroy
+    redirect_to choix_path
   end
 
   private
@@ -73,6 +80,10 @@ class ListesController < ApplicationController
 
   def select_listes_prises
     @listes_prises = Liste.where(takenby: @current_user.id)
+  end
+
+  def find_articles
+    @liste_articles = Article.where(liste_id: @liste.id)
   end
 
 end

@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :select_liste_articles, only: [:index]
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   def index
     @articles = @liste_articles
@@ -8,7 +9,6 @@ class ArticlesController < ApplicationController
 
   def show
     @id = params[:id]
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -25,11 +25,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       redirect_to articles_path
     else
@@ -47,6 +46,10 @@ class ArticlesController < ApplicationController
 
   def select_liste_articles
     @liste_articles = Article.where(liste_id: @liste.id)
+  end
+
+  def find_article
+    @article = Article.find(params[:id])
   end
 
 end

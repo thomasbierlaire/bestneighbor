@@ -14,14 +14,21 @@
                 <h3><%= @liste.magasin %></h3>
                 <h3><%= @liste.date_livraison %></h3>
               </div>
-              <ul class="list-inline product-controls hidden-sm hidden-xs">
-                 <li>
-                   <%= link_to articles_path do %>
-                    <i class="fa fa-pencil"></i>
-                   <% end %>
-                  </li>
-              </ul>
             </div>
+
+            <h1>Articles de la liste</h1>
+
+            <ul>
+
+              <% @articles.each do |article| %>
+                <li>
+                  <p><strong><%= article.nom %></strong> <%= article.prix %> <%= article.quantite %></p>
+                </li>
+              <% end %>
+
+            </ul>
+
+            <h3>Prix total : </h3><%= @total_liste %>
 
             <%= link_to "Toutes les listes", listes_path %>
 
