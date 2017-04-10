@@ -38,12 +38,10 @@
 
         <% else %>
 
-          <h1>Nouvelle liste</h1>
-
           <%= simple_form_for @liste do |l| %>
             <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
             <%= l.input :magasin, placeholder: "Magasin", label: "Magasin" %>
-            <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date livraison" %>
+            <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date de livraison demandée" %>
             <%= l.button :submit, "Créer", class: "btn btn-primary" %>
           <% end %>
 
@@ -52,5 +50,5 @@
       </div>
     </div>
   </div>
-
+  <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
  </div>

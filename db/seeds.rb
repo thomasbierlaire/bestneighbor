@@ -11,13 +11,13 @@ Article.destroy_all
 Liste.destroy_all
 User.destroy_all
 
-User.create!(nom: "nom1", prenom: "prenom1", email: "email1", notel: "0101010101", passwd: "passwd1")
-User.create!(nom: "nom2", prenom: "prenom2", email: "email2", notel: "0101010102", passwd: "passwd2")
-User.create!(nom: "nom3", prenom: "prenom3", email: "email3", notel: "0101010103", passwd: "passwd3")
+User.create!(nom: "nom1", prenom: "prenom1", email: "email1@mail", notel: "0101010101", passwd: "passwd1")
+User.create!(nom: "nom2", prenom: "prenom2", email: "email2@mail", notel: "0101010102", passwd: "passwd2")
+User.create!(nom: "nom3", prenom: "prenom3", email: "email3@mail", notel: "0101010103", passwd: "passwd3")
 
-@l1 = User.find_by_email('email1').id
-@l2 = User.find_by_email('email2').id
-@l3 = User.find_by_email('email3').id
+@l1 = User.find_by_email('email1@mail').id
+@l2 = User.find_by_email('email2@mail').id
+@l3 = User.find_by_email('email3@mail').id
 
 Liste.create!(nom: "liste1user1", magasin: "Auchan", date_livraison: "20170425", takenby: "nil", user_id: @l1)
 Liste.create!(nom: "liste1user2", magasin: "Auchan", date_livraison: "20170425",takenby: "nil", user_id: @l2)

@@ -6,14 +6,38 @@
       <% if @current_user %>
         <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
         <div class="spacer"></div>
-        <%= form_tag "/users/login", method: :delete do %>
-          <input type="submit" value="Déconnexion" class="btn btn-primary btn-lg" />
-        <% end %>
+        <%= link_to "Déconnexion", users_login_path, method: :delete %>
+
       <% else %>
         <%= link_to "Je m'inscris", users_new_path, class: "btn btn-primary btn-lg" %>
         <div class="spacer"></div>
         <%= link_to "Je me connecte", users_login_path %>
+
       <% end %>
 
-  </div>
+ <div class="spacer"></div> <!-- permet de mettre de l'espace au dessus des fonctions -->
+
+        <div class="container text-center"> <!-- container bootstrap, on utilise également la classe
+        bootstrap text-center qui permet de tout centrer dans le container -->
+          <div class="row">     <!-- row bootstrap -->
+
+            <div class="col-sm-6 col-md-4 feature circle">
+              <%= image_tag "noun_949373_cc.png", alt: "Une course ?", title: "Une course ?", width: "100", class: "circle" %>
+              <p>Une course ?</p>
+            </div>
+
+            <div class="col-sm-6 col-md-4 feature circle">
+              <%= image_tag "noun_735684_cc.png", alt: "Idée !", title: "Idée !", width: "100", class: "circle" %>
+              <p>Idée !</p>
+            </div>
+
+            <div class="col-sm-6 col-md-4 feature circle">
+               <%= image_tag "noun_713963_cc.png", alt: "Mes voisins", title: "Mes voisins", width: "100", class: "circle" %>
+              <p>Mes voisins</p>
+            </div>
+
+          </div>
+
+        </div>
+</div>
 </div>

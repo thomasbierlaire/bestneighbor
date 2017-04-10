@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <h1>Nouvel utilisateur</h1>
+      <h1>Je m'inscris</h1>
 
       <%= simple_form_for @user do |u| %>
         <%= u.input :nom, placeholder: "Nom", label: "Nom"%>
@@ -17,10 +17,10 @@
 
       <div class="spacer"></div>
 
-      <%= link_to "Déjà inscrit ?", users_login_path, class: "btn btn-primary" %>
+      <%= link_to "Déjà inscrit ?", users_login_path %>
 
     </div>
   </div>
 </div>
-
+  <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
 </div>
