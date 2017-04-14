@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
   end
 
   def find_liste
-    @liste = Liste.find_by_user_id(@current_user.id)
+    @liste = Liste.find_by_user_id(current_user.id)
   end
 
 end
