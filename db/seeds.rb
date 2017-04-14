@@ -11,20 +11,19 @@ Article.destroy_all
 Liste.destroy_all
 User.destroy_all
 
-User.create!(nom: "nom1", prenom: "prenom1", email: "email1@mail", notel: "0101010101", passwd: "passwd1")
-User.create!(nom: "nom2", prenom: "prenom2", email: "email2@mail", notel: "0101010102", passwd: "passwd2")
-User.create!(nom: "nom3", prenom: "prenom3", email: "email3@mail", notel: "0101010103", passwd: "passwd3")
+u1 = User.create!(email: "user1@hotmail.com", password: "passwd1")
+u2 = User.create!(email: "user2@hotmail.com", password: "passwd2")
+u3 = User.create!(email: "user3@hotmail.com", password: "passwd3")
+u4 = User.create!(email: "user4@hotmail.com", password: "passwd4")
+u5 = User.create!(email: "user5@hotmail.com", password: "passwd5")
+u6 = User.create!(email: "user6@hotmail.com", password: "passwd6")
 
-@l1 = User.find_by_email('email1@mail').id
-@l2 = User.find_by_email('email2@mail').id
-@l3 = User.find_by_email('email3@mail').id
-
-Liste.create!(nom: "liste1user1", magasin: "Auchan", date_livraison: "20170425", takenby: "nil", user_id: @l1)
-Liste.create!(nom: "liste1user2", magasin: "Auchan", date_livraison: "20170425",takenby: "nil", user_id: @l2)
-Liste.create!(nom: "liste1user3", magasin: "Auchan", date_livraison: "20170425",takenby: "nil", user_id: @l3)
-Liste.create!(nom: "liste4takenbyuser3", magasin: "Auchan", date_livraison: "20170425",takenby: @l3, user_id: @l1)
-Liste.create!(nom: "liste5takenbyuser1", magasin: "Auchan", date_livraison: "20170425",takenby: @l1, user_id: @l2)
-Liste.create!(nom: "liste6takenbyuser2", magasin: "Auchan", date_livraison: "20170425",takenby: @l2, user_id: @l3)
+Liste.create!(user: u1, nom: "liste1user1", magasin: "Auchan", date_livraison: "20170425", takenby: "0")
+Liste.create!(user: u2,nom: "liste1user2", magasin: "Auchan", date_livraison: "20170425",takenby: "0")
+Liste.create!(user: u3,nom: "liste1user3", magasin: "Auchan", date_livraison: "20170425",takenby: "0")
+Liste.create!(user: u4,nom: "liste4takenbyuser3", magasin: "Auchan", date_livraison: "20170425",takenby: u3.id)
+Liste.create!(user: u5,nom: "liste5takenbyuser1", magasin: "Auchan", date_livraison: "20170425",takenby: u1.id)
+Liste.create!(user: u6,nom: "liste6takenbyuser2", magasin: "Auchan", date_livraison: "20170425",takenby: u2.id)
 
 @a1 = Liste.find_by_nom('liste1user1').id
 @a2 = Liste.find_by_nom('liste1user2').id

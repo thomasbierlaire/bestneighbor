@@ -3,15 +3,15 @@
     <h1>Une course à faire ?</h1>
     <p>Dépannez vous entre voisins</p>
 
-      <% if @current_user %>
+      <% if user_signed_in? %>
         <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
         <div class="spacer"></div>
-        <%= link_to "Déconnexion", users_login_path, method: :delete %>
+        <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
 
       <% else %>
-        <%= link_to "Je m'inscris", users_new_path, class: "btn btn-primary btn-lg" %>
+        <%= link_to "Je m'inscris", new_user_registration_path, class: "btn btn-primary btn-lg" %>
         <div class="spacer"></div>
-        <%= link_to "Je me connecte", users_login_path %>
+        <%= link_to "Je me connecte", new_user_session_path %>
 
       <% end %>
 

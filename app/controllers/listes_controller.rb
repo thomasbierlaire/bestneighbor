@@ -23,7 +23,7 @@ class ListesController < ApplicationController
 
   def create
     @liste = Liste.new(liste_params)
-    @liste.user_id = @current_user.id
+    @liste.user = current_user
     @liste.takenby = 0
     if @liste.save
       redirect_to new_article_path
@@ -45,8 +45,8 @@ class ListesController < ApplicationController
   end
 
   def takenby
-    if @liste.takenby != @current_user.id
-      @liste.takenby = @current_user.id
+    if @liste.takenby != current_user.id
+      @liste.takenby = current_user.id
     else
       @liste.takenby = 0
     end
@@ -63,7 +63,7 @@ class ListesController < ApplicationController
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def liste_params
-    params.require(:liste).permit(:nom, :user_id, :takenby, :magasin, :date_livraison)
+    params.require(:liste).permit(:nom, :magasin, :date_livraison)
   end
 
   def find_liste
@@ -71,15 +71,15 @@ class ListesController < ApplicationController
   end
 
   def select_listes_dispo
-    @listes_dispo = Liste.where('user_id != ? AND takenby = ?', @current_user.id,'0')
+    @listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user,'0')
   end
 
   def select_user_liste
-    @liste_user = Liste.where(user_id: @current_user.id)
+    @liste_user = Liste.where(user_id: current_user)
   end
 
   def select_listes_prises
-    @listes_prises = Liste.where(takenby: @current_user.id)
+    @listes_prises = Liste.where(takenby: current_user)
   end
 
   def find_articles
