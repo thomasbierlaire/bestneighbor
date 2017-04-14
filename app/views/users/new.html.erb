@@ -4,11 +4,11 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <h1>Je m'inscris</h1>
-
       <%= simple_form_for @user do |u| %>
         <%= u.input :nom, placeholder: "Nom", label: "Nom"%>
         <%= u.input :prenom, placeholder: "Prénom", label: "Prénom"%>
+        <%= u.input :codepostal, placeholder: "Code postal", label: "Code postal"%>
+        <%= u.input :ville, placeholder: "Ville", label: "Ville"%>
         <%= u.input :email, placeholder: "Email", label: "Email"%>
         <%= u.input :notel, placeholder: "Tél.", label: "Tél."%>
         <%= u.input :passwd, placeholder: "Mot de passe", label: "Mot de passe"%>

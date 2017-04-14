@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def user_params
-    params.require(:user).permit(:nom, :prenom, :email, :notel, :passwd)
+    params.require(:user).permit(:nom, :prenom, :codepostal, :ville, :email, :notel, :passwd)
   end
 
 end
