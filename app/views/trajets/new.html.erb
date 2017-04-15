@@ -4,32 +4,32 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-        <% if @ma_liste.present? %>
+        <% if @mon_trajet.present? %>
 
-          <h1>Ma liste</h1>
+          <h1>Mon trajet</h1>
 
-            <% @ma_liste.each do |liste| %>
+            <% @mon_trajet.each do |trajet| %>
 
                    <div class="product">
                       <div class='product-body'>
-                        <h3><%= liste.nom %></h3>
+                        <h3><%= trajet.destination %></h3>
                       </div>
 
                       <ul class="list-inline product-controls hidden-sm hidden-xs">
                          <li>
-                           <%= link_to liste_path(liste) do %>
+                           <%= link_to trajet_path(trajet) do %>
                             <i class="fa fa-eye"></i>
                            <% end %>
                          </li>
 
                          <li>
-                           <%= link_to edit_liste_path(liste) do %>
+                           <%= link_to edit_trajet_path(trajet) do %>
                             <i class="fa fa-pencil"></i>
                            <% end %>
                          </li>
 
                          <li>
-                           <%= link_to liste_path(liste), method: :delete do %>
+                           <%= link_to trajet_path(trajet), method: :delete do %>
                             <i class="fa fa-trash"></i>
                            <% end %>
                          </li>
@@ -41,11 +41,12 @@
 
         <% else %>
 
-          <%= simple_form_for @liste do |l| %>
-            <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-            <%= l.input :content, placeholder: "Contenu", label: "Contenu" %>
-            <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date de livraison demandée" %>
-            <%= l.button :submit, "Créer", class: "btn btn-primary" %>
+          <%= simple_form_for @trajet do |t| %>
+            <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
+            <%= t.input :nbpass, placeholder: "Nb de passagers", label: "Nb de passagers" %>
+            <%= t.input :date, placeholder: "Date", label: "Date" %>
+            <%= t.input :heure, placeholder: "Heure", label: "Heure" %>
+            <%= t.button :submit, "Créer", class: "btn btn-primary" %>
           <% end %>
 
         <% end %>

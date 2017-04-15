@@ -1,7 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
-    <h1>Une course à faire ?</h1>
-    <p>Dépannez vous entre voisins</p>
+
+    <h1>On se dépanne entre voisins !</h1>
 
       <% if user_signed_in? %>
         <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
@@ -22,8 +22,9 @@
           <div class="row">     <!-- row bootstrap -->
 
             <div class="col-sm-6 col-md-4 feature circle">
-              <%= image_tag "noun_949373_cc.png", alt: "Une course ?", title: "Une course ?", width: "100", class: "circle" %>
-              <p>Une course ?</p>
+              <%= image_tag "noun_949373_cc.png", alt: "Petite liste de course ? Covoiturage ?", title: "Petite liste de course ? Covoiturage ?", width: "100", class: "circle" %>
+              <p>Petite liste de course ?</p>
+              <p>Covoiturage ?</p>
             </div>
 
             <div class="col-sm-6 col-md-4 feature circle">

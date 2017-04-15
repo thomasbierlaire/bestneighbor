@@ -6,13 +6,14 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <h1 class="text-center">Liste <%= @liste.nom %> </h1>
+      <h1 class="text-center">Trajet <%= @trajet.destination %> </h1>
 
             <div class="product">
               <div class='product-body'>
-                <h3><%= @liste.nom %></h3>
-                <h3><%= @liste.content %></h3>
-                <h3><%= @liste.date_livraison %></h3>
+                <h3><%= @trajet.destination %></h3>
+                <h3><%= @trajet.nbpass %></h3>
+                <h3><%= @trajet.date %></h3>
+                <h3><%= @trajet.heure %></h3>
               </div>
             </div>
 

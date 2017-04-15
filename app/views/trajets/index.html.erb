@@ -1,0 +1,58 @@
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+      <h2 class="text-center">Trajets proposés</h2>
+        <% @trajetsd.each do |ld| %>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%= ld.destination %></h3>
+              </div>
+              <ul class="list-inline product-controls hidden-sm hidden-xs">
+                 <li>
+                   <%= link_to trajet_path(ld) do %>
+                    <i class="fa fa-eye"></i>
+                   <% end %>
+                 </li>
+                 <li>
+                   <%= link_to trajet_path(ld), method: :takenby do %>
+                    <i class="fa fa-handshake-o"></i>
+                   <% end %>
+                 </li>
+              </ul>
+            </div>
+        <% end %>
+
+
+      <h2 class="text-center">J'ai pris en charge ces trajets</h2>
+
+        <% @trajetsp.each do |lp| %>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%= lp.destination %></h3>
+              </div>
+              <ul class="list-inline product-controls hidden-sm hidden-xs">
+                 <li>
+                   <%= link_to trajet_path(lp) do %>
+                    <i class="fa fa-eye"></i>
+                   <% end %>
+                 </li>
+                 <li>
+                   <%= link_to trajet_path(lp), method: :takenby do %>
+                    <i class="fa fa-trash"></i>
+                   <% end %>
+                 </li>
+              </ul>
+            </div>
+        <% end %>
+
+     </div>
+
+  </div>
+
+</div>
+

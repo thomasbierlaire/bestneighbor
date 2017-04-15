@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :listes
   post "/listes/:id" => "listes#takenby"
 
-
-  resources :articles
+  resources :trajets
+  post "/trajets/:id" => "trajets#takenby"
 
 end

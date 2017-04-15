@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :listes
+  has_many :trajets
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

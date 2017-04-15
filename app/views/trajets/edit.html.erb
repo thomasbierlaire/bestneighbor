@@ -1,0 +1,19 @@
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+        <%= simple_form_for @trajet do |l| %>
+          <%= l.input :destination, placeholder: "Destination", label: "Destination" %>
+          <%= l.input :nbpass, placeholder: "Nb de passagers", label: "Nb de passagers" %>
+          <%= l.input :date, placeholder: "Date", label: "Date" %>
+          <%= l.input :heure, placeholder: "Heure", label: "Heure" %>
+          <%= l.button :submit, "Enregistrer", class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
+ </div>
