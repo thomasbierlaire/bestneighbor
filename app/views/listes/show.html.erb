@@ -11,24 +11,10 @@
             <div class="product">
               <div class='product-body'>
                 <h3><%= @liste.nom %></h3>
-                <h3><%= @liste.magasin %></h3>
+                <h3><%= @liste.content %></h3>
                 <h3><%= @liste.date_livraison %></h3>
               </div>
             </div>
-
-            <h1>Articles de la liste</h1>
-
-            <ul>
-
-              <% @articles.each do |article| %>
-                <li>
-                  <p><strong><%= article.nom %></strong> <%= article.prix %> <%= article.quantite %></p>
-                </li>
-              <% end %>
-
-            </ul>
-
-            <h3>Prix total : </h3><%= @total_liste %>
 
             <%= link_to "Toutes les listes", listes_path %>
 

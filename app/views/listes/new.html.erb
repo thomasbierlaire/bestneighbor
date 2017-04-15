@@ -40,7 +40,7 @@
 
           <%= simple_form_for @liste do |l| %>
             <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-            <%= l.input :magasin, placeholder: "Magasin", label: "Magasin" %>
+            <%= l.input :content, placeholder: "Contenu", label: "Contenu" %>
             <%= l.input :date_livraison, placeholder: "Date de livraison demandée", label: "Date de livraison demandée" %>
             <%= l.button :submit, "Créer", class: "btn btn-primary" %>
           <% end %>

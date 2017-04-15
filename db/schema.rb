@@ -15,19 +15,9 @@ ActiveRecord::Schema.define(version: 20170414194947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "nom"
-    t.float    "prix"
-    t.integer  "quantite"
-    t.integer  "liste_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["liste_id"], name: "index_articles_on_liste_id", using: :btree
-  end
-
   create_table "listes", force: :cascade do |t|
     t.string   "nom"
-    t.string   "magasin"
+    t.string   "content"
     t.date     "date_livraison"
     t.integer  "takenby"
     t.datetime "created_at",     null: false

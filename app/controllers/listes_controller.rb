@@ -4,7 +4,6 @@ class ListesController < ApplicationController
   before_action :select_listes_prises, only: [:index]
   before_action :select_user_liste, only: [:new]
   before_action :find_liste, only: [:show, :edit, :update, :destroy, :takenby]
-  before_action :find_articles, only: [:show]
 
   def index
     @listesd = @listes_dispo
@@ -12,7 +11,6 @@ class ListesController < ApplicationController
   end
 
   def show
-    @articles = @liste_articles
     @id = params[:id]
   end
 
@@ -26,7 +24,7 @@ class ListesController < ApplicationController
     @liste.user = current_user
     @liste.takenby = 0
     if @liste.save
-      redirect_to new_article_path
+      redirect_to choix_path
     else
       render :new
     end
@@ -63,7 +61,7 @@ class ListesController < ApplicationController
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def liste_params
-    params.require(:liste).permit(:nom, :magasin, :date_livraison)
+    params.require(:liste).permit(:nom, :content, :date_livraison)
   end
 
   def find_liste
@@ -80,10 +78,6 @@ class ListesController < ApplicationController
 
   def select_listes_prises
     @listes_prises = Liste.where(takenby: current_user)
-  end
-
-  def find_articles
-    @liste_articles = Article.where(liste_id: @liste.id)
   end
 
 end
