@@ -11,12 +11,12 @@ Liste.destroy_all
 Trajet.destroy_all
 User.destroy_all
 
-u1 = User.create!(email: "user1@hotmail.com", password: "passwd1")
-u2 = User.create!(email: "user2@hotmail.com", password: "passwd2")
-u3 = User.create!(email: "user3@hotmail.com", password: "passwd3")
-u4 = User.create!(email: "user4@hotmail.com", password: "passwd4")
-u5 = User.create!(email: "user5@hotmail.com", password: "passwd5")
-u6 = User.create!(email: "user6@hotmail.com", password: "passwd6")
+u1 = User.create!(email: "user1@hotmail.com", password: "passwd1", code_postal: "67720")
+u2 = User.create!(email: "user2@hotmail.com", password: "passwd2", code_postal: "67720")
+u3 = User.create!(email: "user3@hotmail.com", password: "passwd3", code_postal: "67720")
+u4 = User.create!(email: "user4@hotmail.com", password: "passwd4", code_postal: "67750")
+u5 = User.create!(email: "user5@hotmail.com", password: "passwd5", code_postal: "67750")
+u6 = User.create!(email: "user6@hotmail.com", password: "passwd6", code_postal: "67750")
 
 Liste.create!(user: u1, nom: "liste1user1", content: "contenu à détailler", date_livraison: "20170425", takenby: "0")
 Liste.create!(user: u2,nom: "liste1user2", content: "contenu à détailler", date_livraison: "20170425",takenby: "0")

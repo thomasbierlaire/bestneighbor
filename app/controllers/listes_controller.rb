@@ -69,7 +69,7 @@ class ListesController < ApplicationController
   end
 
   def select_listes_dispo
-    @listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user,'0')
+    @listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user.id, 0)
   end
 
   def select_user_liste

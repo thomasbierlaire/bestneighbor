@@ -68,7 +68,7 @@ class TrajetsController < ApplicationController
   end
 
   def select_trajets_dispo
-    @trajets_dispo = Trajet.where('user_id != ? AND takenby = ?', current_user,'0')
+    @trajets_dispo = Trajet.where('user_id != ? AND takenby = ?', current_user.id, 0)
   end
 
   def select_user_trajet
