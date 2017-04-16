@@ -13,14 +13,11 @@
                    <div class="product">
                       <div class='product-body'>
                         <h3><%= liste.nom %></h3>
+                        <h6>Contenu : <%= liste.content %></h6>
+                        <h6>Livraison souhaitée pour le : <%= liste.date_livraison %></h6>
                       </div>
 
                       <ul class="list-inline product-controls hidden-sm hidden-xs">
-                         <li>
-                           <%= link_to liste_path(liste) do %>
-                            <i class="fa fa-eye"></i>
-                           <% end %>
-                         </li>
 
                          <li>
                            <%= link_to edit_liste_path(liste) do %>

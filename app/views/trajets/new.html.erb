@@ -13,14 +13,12 @@
                    <div class="product">
                       <div class='product-body'>
                         <h3><%= trajet.destination %></h3>
+                        <h6>Nombre de passagers : <%= trajet.nbpass %></h6>
+                        <h6>Date du trajet : <%= trajet.date %></h6>
+                        <h6>Heure du trajet : <%= trajet.heure %></h6>
                       </div>
 
                       <ul class="list-inline product-controls hidden-sm hidden-xs">
-                         <li>
-                           <%= link_to trajet_path(trajet) do %>
-                            <i class="fa fa-eye"></i>
-                           <% end %>
-                         </li>
 
                          <li>
                            <%= link_to edit_trajet_path(trajet) do %>

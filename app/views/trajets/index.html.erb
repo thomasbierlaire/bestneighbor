@@ -11,13 +11,11 @@
             <div class="product">
               <div class='product-body'>
                 <h3><%= ld.destination %></h3>
+                <h6>Nombre de passagers : <%= ld.nbpass %></h6>
+                <h6>Date du trajet : <%= ld.date %></h6>
+                <h6>Heure du trajet : <%= ld.heure %></h6>
               </div>
               <ul class="list-inline product-controls hidden-sm hidden-xs">
-                 <li>
-                   <%= link_to trajet_path(ld) do %>
-                    <i class="fa fa-eye"></i>
-                   <% end %>
-                 </li>
                  <li>
                    <%= link_to trajet_path(ld), method: :takenby do %>
                     <i class="fa fa-handshake-o"></i>
@@ -34,13 +32,11 @@
             <div class="product">
               <div class='product-body'>
                 <h3><%= lp.destination %></h3>
+                <h6>Nombre de passagers : <%= lp.nbpass %></h6>
+                <h6>Date du trajet : <%= lp.date %></h6>
+                <h6>Heure du trajet : <%= lp.heure %></h6>
               </div>
               <ul class="list-inline product-controls hidden-sm hidden-xs">
-                 <li>
-                   <%= link_to trajet_path(lp) do %>
-                    <i class="fa fa-eye"></i>
-                   <% end %>
-                 </li>
                  <li>
                    <%= link_to trajet_path(lp), method: :takenby do %>
                     <i class="fa fa-trash"></i>
