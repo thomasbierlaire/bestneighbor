@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'twilio-ruby', '~> 4.11', '>= 4.11.1'
 
 group :development, :test do
   gem 'binding_of_caller'

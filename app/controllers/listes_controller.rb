@@ -49,6 +49,16 @@ class ListesController < ApplicationController
       @liste.takenby = 0
     end
     @liste.save
+
+    ######### set up a client to talk to the Twilio REST API
+    #@client = Twilio::REST::Client.new ENV["account_sid"], ENV["auth_token"]
+    #@client.account.messages.create({
+    #  :from => ENV["notel"], #n° Twilio
+    #  :to => '+336xxxxxxxx',   #n° du destinataire
+    #  :body => 'Message to send',
+    #})
+    #################""
+
     redirect_to listes_path
   end
 

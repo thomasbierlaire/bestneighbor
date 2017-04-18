@@ -6,46 +6,42 @@
 
           <div class="row">
 
-            <div class="col-sm-6 col-md-6">
-              <h1>Courses</h1>
+            <div class="col-sm-2 col-md-2">
+              <h2>Courses</h2>
             </div>
 
-            <div class="col-sm-6 col-md-6">
-              <h1>Covoiturage</h1>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div class="col-sm-6 col-md-6 feature circle">
+            <div class="col-sm-5 col-md-5 feature circle">
               <%= link_to "Ma liste", new_liste_path, class: "btn btn-primary btn-lg" %>
               <p></p>
               <p>Je crée ma liste de courses</p>
               <%= image_tag "noun_656300_cc.png", alt: "Ma liste", title: "Ma liste", width: "100", class: "circle hidden-sm hidden-xs" %>
             </div>
 
-            <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
-              <p></p>
-              <p>Mon trajet souhaité</p>
-              <%= image_tag "noun_232814_cc.png", alt: "Trajet souhaité", title: "Trajet souhaité", width: "100", class: "circle hidden-sm hidden-xs" %>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <p></p>
-
-            <div class="col-sm-6 col-md-6 feature circle">
+            <div class="col-sm-5 col-md-5 feature circle">
               <%= link_to "Je dépanne", listes_path, class: "btn btn-primary btn-lg" %>
               <p></p>
               <p>Je prends en charge une liste</p>
               <%= image_tag "noun_602639_cc.png", alt: "Je dépanne", title: "Je dépanne", width: "100", class: "circle hidden-sm hidden-xs" %>
             </div>
 
-            <div class="col-sm-6 col-md-6 feature circle">
+          </div>
+
+          <p></p>
+
+          <div class="row">
+
+            <div class="col-sm-2 col-md-2">
+              <h2>Covoiturage</h2>
+            </div>
+
+            <div class="col-sm-5 col-md-5 feature circle">
+              <%= link_to "Mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
+              <p></p>
+              <p>Mon trajet souhaité</p>
+              <%= image_tag "noun_232814_cc.png", alt: "Trajet souhaité", title: "Trajet souhaité", width: "100", class: "circle hidden-sm hidden-xs" %>
+            </div>
+
+            <div class="col-sm-5 col-md-5 feature circle">
               <%= link_to "Je dépanne", trajets_path, class: "btn btn-primary btn-lg" %>
               <p></p>
               <p>Je prends en charge un trajet</p>
