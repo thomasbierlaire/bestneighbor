@@ -13,6 +13,7 @@
                   <%= f.input :email, required: true, autofocus: true, label: "Email" %>
                   <%= f.input :password, required: true, label: "Mot de passe", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
                   <%= f.input :password_confirmation, required: true, label: "Confirmation mot de passe" %>
+                  <%= f.input :code_postal, required: true, label: "Code postal" %>
                 </div>
 
                 <div class="form-actions">

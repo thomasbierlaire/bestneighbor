@@ -68,7 +68,13 @@ class TrajetsController < ApplicationController
   end
 
   def select_trajets_dispo
-    @trajets_dispo = Trajet.where('user_id != ? AND takenby = ?', current_user.id, 0)
+    #@trajets_dispo = Trajet.where('user_id != ? AND takenby = ?', current_user.id, 0)
+    # on sélectionne les trajets qui n'appartiennent pas au current_user,
+    # qui ne sont pas déjà pris et dont le propriétaire a le même code postal
+    # que le current_user
+    @trajets_dispo = Trajet.find_by_sql("SELECT t.* FROM trajets t, users u WHERE
+      t.user_id = u.id AND t.user_id <> '#{current_user.id}' AND t.takenby = 0 AND
+      u.code_postal='#{current_user.code_postal}'")
   end
 
   def select_user_trajet
