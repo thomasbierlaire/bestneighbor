@@ -18,21 +18,35 @@
                         <h6>Heure du trajet : <%= trajet.heure %></h6>
                       </div>
 
-                      <ul class="list-inline product-controls hidden-sm hidden-xs">
+                      <% if trajet.takenby != 0 %>
 
-                         <li>
-                           <%= link_to edit_trajet_path(trajet) do %>
-                            <i class="fa fa-pencil"></i>
-                           <% end %>
-                         </li>
+                        <h4>
+                          <% @takenby.each do |u| %>
+                            Votre trajet est pris en charge -
+                            Pour le modifier ou le supprimer
+                            contactez votre voisin à l'adresse mail <%= link_to u.email %>
+                          <% end %>
+                        </h4>
 
-                         <li>
-                           <%= link_to trajet_path(trajet), method: :delete do %>
-                            <i class="fa fa-trash"></i>
-                           <% end %>
-                         </li>
+                      <% else %>
 
-                      </ul>
+                        <ul class="list-inline product-controls hidden-sm hidden-xs">
+
+                           <li>
+                             <%= link_to edit_trajet_path(trajet) do %>
+                              <i class="fa fa-pencil"></i>
+                             <% end %>
+                           </li>
+
+                           <li>
+                             <%= link_to trajet_path(trajet), method: :delete do %>
+                              <i class="fa fa-trash"></i>
+                             <% end %>
+                           </li>
+
+                        </ul>
+
+                      <% end %>
 
                    </div>
             <% end %>

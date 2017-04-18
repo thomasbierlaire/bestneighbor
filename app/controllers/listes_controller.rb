@@ -17,6 +17,7 @@ class ListesController < ApplicationController
   def new
     @liste = Liste.new
     @ma_liste = @liste_user
+    @takenby = @takenby_user
   end
 
   def create
@@ -79,8 +80,6 @@ class ListesController < ApplicationController
   end
 
   def select_listes_dispo
-    code_postal = current_user.code_postal
-    puts code_postal
     #@listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user.id, 0)
     # on sélectionne les listess qui n'appartiennent pas au current_user,
     # qui ne sont pas déjà prises et dont le propriétaire a le même code postal
@@ -92,7 +91,16 @@ class ListesController < ApplicationController
   end
 
   def select_user_liste
+
+    # on récupère la liste du user courant
     @liste_user = Liste.where(user_id: current_user)
+
+    # on récupère le user qui a pris en charge la liste du user courant
+    @liste_user.each do |liste|
+      @takenby_user = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
+      l.id = '#{liste.id}' AND u.id = l.takenby")
+    end
+
   end
 
   def select_listes_prises

@@ -16,6 +16,7 @@ class TrajetsController < ApplicationController
   def new
     @trajet = Trajet.new
     @mon_trajet = @trajet_user
+    @takenby = @takenby_user
   end
 
   def create
@@ -78,7 +79,15 @@ class TrajetsController < ApplicationController
   end
 
   def select_user_trajet
+
+    # on récupère le trajet du user courant
     @trajet_user = Trajet.where(user_id: current_user)
+
+    # on récupère le user qui a pris en charge le trajet du user courant
+    @trajet_user.each do |trajet|
+      @takenby_user = User.find_by_sql("SELECT u.* FROM trajets t, users u WHERE
+      t.id = '#{trajet.id}' AND u.id = t.takenby")
+    end
   end
 
   def select_trajets_pris
