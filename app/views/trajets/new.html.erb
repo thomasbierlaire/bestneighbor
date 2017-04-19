@@ -6,13 +6,13 @@
 
         <% if @mon_trajet.present? %>
 
-          <h1>Mon trajet</h1>
+          <h3>Mon trajet</h3>
 
             <% @mon_trajet.each do |trajet| %>
 
                    <div class="product">
                       <div class='product-body'>
-                        <h3><%= trajet.destination %></h3>
+                        <h4><%= trajet.destination %></h4>
                         <h6>Nombre de passagers : <%= trajet.nbpass %></h6>
                         <h6>Date du trajet : <%= trajet.date %></h6>
                         <h6>Heure du trajet : <%= trajet.heure %></h6>
@@ -20,13 +20,13 @@
 
                       <% if trajet.takenby != 0 %>
 
-                        <h4>
+                        <h6><strong>
                           <% @takenby.each do |u| %>
                             Votre trajet est pris en charge -
                             Pour le modifier ou le supprimer
                             contactez votre voisin à l'adresse mail <%= link_to u.email %>
                           <% end %>
-                        </h4>
+                        </strong></h6>
 
                       <% else %>
 
@@ -66,5 +66,10 @@
       </div>
     </div>
   </div>
-  <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
+
+  <% if @mon_trajet.present? %>
+  <% else %>
+    <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
+  <% end %>
+
  </div>

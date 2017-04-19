@@ -6,11 +6,11 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <h2 class="text-center">Trajets proposés</h2>
+      <h3 class="text-center">Trajets proposés</h3>
         <% @trajetsd.each do |ld| %>
             <div class="product">
               <div class='product-body'>
-                <h3><%= ld.destination %></h3>
+                <h4><%= ld.destination %></h4>
                 <h6>Nombre de passagers : <%= ld.nbpass %></h6>
                 <h6>Date du trajet : <%= ld.date %></h6>
                 <h6>Heure du trajet : <%= ld.heure %></h6>
@@ -26,12 +26,12 @@
         <% end %>
 
 
-      <h2 class="text-center">J'ai pris en charge ces trajets</h2>
+      <h3 class="text-center">J'ai pris en charge ces trajets</h3>
 
         <% @trajetsp.each do |lp| %>
             <div class="product">
               <div class='product-body'>
-                <h3><%= lp.destination %></h3>
+                <h4><%= lp.destination %></h4>
                 <h6>Nombre de passagers : <%= lp.nbpass %></h6>
                 <h6>Date du trajet : <%= lp.date %></h6>
                 <h6>Heure du trajet : <%= lp.heure %></h6>

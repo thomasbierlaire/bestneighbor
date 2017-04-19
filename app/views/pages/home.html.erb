@@ -1,7 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
 
-    <h1>On se dépanne entre voisins !</h1>
+    <h2>Dépannage entre voisins !</h2>
 
       <% if user_signed_in? %>
         <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
@@ -28,18 +28,18 @@
 
             <div class="col-sm-6 col-md-4 feature circle">
               <%= image_tag "noun_949373_cc.png", alt: "Petite liste de course ? Covoiturage ?", title: "Petite liste de course ? Covoiturage ?", width: "100", class: "circle hidden-sm hidden-xs" %>
-              <p>Petite liste de course ?</p>
-              <p>Covoiturage ?</p>
+              <p class="hidden-sm hidden-xs">Petite liste de course ?</p>
+              <p class="hidden-sm hidden-xs">Covoiturage ?</p>
             </div>
 
             <div class="col-sm-6 col-md-4 feature circle">
               <%= image_tag "noun_735684_cc.png", alt: "Idée !", title: "Idée !", width: "100", class: "circle hidden-sm hidden-xs" %>
-              <p>Idée !</p>
+              <p class="hidden-sm hidden-xs">Idée !</p>
             </div>
 
             <div class="col-sm-6 col-md-4 feature circle">
                <%= image_tag "noun_713963_cc.png", alt: "Mes voisins", title: "Mes voisins", width: "100", class: "circle hidden-sm hidden-xs" %>
-              <p>Mes voisins</p>
+              <p class="hidden-sm hidden-xs">Mes voisins</p>
             </div>
 
           </div>

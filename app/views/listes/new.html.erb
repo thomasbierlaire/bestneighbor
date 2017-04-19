@@ -6,26 +6,26 @@
 
         <% if @ma_liste.present? %>
 
-          <h1>Ma liste</h1>
+          <h3>Ma liste</h3>
 
             <% @ma_liste.each do |liste| %>
 
                    <div class="product">
                       <div class='product-body'>
-                        <h3><%= liste.nom %></h3>
+                        <h4><%= liste.nom %></h4>
                         <h6>Contenu : <%= liste.content %></h6>
                         <h6>Livraison souhaitée pour le : <%= liste.date_livraison %></h6>
                       </div>
 
                       <% if liste.takenby != 0 %>
 
-                        <h4>
+                        <h6><strong>
                           <% @takenby.each do |u| %>
                             Votre liste est prise en charge -
                             Pour la modifier ou la supprimer
                             contactez votre voisin à l'adresse mail <%= link_to u.email %>
                           <% end %>
-                        </h4>
+                        </strong></h6>
 
                       <% else %>
 
@@ -64,5 +64,10 @@
       </div>
     </div>
   </div>
-  <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
+
+  <% if @ma_liste.present? %>
+  <% else %>
+    <p class="required-zone">Les zones de saisie précédées d'une * sont obligatoires</p>
+  <% end %>
+
  </div>
