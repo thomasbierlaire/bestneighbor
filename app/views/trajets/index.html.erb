@@ -13,7 +13,7 @@
                 <h4><%= ld.destination %></h4>
                 <h6>Nombre de passagers : <%= ld.nbpass %></h6>
                 <h6>Date du trajet : <%= ld.date %></h6>
-                <h6>Heure du trajet : <%= ld.heure %></h6>
+                <h6>Heure du trajet : <%= ld.heure.strftime("%H:%M") %></h6>
               </div>
               <ul class="list-inline product-controls hidden-sm hidden-xs">
                  <li>
@@ -34,7 +34,7 @@
                 <h4><%= lp.destination %></h4>
                 <h6>Nombre de passagers : <%= lp.nbpass %></h6>
                 <h6>Date du trajet : <%= lp.date %></h6>
-                <h6>Heure du trajet : <%= lp.heure %></h6>
+                <h6>Heure du trajet : <%= lp.heure.strftime("%H:%M") %></h6>
               </div>
               <ul class="list-inline product-controls hidden-sm hidden-xs">
                  <li>
@@ -49,6 +49,8 @@
      </div>
 
   </div>
+
+  <%= link_to "Retour", choix_path %>
 
 </div>
 

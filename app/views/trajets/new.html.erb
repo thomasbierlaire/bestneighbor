@@ -15,7 +15,7 @@
                         <h4><%= trajet.destination %></h4>
                         <h6>Nombre de passagers : <%= trajet.nbpass %></h6>
                         <h6>Date du trajet : <%= trajet.date %></h6>
-                        <h6>Heure du trajet : <%= trajet.heure %></h6>
+                        <h6>Heure du trajet : <%= trajet.heure.strftime("%H:%M") %></h6>
                       </div>
 
                       <% if trajet.takenby != 0 %>
@@ -66,6 +66,8 @@
       </div>
     </div>
   </div>
+
+  <%= link_to "Retour", choix_path %>
 
   <% if @mon_trajet.present? %>
   <% else %>
