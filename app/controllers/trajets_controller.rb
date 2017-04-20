@@ -75,7 +75,7 @@ class TrajetsController < ApplicationController
     # que le current_user
     @trajets_dispo = Trajet.find_by_sql("SELECT t.* FROM trajets t, users u WHERE
       t.user_id = u.id AND t.user_id <> '#{current_user.id}' AND t.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}'")
+      u.code_postal='#{current_user.code_postal}' AND t.date >= '#{Time.now}'")
   end
 
   def select_user_trajet

@@ -81,12 +81,12 @@ class ListesController < ApplicationController
 
   def select_listes_dispo
     #@listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user.id, 0)
-    # on sélectionne les listess qui n'appartiennent pas au current_user,
+    # on sélectionne les listes qui n'appartiennent pas au current_user,
     # qui ne sont pas déjà prises et dont le propriétaire a le même code postal
     # que le current_user
     @listes_dispo = Liste.find_by_sql("SELECT l.* FROM listes l, users u WHERE
       l.user_id = u.id AND l.user_id <> '#{current_user.id}' AND l.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}'")
+      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{Time.now}'")
 
   end
 
