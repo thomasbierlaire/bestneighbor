@@ -2,7 +2,16 @@
           <div class="container text-center"> <!-- container bootstrap -->
             <div class="row">     <!-- row bootstrap -->
 
-              <div class="col-xs-6 col-md-3">
+              <div class="col-xs-6">
+              <!-- Text link -->
+              <%= link_to "Contact", contact_path, class:"navbar-wagon-item navbar-wagon-link" %>
+
+              <!-- Text link -->
+              <%= link_to "Aide", aide_path, class:"navbar-wagon-item navbar-wagon-link" %>
+            </div>
+
+              <!-- <div class="col-xs-6 col-md-3"> -->
+              <div class="col-xs-6">
                 <ul class="list-inline social">
                   <li>
                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -13,13 +22,6 @@
                   </li>
 
                 </ul>
-              </div>
-
-              <div class="col-xs-6 col-md-9">
-                <p>
-                  Bestneighbor <i class="fa fa-trademark" aria-hidden="true"></i>
-                </p>
-                <p>Ce site est un site de démo !</p>
               </div>
 
             </div>
