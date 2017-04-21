@@ -52,7 +52,7 @@ class ListesController < ApplicationController
 
     if @liste.save
       # Sends email to current_user
-      ExampleMailer.sample_email(current_user).deliver
+      ExampleMailer.sample_email(current_user).deliver!
 
     end
 
