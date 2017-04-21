@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/aide" => "pages#aide"
   get "/contact" => "pages#contact"
   get "/choix" => "pages#choix"
+  get "/cgu" => "pages#cgu"
 
   resources :listes
   post "/listes/:id" => "listes#takenby"

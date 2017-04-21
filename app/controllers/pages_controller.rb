@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :contact, :aide, :home ]
+  skip_before_action :authenticate_user!, only: [ :contact, :aide, :home, :cgu ]
   def home
 
   end
@@ -10,6 +10,9 @@ class PagesController < ApplicationController
 
   end
   def choix
+
+  end
+  def cgu
 
   end
 end
