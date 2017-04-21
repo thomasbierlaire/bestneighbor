@@ -2,11 +2,6 @@
 class ExampleMailer < ActionMailer::Base
   default from: "contact@bestneighbor.fr"
 
-  def sample_email(user)
-    @user = user
-    mail(to: @user.email, subject: 'Test MATOS - it work !!')
-  end
-
   def dont_take_list(user, liste)
     @user = user
     @liste = liste
@@ -29,6 +24,30 @@ class ExampleMailer < ActionMailer::Base
     @user = user
     @liste = liste
     mail(to: @user[0].email, subject: "Bestneighbor - votre liste est prise en charge")
+  end
+
+  def dont_take_trajet(user, trajet)
+    @user = user
+    @trajet = trajet
+    mail(to: @user.email, subject: "Bestneighbor - vous ne prenez plus en charge un trajet")
+  end
+
+  def no_trajet_taken(user, trajet)
+    @user = user
+    @trajet = trajet
+    mail(to: @user[0].email, subject: "Bestneighbor- votre trajet n'est plus pris en charge")
+  end
+
+  def take_trajet(user, trajet)
+    @user = user
+    @trajet = trajet
+    mail(to: @user.email, subject: "Bestneighbor - vous prenez un trajet en charge")
+  end
+
+  def trajet_taken(user, trajet)
+    @user = user
+    @trajet = trajet
+    mail(to: @user[0].email, subject: "Bestneighbor - votre trajet est pris en charge")
   end
 
 end

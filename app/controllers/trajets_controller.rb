@@ -2,7 +2,8 @@ class TrajetsController < ApplicationController
   before_action :select_trajets_dispo, only: [:index]
   before_action :select_trajets_pris, only: [:index]
   before_action :select_user_trajet, only: [:new]
-  before_action :find_trajet, only: [:show, :edit, :update, :destroy, :takenby]
+  before_action :find_trajet, only: [:show, :edit, :update, :destroy]
+  before_action :find_trajet_and_prop, only: [:takenby]
 
   def index
     @trajetsd = @trajets_dispo
@@ -45,11 +46,30 @@ class TrajetsController < ApplicationController
   def takenby
     if @trajet.takenby != current_user.id
       @trajet.takenby = current_user.id
+      @cas = 1
     else
       @trajet.takenby = 0
+      @cas = 0
     end
-    @trajet.save
-    redirect_to trajets_path
+
+    if @trajet.save
+
+      if @cas == 0
+        # Envoi d'un mail au current_user et au propriétaire de la liste
+        # pour indiquer qu'elle n'est plus prise en charge
+        ExampleMailer.no_trajet_taken(@user, @trajet).deliver_later
+        ExampleMailer.dont_take_trajet(current_user, @trajet).deliver_later
+      end
+
+      if @cas == 1
+        # Envoi d'un mail au current_user et au propriétaire de la liste
+        # pour indiquer qu'elle est prise en charge
+        ExampleMailer.trajet_taken(@user, @trajet).deliver_later
+        ExampleMailer.take_trajet(current_user, @trajet).deliver_later
+      end
+
+      redirect_to trajets_path
+    end
   end
 
   def destroy
@@ -66,6 +86,15 @@ class TrajetsController < ApplicationController
 
   def find_trajet
     @trajet = Trajet.find(params[:id])
+  end
+
+  def find_trajet_and_prop
+    @trajet = Trajet.find(params[:id])
+
+    # on récupère le propriétaire du trajet
+    @user = User.find_by_sql("SELECT u.* FROM trajets t, users u WHERE
+      t.id = '#{@trajet.id}' AND u.id = t.user_id")
+
   end
 
   def select_trajets_dispo

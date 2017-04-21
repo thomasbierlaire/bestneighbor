@@ -69,15 +69,6 @@ class ListesController < ApplicationController
         ExampleMailer.take_list(current_user, @liste).deliver_later
       end
 
-      ######### set up a client to talk to the Twilio REST API
-      #@client = Twilio::REST::Client.new ENV["account_sid"], ENV["auth_token"]
-      #@client.account.messages.create({
-      #  :from => ENV["notel"], #n° Twilio
-      #  :to => '+336xxxxxxxx',   #n° du destinataire
-      #  :body => 'Message to send',
-      #})
-      #################""
-
       redirect_to listes_path
     end
 
