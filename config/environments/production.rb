@@ -106,7 +106,6 @@ ActionMailer::Base.smtp_settings = {
 }
 ActionMailer::Base.delivery_method = :smtp
 
-
 #config.action_mailer.delivery_method = :smtp
 # SMTP settings for gmail
 #config.action_mailer.smtp_settings = {
