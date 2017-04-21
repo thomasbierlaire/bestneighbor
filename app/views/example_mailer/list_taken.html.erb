@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Bonjour <%= @user.email %></h1>
+    <h1>Bonjour <%= @user[0].email %></h1>
     <p>
-      Vous ne prenez plus en charge la liste <%= @liste.nom %>
+      Votre liste <%= @liste.nom %> est prise en charge !
     </p>
   </body>
 </html>

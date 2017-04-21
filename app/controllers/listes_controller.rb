@@ -3,7 +3,8 @@ class ListesController < ApplicationController
   before_action :select_listes_dispo, only: [:index]
   before_action :select_listes_prises, only: [:index]
   before_action :select_user_liste, only: [:new]
-  before_action :find_liste, only: [:show, :edit, :update, :destroy, :takenby]
+  before_action :find_liste, only: [:show, :edit, :update, :destroy]
+  before_action :find_liste_and_prop, only: [:takenby]
 
   def index
     @listesd = @listes_dispo
@@ -46,34 +47,40 @@ class ListesController < ApplicationController
   def takenby
     if @liste.takenby != current_user.id
       @liste.takenby = current_user.id
+      @cas = 1
     else
       @liste.takenby = 0
+      @cas = 0
     end
 
-    if @liste.takenby = 0 and @liste.save
-      # Envoi d'un mail au current_user et au propriétaire de la liste
-      # pour indiquer qu'elle n'est plus prise en charge
-      ExampleMailer.dont_take_list(current_user, @liste).deliver_later
-      ExampleMailer.no_list_taken(@user_prop, @liste).deliver_later
+    if @liste.save
+
+      if @cas == 0
+        # Envoi d'un mail au current_user et au propriétaire de la liste
+        # pour indiquer qu'elle n'est plus prise en charge
+        ExampleMailer.no_list_taken(@user, @liste).deliver_later
+        ExampleMailer.dont_take_list(current_user, @liste).deliver_later
+      end
+
+      if @cas == 1
+        # Envoi d'un mail au current_user et au propriétaire de la liste
+        # pour indiquer qu'elle est prise en charge
+        ExampleMailer.list_taken(@user, @liste).deliver_later
+        ExampleMailer.take_list(current_user, @liste).deliver_later
+      end
+
+      ######### set up a client to talk to the Twilio REST API
+      #@client = Twilio::REST::Client.new ENV["account_sid"], ENV["auth_token"]
+      #@client.account.messages.create({
+      #  :from => ENV["notel"], #n° Twilio
+      #  :to => '+336xxxxxxxx',   #n° du destinataire
+      #  :body => 'Message to send',
+      #})
+      #################""
+
+      redirect_to listes_path
     end
 
-    if @liste.takenby != 0 and @liste.save
-      # Envoi d'un mail au current_user et au propriétaire de la liste
-      # pour indiquer qu'elle est prise en charge
-      ExampleMailer.sample_email(current_user).deliver_later
-      ExampleMailer.sample_email(@user_prop).deliver_later
-    end
-
-    ######### set up a client to talk to the Twilio REST API
-    #@client = Twilio::REST::Client.new ENV["account_sid"], ENV["auth_token"]
-    #@client.account.messages.create({
-    #  :from => ENV["notel"], #n° Twilio
-    #  :to => '+336xxxxxxxx',   #n° du destinataire
-    #  :body => 'Message to send',
-    #})
-    #################""
-
-    redirect_to listes_path
   end
 
   def destroy
@@ -90,9 +97,13 @@ class ListesController < ApplicationController
 
   def find_liste
     @liste = Liste.find(params[:id])
+  end
+
+  def find_liste_and_prop
+    @liste = Liste.find(params[:id])
 
     # on récupère le propriétaire de la liste
-    @user_prop = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
+    @user = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
       l.id = '#{@liste.id}' AND u.id = l.user_id")
 
   end
