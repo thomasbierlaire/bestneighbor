@@ -93,7 +93,7 @@ Rails.application.configure do
 #  :user_name      => ENV['username'],
 #  :password       => ENV['password'],
 #  :authentication => :plain,
-""}
+#}
 
 ActionMailer::Base.smtp_settings = {
   :port           => ENV['MAILGUN_SMTP_PORT'],
