@@ -49,7 +49,12 @@ class ListesController < ApplicationController
     else
       @liste.takenby = 0
     end
-    @liste.save
+
+    if @liste.save
+      # Sends email to current_user
+      ExampleMailer.sample_email(current_user).deliver
+
+    end
 
     ######### set up a client to talk to the Twilio REST API
     #@client = Twilio::REST::Client.new ENV["account_sid"], ENV["auth_token"]
