@@ -95,6 +95,7 @@ Rails.application.configure do
 #  :authentication => :plain,
 #}
 
+config.action_mailer.default_url_options = { :host => "http://www.bestneighbor.fr" }
 ActionMailer::Base.smtp_settings = {
   :port           => ENV['MAILGUN_SMTP_PORT'],
   :address        => ENV['MAILGUN_SMTP_SERVER'],
