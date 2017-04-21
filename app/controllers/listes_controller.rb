@@ -50,10 +50,18 @@ class ListesController < ApplicationController
       @liste.takenby = 0
     end
 
-    if @liste.save
-      # Sends email to current_user
-      ExampleMailer.sample_email(current_user).deliver_later
+    if @liste.takenby = 0 and @liste.save
+      # Envoi d'un mail au current_user et au propriétaire de la liste
+      # pour indiquer qu'elle n'est plus prise en charge
+      ExampleMailer.dont_take_list(current_user, @liste).deliver_later
+      ExampleMailer.no_list_taken(@user_prop, @liste).deliver_later
+    end
 
+    if @liste.takenby != 0 and @liste.save
+      # Envoi d'un mail au current_user et au propriétaire de la liste
+      # pour indiquer qu'elle est prise en charge
+      ExampleMailer.sample_email(current_user).deliver_later
+      ExampleMailer.sample_email(@user_prop).deliver_later
     end
 
     ######### set up a client to talk to the Twilio REST API
@@ -82,6 +90,11 @@ class ListesController < ApplicationController
 
   def find_liste
     @liste = Liste.find(params[:id])
+
+    # on récupère le propriétaire de la liste
+    @user_prop = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
+      l.id = '#{@liste.id}' AND u.id = l.user_id")
+
   end
 
   def select_listes_dispo
