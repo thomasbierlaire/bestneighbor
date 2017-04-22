@@ -59,15 +59,16 @@ class ListesController < ApplicationController
 
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        no_list_taken(@user, @liste)
-        dont_take_list(current_user, @liste)
+        email_sendgrid
+        #no_list_taken(@user, @liste)
+        #dont_take_list(current_user, @liste)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        list_taken(@user, @liste)
-        take_list(current_user, @liste)
+        #list_taken(@user, @liste)
+        #take_list(current_user, @liste)
       end
 
       redirect_to listes_path
@@ -210,5 +211,37 @@ def send_mail(to, subject, body)
       mail.deliver
 
   end
+
+
+def email_sendgrid
+  require 'sendgrid-ruby'
+
+  data = JSON.parse('{
+    "personalizations": [
+      {
+        "to": [
+          {
+            "email": "thomas.bierlaire@laposte.net"
+          }
+        ],
+        "subject": "Hello World from the SendGrid Ruby Library!"
+      }
+    ],
+    "from": {
+      "email": "toto@email.fr"
+    },
+    "content": [
+      {
+        "type": "text/plain",
+        "value": "Hello, Email!"
+      }
+    ]
+  }')
+  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+  response = sg.client.mail._("send").post(request_body: data)
+  puts response.status_code
+  puts response.body
+  puts response.headers
+end
 
 end
