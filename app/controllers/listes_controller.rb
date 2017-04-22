@@ -190,7 +190,7 @@ def send_mail(to, subject, body)
 
       Mail.defaults do
         delivery_method :smtp, {
-          :port      => 587,
+          :port      => 465,
           :address   => "smtp.gmail.com",
           :user_name => ENV['gmail_username'],
           :password  => ENV['gmail_password'],
