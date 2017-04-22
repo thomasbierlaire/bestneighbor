@@ -56,21 +56,21 @@ class ListesController < ApplicationController
     if @liste.save
 
       if @cas == 0
-
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
         no_list_taken(@user, @liste)
-        #dont_take_list(current_user, @liste)
+        dont_take_list(current_user, @liste)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        #list_taken(@user, @liste)
-        #take_list(current_user, @liste)
+        list_taken(@user, @liste)
+        take_list(current_user, @liste)
       end
 
       redirect_to listes_path
+
     end
 
   end
@@ -132,19 +132,19 @@ class ListesController < ApplicationController
 # Gestion de l'envoi des mails
 # Certainement "crad" ...
 
-def dont_take_list(user, liste)
-    @user = user
-    @liste = liste
+  def dont_take_list(user, liste)
+      @user = user
+      @liste = liste
 
-    @email = @user.email
-    @nom = @liste.nom
+      @email = @user.email
+      @nom = @liste.nom
 
-    @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge la liste ' + @nom
+      @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge la liste ' + @nom
 
-    send_mail(@email, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
-end
+      email_sendgrid(@email, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
+  end
 
-def no_list_taken(user, liste)
+  def no_list_taken(user, liste)
     @user = user
     @liste = liste
 
@@ -165,7 +165,7 @@ def no_list_taken(user, liste)
 
     @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge la liste ' + @nom
 
-    send_mail(@email, "Bestneighbor - vous prenez une liste en charge", @body)
+    email_sendgrid(@email, "Bestneighbor - vous prenez une liste en charge", @body)
   end
 
   def list_taken(user, liste)
@@ -177,70 +177,38 @@ def no_list_taken(user, liste)
 
     @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + ' est prise en charge !'
 
-    send_mail(@email, "Bestneighbor - votre liste est prise en charge", @body)
+    email_sendgrid(@email, "Bestneighbor - votre liste est prise en charge", @body)
   end
 
-def send_mail(to, subject, body)
+  def email_sendgrid (to, subject, body)
 
-      @to = to
-      @subject = subject
-      @body = body
+    dest = to.to_s
+    sujet = subject.to_s
+    corps = body.to_s
 
-      require 'mail'
+    require 'mail'
 
-      Mail.defaults do
-        delivery_method :smtp, {
-          :port      => 465,
-          :address   => "smtp.gmail.com",
-          :user_name => ENV['gmail_username'],
-          :password  => ENV['gmail_password'],
-          :authentication => :plain,
-          :enable_starttls_auto => true
-        }
+    Mail.defaults do
+    delivery_method :smtp, { :address   => "smtp.sendgrid.net",
+                             :port      => 587,
+                             :domain    => "bestneighbor.fr",
+                             :user_name => ENV['SENDGRID_USERNAME'],
+                             :password  => ENV['SENDGRID_PASSWORD'],
+                             :authentication => 'plain',
+                             :enable_starttls_auto => true }
+    end
+
+    mail = Mail.deliver do
+
+      to "#{dest}"
+      from 'contact@bestneighbor.fr'
+      subject "#{sujet}"
+      text_part do
+        body "#{corps}"
       end
 
-      mail = Mail.new
-
-      mail['from'] = 'thomas.bierlaire@gmail.com'
-      mail['to'] = @to
-      mail['subject'] = @subject
-      mail['body'] = @body
-      mail.to_s
-
-      mail.deliver
-
-  end
-
-
-def email_sendgrid (to, subject, body)
-
-  dest = to.to_s
-  sujet = subject.to_s
-  corps = body.to_s
-
-  require 'mail'
-
-  Mail.defaults do
-  delivery_method :smtp, { :address   => "smtp.sendgrid.net",
-                           :port      => 587,
-                           :domain    => "bestneighbor.fr",
-                           :user_name => ENV['SENDGRID_USERNAME'],
-                           :password  => ENV['SENDGRID_PASSWORD'],
-                           :authentication => 'plain',
-                           :enable_starttls_auto => true }
-  end
-
-  mail = Mail.deliver do
-
-    to "#{dest}"
-    from 'contact@bestneighbor.fr'
-    subject "#{corps}"
-    text_part do
-      body "#{corps}"
     end
 
   end
-
-end
 
 end
