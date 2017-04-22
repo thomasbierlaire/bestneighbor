@@ -59,8 +59,7 @@ class ListesController < ApplicationController
 
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        email_sendgrid
-        #no_list_taken(@user, @liste)
+        no_list_taken(@user, @liste)
         #dont_take_list(current_user, @liste)
       end
 
@@ -154,7 +153,7 @@ def no_list_taken(user, liste)
 
     @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + "n'est plus prise en charge"
 
-    send_mail(@email, "Bestneighbor- votre liste n'est plus prise en charge", @body)
+    email_sendgrid(@email, "Bestneighbor- votre liste n'est plus prise en charge", @body)
   end
 
   def take_list(user, liste)
@@ -213,35 +212,37 @@ def send_mail(to, subject, body)
   end
 
 
-def email_sendgrid
-  require 'sendgrid-ruby'
+def email_sendgrid (to, subject, body)
 
-  data = JSON.parse('{
-    "personalizations": [
-      {
-        "to": [
-          {
-            "email": "thomas.bierlaire@laposte.net"
-          }
-        ],
-        "subject": "Hello World from the SendGrid Ruby Library!"
-      }
-    ],
-    "from": {
-      "email": "toto@email.fr"
-    },
-    "content": [
-      {
-        "type": "text/plain",
-        "value": "Hello, Email!"
-      }
-    ]
-  }')
-  sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-  response = sg.client.mail._("send").post(request_body: data)
-  puts response.status_code
-  puts response.body
-  puts response.headers
+  @to = to.to_s
+  @subject = subject.to_s
+  @body = body.to_s
+
+  require 'mail'
+
+  Mail.defaults do
+  delivery_method :smtp, { :address   => "smtp.sendgrid.net",
+                           :port      => 587,
+                           :domain    => "bestneighbor.fr",
+                           :user_name => ENV['SENDGRID_USERNAME'],
+                           :password  => ENV['SENDGRID_PASSWORD'],
+                           :authentication => 'plain',
+                           :enable_starttls_auto => true }
+  end
+
+      mail = Mail.deliver do
+      to 'thomas.bierlaire@laposte.net'
+      from 'Your Name <name@domain.com>'
+      subject 'This is the subject of your email'
+      text_part do
+        body 'Hello world in text'
+      end
+      html_part do
+        content_type 'text/html; charset=UTF-8'
+        body '<b>Hello world in HTML</b>'
+      end
+    end
+
 end
 
 end
