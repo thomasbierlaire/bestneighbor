@@ -214,9 +214,9 @@ def send_mail(to, subject, body)
 
 def email_sendgrid (to, subject, body)
 
-  @to = to.to_s
-  @subject = subject.to_s
-  @body = body.to_s
+  dest = to.to_s
+  sujet = subject.to_s
+  corps = body.to_s
 
   require 'mail'
 
@@ -230,18 +230,16 @@ def email_sendgrid (to, subject, body)
                            :enable_starttls_auto => true }
   end
 
-      mail = Mail.deliver do
-      to 'thomas.bierlaire@laposte.net'
-      from 'Your Name <name@domain.com>'
-      subject 'This is the subject of your email'
-      text_part do
-        body 'Hello world in text'
-      end
-      html_part do
-        content_type 'text/html; charset=UTF-8'
-        body '<b>Hello world in HTML</b>'
-      end
+  mail = Mail.deliver do
+
+    to "#{dest}"
+    from 'contact@bestneighbor.fr'
+    subject "#{corps}"
+    text_part do
+      body "#{corps}"
     end
+
+  end
 
 end
 
