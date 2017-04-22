@@ -56,17 +56,18 @@ class ListesController < ApplicationController
     if @liste.save
 
       if @cas == 0
+
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        ExampleMailer.no_list_taken(@user, @liste).deliver_later
-        ExampleMailer.dont_take_list(current_user, @liste).deliver_later
+        no_list_taken(@user, @liste)
+        dont_take_list(current_user, @liste)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        ExampleMailer.list_taken(@user, @liste).deliver_later
-        ExampleMailer.take_list(current_user, @liste).deliver_later
+        list_taken(@user, @liste)
+        take_list(current_user, @liste)
       end
 
       redirect_to listes_path
@@ -125,6 +126,89 @@ class ListesController < ApplicationController
 
   def select_listes_prises
     @listes_prises = Liste.where(takenby: current_user)
+  end
+
+########################"
+# Gestion de l'envoi des mails
+# Certainement "crad" ...
+
+def dont_take_list(user, liste)
+    @user = user
+    @liste = liste
+
+    @email = @user.email
+    @nom = @liste.nom
+
+    @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge la liste ' + @nom
+
+    send_mail(@email, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
+end
+
+def no_list_taken(user, liste)
+    @user = user
+    @liste = liste
+
+    @email = @user[0].email
+    @nom = @liste.nom
+
+    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + "n'est plus prise en charge"
+
+    send_mail(@email, "Bestneighbor- votre liste n'est plus prise en charge", @body)
+  end
+
+  def take_list(user, liste)
+    @user = user
+    @liste = liste
+
+    @email = @user.email
+    @nom = @liste.nom
+
+    @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge la liste ' + @nom
+
+    send_mail(@email, "Bestneighbor - vous prenez une liste en charge", @body)
+  end
+
+  def list_taken(user, liste)
+    @user = user
+    @liste = liste
+
+    @email = @user[0].email
+    @nom = @liste.nom
+
+    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + ' est prise en charge !'
+
+    send_mail(@email, "Bestneighbor - votre liste est prise en charge", @body)
+  end
+
+def send_mail(to, subject, body)
+
+      @to = to
+      @subject = subject
+      @body = body
+
+      require 'mail'
+
+      Mail.defaults do
+        delivery_method :smtp, {
+          :port      => 587,
+          :address   => "smtp.gmail.com",
+          :user_name => ENV['gmail_username'],
+          :password  => ENV['gmail_password'],
+          :authentication => :plain,
+          :enable_starttls_auto => true
+        }
+      end
+
+      mail = Mail.new
+
+      mail['from'] = ENV['gmail_username']
+      mail['to'] = @to
+      mail['subject'] = @subject
+      mail['body'] = @body
+      mail.to_s
+
+      mail.deliver
+
   end
 
 end

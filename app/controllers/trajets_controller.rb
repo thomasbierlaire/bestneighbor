@@ -57,15 +57,15 @@ class TrajetsController < ApplicationController
       if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        ExampleMailer.no_trajet_taken(@user, @trajet).deliver_later
-        ExampleMailer.dont_take_trajet(current_user, @trajet).deliver_later
+        no_trajet_taken(@user, @trajet)
+        dont_take_trajet(current_user, @trajet)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        ExampleMailer.trajet_taken(@user, @trajet).deliver_later
-        ExampleMailer.take_trajet(current_user, @trajet).deliver_later
+        trajet_taken(@user, @trajet)
+        take_trajet(current_user, @trajet)
       end
 
       redirect_to trajets_path
@@ -122,4 +122,87 @@ class TrajetsController < ApplicationController
   def select_trajets_pris
     @trajets_pris = Trajet.where(takenby: current_user)
   end
+
+  ########################"
+# Gestion de l'envoi des mails
+# Certainement "crad" ...
+def dont_take_trajet(user, trajet)
+    @user = user
+    @trajet = trajet
+
+    @email = @user.email
+    @nom = @trajet.destination
+
+    @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge le trajet ' + @nom
+
+    send_mail(@email, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
+end
+
+def no_trajet_taken(user, trajet)
+    @user = user
+    @trajet = trajet
+
+    @email = @user[0].email
+    @nom = @trajet.destination
+
+    @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + " n'est plus pris en charge"
+
+    send_mail(@email, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
+  end
+
+  def take_trajet(user, trajet)
+    @user = user
+    @trajet = trajet
+
+    @email = @user.email
+    @nom = @trajet.destination
+
+    @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge le trajet ' + @nom
+
+    send_mail(@email, "Bestneighbor - vous prenez un trajet en charge", @body)
+  end
+
+  def trajet_taken(user, trajet)
+    @user = user
+    @trajet = trajet
+
+    @email = @user[0].email
+    @nom = @trajet.destination
+
+    @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + ' est pris en charge !'
+
+    send_mail(@email, "Bestneighbor - votre trajet est pris en charge", @body)
+  end
+
+def send_mail(to, subject, body)
+
+      @to = to
+      @subject = subject
+      @body = body
+
+      require 'mail'
+
+      Mail.defaults do
+        delivery_method :smtp, {
+          :port      => 587,
+          :address   => "smtp.gmail.com",
+          :user_name => ENV['gmail_username'],
+          :password  => ENV['gmail_password'],
+          :authentication => :plain,
+          :enable_starttls_auto => true
+        }
+      end
+
+      mail = Mail.new
+
+      mail['from'] = ENV['gmail_username']
+      mail['to'] = @to
+      mail['subject'] = @subject
+      mail['body'] = @body
+      mail.to_s
+
+      mail.deliver
+
+  end
+
 end
