@@ -135,7 +135,7 @@ def dont_take_trajet(user, trajet)
 
     @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge le trajet ' + @nom
 
-    send_mail(@email, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
+    email_sendgrid(@email, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
 end
 
 def no_trajet_taken(user, trajet)
@@ -147,7 +147,7 @@ def no_trajet_taken(user, trajet)
 
     @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + " n'est plus pris en charge"
 
-    send_mail(@email, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
+    email_sendgrid(@email, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
   end
 
   def take_trajet(user, trajet)
@@ -159,7 +159,7 @@ def no_trajet_taken(user, trajet)
 
     @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge le trajet ' + @nom
 
-    send_mail(@email, "Bestneighbor - vous prenez un trajet en charge", @body)
+    email_sendgrid(@email, "Bestneighbor - vous prenez un trajet en charge", @body)
   end
 
   def trajet_taken(user, trajet)
@@ -171,37 +171,35 @@ def no_trajet_taken(user, trajet)
 
     @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + ' est pris en charge !'
 
-    send_mail(@email, "Bestneighbor - votre trajet est pris en charge", @body)
+    email_sendgrid(@email, "Bestneighbor - votre trajet est pris en charge", @body)
   end
 
-def send_mail(to, subject, body)
+  def email_sendgrid (to, subject, body)
 
-      @to = to
-      @subject = subject
-      @body = body
+    dest = to.to_s
+    sujet = subject.to_s
+    corps = body.to_s
 
-      require 'mail'
+    require 'mail'
 
-      Mail.defaults do
-        delivery_method :smtp, {
-          :port      => 465,
-          :address   => "smtp.gmail.com",
-          :user_name => ENV['gmail_username'],
-          :password  => ENV['gmail_password'],
-          :authentication => :plain,
-          :enable_starttls_auto => true
-        }
+    Mail.defaults do
+    delivery_method :smtp, { :address   => "smtp.sendgrid.net",
+                             :port      => 587,
+                             :domain    => "bestneighbor.fr",
+                             :user_name => ENV['SENDGRID_USERNAME'],
+                             :password  => ENV['SENDGRID_PASSWORD'],
+                             :authentication => 'plain',
+                             :enable_starttls_auto => true }
+    end
+
+    mail = Mail.deliver do
+
+      to "#{dest}"
+      from 'contact@bestneighbor.fr'
+      subject "#{sujet}"
+      text_part do
+        body "#{corps}"
       end
-
-      mail = Mail.new
-
-      mail['from'] = 'thomas.bierlaire@gmail.com'
-      mail['to'] = @to
-      mail['subject'] = @subject
-      mail['body'] = @body
-      mail.to_s
-
-      mail.deliver
 
   end
 

@@ -151,7 +151,7 @@ class ListesController < ApplicationController
     @email = @user[0].email
     @nom = @liste.nom
 
-    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + "n'est plus prise en charge"
+    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + " n'est plus prise en charge"
 
     email_sendgrid(@email, "Bestneighbor- votre liste n'est plus prise en charge", @body)
   end
