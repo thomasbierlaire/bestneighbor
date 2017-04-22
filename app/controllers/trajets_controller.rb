@@ -186,6 +186,7 @@ def send_mail(to, subject, body)
         delivery_method :smtp, {
           :port      => 587,
           :address   => "smtp.gmail.com",
+          :from      => ENV['gmail_username'],
           :user_name => ENV['gmail_username'],
           :password  => ENV['gmail_password'],
           :authentication => :plain,
