@@ -201,6 +201,9 @@ def no_trajet_taken(user, trajet)
         body "#{corps}"
       end
 
+    end
+
   end
 
 end
+
