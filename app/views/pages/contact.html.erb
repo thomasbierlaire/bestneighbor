@@ -4,48 +4,17 @@
 
 <!-- Contenu de la page contact : carte googlemap à gauche et adresse à droite -->
 
-        <div class="container">
+    <div class="container text-center">
 
-          <div class="row">
+      <div class="row">
 
-            <div class="col-sm-6">
-
-
-              <div id="map" style="width: 100%; height: 400px;"></div>
-
-              <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVrUPqj4-QyaX6faBDDbn3yU3dL5wmnBQ"></script>
-
-              <!-- Dans le script ci-dessous on remplace la ligne 104 styles: [] par styles: éléments récupérés sur le site   snazzymaps.com-->
-              <script type="text/javascript">
-                var myLatlng = new google.maps.LatLng(48.7132400,7.7963000);
-
-                var myOptions = {
-                    zoom: 14,
-                    center: myLatlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    styles: [{"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ff0000"}]}]
-                };
-
-                var map = new google.maps.Map(document.getElementById('map'), myOptions);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: "You are here!"
-                });
-              </script>
-
-            </div>
-
-            <div class="col-sm-6">
-              <h3>Contactez nous par mail</h3>
-              <p><i class="fa fa-envelope-o" aria-hidden="true"></i> contact@bestneighbor.fr</p>
-
-            </div>
-
-          </div>
-
-        </div>
+        <h3>Contactez nous par mail</h3>
+        <p><i class="fa fa-envelope-o" aria-hidden="true"></i> contact@bestneighbor.fr</p>
 
       </div>
 
-      </div>
+    </div>
+
+  </div>
+
+</div>

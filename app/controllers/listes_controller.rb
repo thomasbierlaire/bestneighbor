@@ -58,15 +58,15 @@ class ListesController < ApplicationController
       if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        no_list_taken(@user, @liste)
-        dont_take_list(current_user, @liste)
+        no_list_taken(@user, @liste, current_user)
+        dont_take_list(current_user, @liste, @user)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        list_taken(@user, @liste)
-        take_list(current_user, @liste)
+        list_taken(@user, @liste, current_user)
+        take_list(current_user, @liste, @user)
       end
 
       redirect_to listes_path
@@ -132,52 +132,60 @@ class ListesController < ApplicationController
 # Gestion de l'envoi des mails
 # Certainement "crad" ...
 
-  def dont_take_list(user, liste)
-      @user = user
+  def dont_take_list(current, liste, user)
+      @current = current
       @liste = liste
+      @user = user
 
-      @email = @user.email
+      @cemail = @current.email
       @nom = @liste.nom
+      @uemail = @user[0].email
 
-      @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge la liste ' + @nom
+      @body = 'Bonjour ' + @cemail + ', ' + 'vous ne prenez plus en charge la liste ' + @nom + ' de ' + @uemail
 
-      email_sendgrid(@email, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
+      email_sendgrid(@cemail, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
   end
 
-  def no_list_taken(user, liste)
+  def no_list_taken(user, liste, current)
     @user = user
     @liste = liste
+    @current = current
 
-    @email = @user[0].email
+    @uemail = @user[0].email
     @nom = @liste.nom
+    @cemail = @current.email
 
-    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + " n'est plus prise en charge"
+    @body = 'Bonjour ' + @uemail + ', ' + 'votre liste ' + @nom + " n'est plus prise en charge" + ' par ' + @cemail
 
-    email_sendgrid(@email, "Bestneighbor- votre liste n'est plus prise en charge", @body)
+    email_sendgrid(@uemail, "Bestneighbor- votre liste n'est plus prise en charge", @body)
   end
 
-  def take_list(user, liste)
-    @user = user
+  def take_list(current, liste, user)
+    @current = current
     @liste = liste
+    @user = user
 
-    @email = @user.email
+    @cemail = @current.email
     @nom = @liste.nom
+    @uemail = @user[0].email
 
-    @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge la liste ' + @nom
+    @body = 'Bonjour ' + @cemail + ', ' + 'vous avez pris en charge la liste ' + @nom + ' de ' + @uemail
 
-    email_sendgrid(@email, "Bestneighbor - vous prenez une liste en charge", @body)
+    email_sendgrid(@cemail, "Bestneighbor - vous prenez une liste en charge", @body)
   end
 
-  def list_taken(user, liste)
+  def list_taken(user, liste, current)
     @user = user
     @liste = liste
+    @current = current
 
-    @email = @user[0].email
+    @uemail = @user[0].email
     @nom = @liste.nom
+    @cemail = @current.email
 
-    @body = 'Bonjour ' + @email + ', ' + 'votre liste ' + @nom + ' est prise en charge !'
+    @body = 'Bonjour ' + @uemail + ', ' + 'votre liste ' + @nom + ' est prise en charge par ' + @cemail + ' !'
 
-    email_sendgrid(@email, "Bestneighbor - votre liste est prise en charge", @body)
+    email_sendgrid(@uemail, "Bestneighbor - votre liste est prise en charge", @body)
   end
 
   def email_sendgrid (to, subject, body)

@@ -57,15 +57,15 @@ class TrajetsController < ApplicationController
       if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        no_trajet_taken(@user, @trajet)
-        dont_take_trajet(current_user, @trajet)
+        no_trajet_taken(@user, @trajet, current_user)
+        dont_take_trajet(current_user, @trajet, @user)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        trajet_taken(@user, @trajet)
-        take_trajet(current_user, @trajet)
+        trajet_taken(@user, @trajet, current_user)
+        take_trajet(current_user, @trajet, @user)
       end
 
       redirect_to trajets_path
@@ -126,52 +126,60 @@ class TrajetsController < ApplicationController
   ########################"
 # Gestion de l'envoi des mails
 # Certainement "crad" ...
-def dont_take_trajet(user, trajet)
-    @user = user
-    @trajet = trajet
+def dont_take_trajet(current, trajet, user)
+      @current = current
+      @trajet = trajet
+      @user = user
 
-    @email = @user.email
-    @nom = @trajet.destination
+      @cemail = @current.email
+      @nom = @trajet.destination
+      @uemail = @user[0].email
 
-    @body = 'Bonjour ' + @email + ', ' + 'vous ne prenez plus en charge le trajet ' + @nom
+      @body = 'Bonjour ' + @cemail + ', ' + 'vous ne prenez plus en charge le trajet ' + @nom + ' de ' + @uemail
 
-    email_sendgrid(@email, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
-end
-
-def no_trajet_taken(user, trajet)
-    @user = user
-    @trajet = trajet
-
-    @email = @user[0].email
-    @nom = @trajet.destination
-
-    @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + " n'est plus pris en charge"
-
-    email_sendgrid(@email, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
+      email_sendgrid(@cemail, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
   end
 
-  def take_trajet(user, trajet)
+  def no_trajet_taken(user, trajet, current)
     @user = user
     @trajet = trajet
+    @current = current
 
-    @email = @user.email
+    @uemail = @user[0].email
     @nom = @trajet.destination
+    @cemail = @current.email
 
-    @body = 'Bonjour ' + @email + ', ' + 'vous avez pris en charge le trajet ' + @nom
+    @body = 'Bonjour ' + @uemail + ', ' + 'votre trajet ' + @nom + " n'est plus pris en charge" + ' par ' + @cemail
 
-    email_sendgrid(@email, "Bestneighbor - vous prenez un trajet en charge", @body)
+    email_sendgrid(@uemail, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
   end
 
-  def trajet_taken(user, trajet)
+  def take_trajet(current, trajet, user)
+    @current = current
+    @trajet = trajet
+    @user = user
+
+    @cemail = @current.email
+    @nom = @trajet.destination
+    @uemail = @user[0].email
+
+    @body = 'Bonjour ' + @cemail + ', ' + 'vous avez pris en charge le trajet ' + @nom + ' de ' + @uemail
+
+    email_sendgrid(@cemail, "Bestneighbor - vous prenez un trajet en charge", @body)
+  end
+
+  def trajet_taken(user, trajet, current)
     @user = user
     @trajet = trajet
+    @current = current
 
-    @email = @user[0].email
+    @uemail = @user[0].email
     @nom = @trajet.destination
+    @cemail = @current.email
 
-    @body = 'Bonjour ' + @email + ', ' + 'votre trajet ' + @nom + ' est pris en charge !'
+    @body = 'Bonjour ' + @uemail + ', ' + 'votre trajet ' + @nom + ' est pris en charge par ' + @cemail + ' !'
 
-    email_sendgrid(@email, "Bestneighbor - votre trajet est pris en charge", @body)
+    email_sendgrid(@uemail, "Bestneighbor - votre trajet est pris en charge", @body)
   end
 
   def email_sendgrid (to, subject, body)
