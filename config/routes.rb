@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   get "/contact" => "pages#contact"
   get "/choix" => "pages#choix"
   get "/cgu" => "pages#cgu"
+  get "/creerliste" => "pages#creerliste"
+  get "/prendreliste" => "pages#prendreliste"
+  get "/creertrajet" => "pages#creertrajet"
+  get "/prendretrajet" => "pages#prendretrajet"
 
   resources :listes
   post "/listes/:id" => "listes#takenby"

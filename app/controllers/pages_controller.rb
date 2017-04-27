@@ -15,4 +15,16 @@ class PagesController < ApplicationController
   def cgu
 
   end
+  def creerliste
+
+  end
+  def prendreliste
+
+  end
+  def creertrajet
+
+  end
+  def prendretrajet
+
+  end
 end
