@@ -6,43 +6,47 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <h3 class="text-center">Listes proposées</h3>
-        <% @listesd.each do |ld| %>
-            <div class="product">
-              <div class='product-body'>
-                <h4><%= ld.nom %></h4>
-                <h6>Contenu : <%= ld.content %></h6>
-                <h6>Livraison souhaitée pour le : <%= ld.date_livraison %></h6>
+        <% if @listesd.present? %>
+          <h3 class="text-center">Listes proposées</h3>
+          <% @listesd.each do |ld| %>
+              <div class="product">
+                <div class='product-body'>
+                  <h4><%= ld.nom %></h4>
+                  <h6>Contenu : <%= ld.content %></h6>
+                  <h6>Livraison souhaitée pour le : <%= ld.date_livraison %></h6>
+                </div>
+                <ul class="list-inline product-controls">
+                   <li>
+                     <%= link_to liste_path(ld), method: :takenby do %>
+                      <i class="fa fa-handshake-o"></i>
+                     <% end %>
+                   </li>
+                </ul>
               </div>
-              <ul class="list-inline product-controls">
-                 <li>
-                   <%= link_to liste_path(ld), method: :takenby do %>
-                    <i class="fa fa-handshake-o"></i>
-                   <% end %>
-                 </li>
-              </ul>
-            </div>
+          <% end %>
         <% end %>
 
 
-      <h3 class="text-center">J'ai pris en charge ces listes</h3>
+      <% if @listesp.present? %>
+        <h3 class="text-center">J'ai pris en charge ces listes</h3>
 
-        <% @listesp.each do |lp| %>
-            <div class="product">
-              <div class='product-body'>
-                <h4><%= lp.nom %></h4>
-                <h6>Contenu : <%= lp.content %></h6>
-                <h6>Livraison souhaitée pour le : <%= lp.date_livraison %></h6>
+          <% @listesp.each do |lp| %>
+              <div class="product">
+                <div class='product-body'>
+                  <h4><%= lp.nom %></h4>
+                  <h6>Contenu : <%= lp.content %></h6>
+                  <h6>Livraison souhaitée pour le : <%= lp.date_livraison %></h6>
+                </div>
+                <ul class="list-inline product-controls">
+                   <li>
+                     <%= link_to liste_path(lp), method: :takenby do %>
+                      <i class="fa fa-trash"></i>
+                     <% end %>
+                   </li>
+                </ul>
               </div>
-              <ul class="list-inline product-controls">
-                 <li>
-                   <%= link_to liste_path(lp), method: :takenby do %>
-                    <i class="fa fa-trash"></i>
-                   <% end %>
-                 </li>
-              </ul>
-            </div>
-        <% end %>
+          <% end %>
+      <% end %>
 
      </div>
 
