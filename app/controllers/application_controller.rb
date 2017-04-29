@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
      devise_parameter_sanitizer.permit(:sign_up, keys: [:code_postal])
    end
 
+   # Nécessaire pour la gestion des url des images
+   # HOST doit être définie en production
+   # heroku config:set HOST=www.my_product.com pour configurer Heroku
+   # heroku config:get HOST pour vérifier si c'est OK
+   def default_url_options
+    { host: ENV['HOST'] || 'localhost:3000' }
+   end
+
 end
