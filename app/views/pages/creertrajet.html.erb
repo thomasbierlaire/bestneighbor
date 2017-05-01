@@ -1,5 +1,5 @@
-<%= content_for :title, title("Dépannage trajet") %>
-<%= content_for :description, description("Description du processus : création de trajet - réception mail quand il est pris en charge - contact avec le voisin") %>
+<%= content_for :title, title("Se faire dépanner pour un trajet") %>
+<%= content_for :description, description("Création d'un trajet - lorsqu'il est pris en charge réception d'un mail avec l'adresse email du voisin qui l'a pris en charge - possibilité de contacter le voisin") %>
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
@@ -38,7 +38,7 @@
 
           </div>
 
-          <%= link_to "Je crée mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Créer un trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
 
     </div>
 

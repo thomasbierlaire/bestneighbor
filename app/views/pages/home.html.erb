@@ -1,5 +1,5 @@
 <%= content_for :title, title("Accueil") %>
-<%= content_for :description, description("Description-test") %>
+<%= content_for :description, description("Services entre voisins - courses et covoiturage - connexion et inscription depuis cette page") %>
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
@@ -11,7 +11,7 @@
         <h2>Petits services entre voisins !</h2>
 
         <% if user_signed_in? %>
-          <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Continuer", choix_path, class: "btn btn-primary btn-lg" %>
           <div class="spacer"></div>
           <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
 
@@ -23,7 +23,7 @@
             <div class="spacer"></div>
             -->
 
-          <%= link_to "Je me connecte", new_user_session_path %>
+          <%= link_to "Connexion", new_user_session_path %>
 
         <% end %>
 
