@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get "/creertrajet" => "pages#creertrajet"
   get "/prendretrajet" => "pages#prendretrajet"
 
+  get '/robots' => 'pages#robots'
+
   resources :listes
   post "/listes/:id" => "listes#takenby"
 
