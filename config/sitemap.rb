@@ -49,6 +49,5 @@ SitemapGenerator::Sitemap.create do
 
   add aide_path
   add cgu_path
-  add contact_path
 
 end
