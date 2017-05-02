@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'mail'
 gem 'sendgrid-ruby'
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'binding_of_caller'
