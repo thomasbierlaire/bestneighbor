@@ -9,10 +9,6 @@ Rails.application.routes.draw do
   get "/aide" => "pages#aide"
   get "/choix" => "pages#choix"
   get "/cgu" => "pages#cgu"
-  get "/creerliste" => "pages#creerliste"
-  get "/prendreliste" => "pages#prendreliste"
-  get "/creertrajet" => "pages#creertrajet"
-  get "/prendretrajet" => "pages#prendretrajet"
 
   get '/robots' => 'pages#robots'
 

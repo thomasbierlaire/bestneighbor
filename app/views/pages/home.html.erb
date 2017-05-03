@@ -1,5 +1,5 @@
 <%= content_for :title, title("Accueil") %>
-<%= content_for :description, description("Services entre voisins - courses et covoiturage - connexion et inscription depuis cette page") %>
+<%= content_for :description, description("Services entre voisins - description courses et covoiturage - connexion et inscription depuis cette page") %>
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
@@ -8,7 +8,7 @@
       <div class="row">
 
         <h4>Il n'est pas possible de s'inscrire pour l'instant - quelques travaux sont encore en cours</h4>
-        <h2>Petits services entre voisins !</h2>
+        <h1>Petits services entre voisins !</h1>
 
         <% if user_signed_in? %>
           <%= link_to "Continuer", choix_path, class: "btn btn-primary btn-lg" %>
@@ -31,7 +31,7 @@
     </div>
 
 
- <div class="spacer"></div> <!-- permet de mettre de l'espace au dessus des fonctions -->
+ <div class="spacer hidden-sm hidden-xs"></div> <!-- permet de mettre de l'espace au dessus des fonctions -->
 
         <div class="container text-center"> <!-- container bootstrap, on utilise également la classe
         bootstrap text-center qui permet de tout centrer dans le container -->
@@ -57,3 +57,208 @@
         </div>
 </div>
 </div>
+
+<div class="spacer hidden-sm hidden-xs"></div>
+
+  <div class="container text-center">
+    <div class="row">
+
+      <h1 class="hidden-sm hidden-xs">Comment ça marche ?</h1>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer hidden-sm hidden-xs"></div>
+
+<div class="fond hidden-sm hidden-xs" url('<%= image_path "i-like-food.svg" %>')>
+  <div class="banner-content">
+
+    <div class="container text-center">
+
+          <div class="row">
+              <h2 class="hidden-sm hidden-xs">Courses</h2>
+              <div class="spacer"></div>
+              <h3 class="hidden-sm hidden-xs">Pas le temps de faire une course ?</h3>
+          </div>
+
+          <div class="spacer"></div>
+
+          <div class="row">
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_656300_cc.png", alt: "Ma liste", title: "Ma liste", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">Je crée ma liste ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_841327_cc.png", alt: "Prise en charge", title: "Prise en charge", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">quand elle est prise en charge je reçois un mail ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">avec l'adresse e-mail de mon voisin ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">nous pouvons nous contacter !</p>
+            </div>
+
+          </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="spacer hidden-sm hidden-xs"></div>
+
+<div class="fond hidden-sm hidden-xs" url('<%= image_path "i-like-food.svg" %>')>
+
+  <div class="banner-content">
+
+    <div class="container text-center">
+
+          <div class="spacer hidden-sm hidden-xs"></div>
+          <div class="row">
+              <h3 class="hidden-sm hidden-xs">Je peux prendre une liste en charge ?</h3>
+          </div>
+
+          <div class="spacer hidden-sm hidden-xs"></div>
+
+          <div class="row">
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_656300_cc.png", alt: "Visualise listes", title: "Visualise listes", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">Je visualise les listes en attente ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_841327_cc.png", alt: "Je dépanne", title: "Je dépanne", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">je prends en charge et je reçois un mail ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">avec l'adresse e-mail de mon voisin ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">nous pouvons nous contacter !</p>
+            </div>
+
+          </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer hidden-sm hidden-xs"></div>
+<div class="spacer hidden-sm hidden-xs"></div>
+<div class="spacer hidden-sm hidden-xs"></div>
+
+<div class="fond2 hidden-sm hidden-xs" url('<%= image_path "overlapping-circles.svg" %>')>
+  <div class="banner-content">
+
+    <div class="container text-center">
+
+          <div class="row">
+            <h2 class="hidden-sm hidden-xs">Covoiturage</h2>
+            <div class="spacer hidden-sm hidden-xs"></div>
+            <h3 class="hidden-sm hidden-xs">Besoin d'être covoituré ?</h3>
+          </div>
+
+          <div class="spacer hidden-sm hidden-xs"></div>
+
+          <div class="row">
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_232814_cc.png", alt: "Mon trajet", title: "Mon trajet", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">Je crée mon trajet ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_841327_cc.png", alt: "Prise en charge", title: "Prise en charge", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">quand il est pris en charge je reçois un mail ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">avec l'adresse e-mail de mon voisin ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">nous pouvons nous contacter !</p>
+            </div>
+
+          </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer hidden-sm hidden-xs"></div>
+
+<div class="fond2 hidden-sm hidden-xs" url('<%= image_path "overlapping-circles.svg" %>')>
+
+  <div class="banner-content">
+
+    <div class="container text-center">
+
+          <div class="row">
+              <h3 class="hidden-sm hidden-xs">Je peux prendre un trajet en charge ?</h3>
+          </div>
+
+          <div class="spacer hidden-sm hidden-xs"></div>
+
+          <div class="row">
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_232814_cc.png", alt: "Visualise trajets", title: "Visualise trajets", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">Je visualise les trajets en attente ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_841327_cc.png", alt: "Je dépanne", title: "Je dépanne", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">je prends en charge et je reçois un mail ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">avec l'adresse e-mail de mon voisin ...</p>
+            </div>
+
+            <div class="col-sm-3 col-md-3 feature circle">
+              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p></p>
+              <p class="hidden-sm hidden-xs">nous pouvons nous contacter !</p>
+            </div>
+
+          </div>
+
+    </div>
+
+  </div>
+</div>
+

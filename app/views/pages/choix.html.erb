@@ -1,7 +1,7 @@
 <%= content_for :title, title("Choix des services") %>
 <%= content_for :description, description("Choix des services : courses et covoiturage") %>
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
+<div class="fond" url('<%= image_path "i-like-food.svg" %>')>
 
   <div class="banner-content">
 
@@ -13,20 +13,29 @@
 
           <div class="row">
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Se faire dépanner", creerliste_path, class: "btn btn-primary btn-lg" %>
-              <p></p>
-              <%= image_tag "noun_656300_cc.png", alt: "Ma liste", title: "Ma liste", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p>Pas le temps de faire une course ?</p>
+              <%= link_to "Créer ma liste", new_liste_path, class: "btn btn-primary btn-lg" %>
             </div>
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Dépanner un voisin", prendreliste_path, class: "btn btn-primary btn-lg" %>
-              <p></p>
-              <%= image_tag "noun_602639_cc.png", alt: "Je dépanne", title: "Je dépanne", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p>Je peux prendre une liste en charge ?</p>
+              <%= link_to "Voir les listes", listes_path, class: "btn btn-primary btn-lg" %>
             </div>
 
           </div>
 
-          <p></p>
+      </div>
+
+  </div>
+
+</div>
+
+<div class="spacer"></div>
+
+<div class="fond2" url('<%= image_path "overlapping-circles.svg" %>')>
+    <div class="banner-content">
+
+      <div class="container text-center">
 
           <div class="row">
             <h2>Covoiturage</h2>
@@ -34,15 +43,13 @@
 
           <div class="row">
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Se faire dépanner", creertrajet_path, class: "btn btn-primary btn-lg" %>
-              <p></p>
-              <%= image_tag "noun_232814_cc.png", alt: "Trajet souhaité", title: "Trajet souhaité", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p>Besoin d'être covoituré ?</p>
+              <%= link_to "Créer mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
             </div>
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Dépanner un voisin", prendretrajet_path, class: "btn btn-primary btn-lg" %>
-              <p></p>
-              <%= image_tag "noun_602639_cc.png", alt: "Je propose un trajet", title: "Je propose un trajet", width: "100", class: "circle hidden-sm hidden-xs" %>
+              <p>Je peux prendre un trajet en charge ?</p>
+              <%= link_to "Voir les trajets", trajets_path, class: "btn btn-primary btn-lg" %>
             </div>
 
           </div>

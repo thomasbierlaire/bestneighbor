@@ -12,18 +12,6 @@ class PagesController < ApplicationController
   def cgu
 
   end
-  def creerliste
-
-  end
-  def prendreliste
-
-  end
-  def creertrajet
-
-  end
-  def prendretrajet
-
-  end
 
   def robots
     respond_to :text

@@ -29,10 +29,7 @@ SitemapGenerator::Sitemap.create do
   add user_session_path
 
   add choix_path
-  add creerliste_path
-  add prendreliste_path
-  add creertrajet_path
-  add prendretrajet_path
+
   add listes_path
   add new_liste_path
 
