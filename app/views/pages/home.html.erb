@@ -1,5 +1,5 @@
 <%= content_for :title, title("Accueil") %>
-<%= content_for :description, description("Services entre voisins - description courses et covoiturage - connexion et inscription depuis cette page") %>
+<%= content_for :description, description("Services entre voisins - description des services de courses et de covoiturage - connexion et inscription depuis cette page") %>
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background.jpg" %>');">
   <div class="banner-content">
@@ -8,7 +8,7 @@
       <div class="row">
 
         <h4>Il n'est pas possible de s'inscrire pour l'instant - quelques travaux sont encore en cours</h4>
-        <h1>Petits services entre voisins !</h1>
+        <h1>Petits services entre voisins</h1>
 
         <% if user_signed_in? %>
           <%= link_to "Continuer", choix_path, class: "btn btn-primary btn-lg" %>
