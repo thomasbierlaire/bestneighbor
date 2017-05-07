@@ -33,16 +33,8 @@ SitemapGenerator::Sitemap.create do
   add listes_path
   add new_liste_path
 
-  Liste.find_each do |liste|
-    add liste_path(liste), :lastmod => liste.updated_at
-  end
-
   add trajets_path
   add new_trajet_path
-
-  Trajet.find_each do |trajet|
-    add trajet_path(trajet), :lastmod => trajet.updated_at
-  end
 
   add aide_path
   add cgu_path
