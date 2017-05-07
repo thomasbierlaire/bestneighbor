@@ -107,7 +107,8 @@ class ListesController < ApplicationController
     # que le current_user
     @listes_dispo = Liste.find_by_sql("SELECT l.* FROM listes l, users u WHERE
       l.user_id = u.id AND l.user_id <> '#{current_user.id}' AND l.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{Time.now}'")
+      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{Time.now}'
+      order by l.date_livraison")
 
   end
 
@@ -125,7 +126,7 @@ class ListesController < ApplicationController
   end
 
   def select_listes_prises
-    @listes_prises = Liste.where(takenby: current_user)
+    @listes_prises = Liste.where(takenby: current_user).order(:date_livraison)
   end
 
 ########################"

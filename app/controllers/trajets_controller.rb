@@ -104,7 +104,8 @@ class TrajetsController < ApplicationController
     # que le current_user
     @trajets_dispo = Trajet.find_by_sql("SELECT t.* FROM trajets t, users u WHERE
       t.user_id = u.id AND t.user_id <> '#{current_user.id}' AND t.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}' AND t.date >= '#{Time.now}'")
+      u.code_postal='#{current_user.code_postal}' AND t.date >= '#{Time.now}'
+      order by t.date")
   end
 
   def select_user_trajet
@@ -120,7 +121,7 @@ class TrajetsController < ApplicationController
   end
 
   def select_trajets_pris
-    @trajets_pris = Trajet.where(takenby: current_user)
+    @trajets_pris = Trajet.where(takenby: current_user).order(:date)
   end
 
   ########################"
