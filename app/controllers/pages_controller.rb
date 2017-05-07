@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :aide, :home, :cgu, :robots ]
+  skip_before_action :authenticate_user!, only: [ :aide, :home, :cgu ]
   def home
 
   end
@@ -11,11 +11,6 @@ class PagesController < ApplicationController
   end
   def cgu
 
-  end
-
-  def robots
-    respond_to :text
-    expires_in 6.hours, public: true
   end
 
 end

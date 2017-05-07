@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   get "/choix" => "pages#choix"
   get "/cgu" => "pages#cgu"
 
-  get '/robots' => 'pages#robots'
-
   resources :listes
   post "/listes/:id" => "listes#takenby"
 
