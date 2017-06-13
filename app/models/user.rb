@@ -9,5 +9,5 @@ class User < ApplicationRecord
   # ajouter :recoverable pour possibilité de mot de passe oublié
 
   devise :database_authenticatable, :rememberable,
-         :trackable, :validatable, :registerable
+         :trackable, :validatable, :registerable, :lockable
 end
