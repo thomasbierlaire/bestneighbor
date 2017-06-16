@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def title(title_content)
     if title_content.present? # si le paramètre title_content est présent
-      title_content << " | Bestneighbor" # le title reprend la chaîne en paramètre suivie de " | Mon Site"
+      "Bestneighbor | " << title_content# le title reprend la chaîne en paramètre suivie de " | Mon Site"
     else
       "Bestneighbor" # sinon, par défaut, le title sera "Mon site"
     end
