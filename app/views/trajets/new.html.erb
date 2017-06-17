@@ -58,7 +58,9 @@
           <%= simple_form_for @trajet do |t| %>
             <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
             <%= t.input :nbpass, placeholder: "Nb de passagers", label: "Nb de passagers" %>
-            <%= t.input :date, placeholder: "Date", label: "Date" %>
+
+            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date" %>
+
             <%= t.input :heure, placeholder: "Heure", label: "Heure" %>
             <%= t.button :submit, "Créer", class: "btn btn-primary" %>
           <% end %>

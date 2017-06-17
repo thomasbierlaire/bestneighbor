@@ -105,9 +105,11 @@ class ListesController < ApplicationController
     # on sélectionne les listes qui n'appartiennent pas au current_user,
     # qui ne sont pas déjà prises et dont le propriétaire a le même code postal
     # que le current_user
+    @date = Time.now
+    @jour = @date.strftime("%d") + "/" + @date.strftime("%m") + "/" + @date.strftime("%Y")
     @listes_dispo = Liste.find_by_sql("SELECT l.* FROM listes l, users u WHERE
       l.user_id = u.id AND l.user_id <> '#{current_user.id}' AND l.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{Time.now}'
+      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{@jour}'
       order by l.date_livraison")
 
   end
