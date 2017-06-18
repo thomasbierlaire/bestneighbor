@@ -8,7 +8,7 @@
 
 function main(){
 $('.date').datepicker({
-    format: "dd/mm/yyyy",
+    format: "yyyymmdd",
     weekStart: 1,
     language: "fr"
 });

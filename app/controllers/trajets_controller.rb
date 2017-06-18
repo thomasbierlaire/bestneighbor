@@ -103,7 +103,7 @@ class TrajetsController < ApplicationController
     # qui ne sont pas déjà pris et dont le propriétaire a le même code postal
     # que le current_user
     @day = Time.now
-    @jour = @day.strftime("%d") + "/" + @day.strftime("%m") + "/" + @day.strftime("%Y")
+    @jour = @day.strftime("%Y") + @day.strftime("%m") + @day.strftime("%d")
     @trajets_dispo = Trajet.find_by_sql("SELECT t.* FROM trajets t, users u WHERE
       t.user_id = u.id AND t.user_id <> '#{current_user.id}' AND t.takenby = 0 AND
       u.code_postal='#{current_user.code_postal}' AND t.date >= '#{@jour}'
