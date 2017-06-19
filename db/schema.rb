@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20170614195112) do
   create_table "trajets", force: :cascade do |t|
     t.string   "destination"
     t.string   "date"
-    t.time     "heure"
     t.integer  "nbpass"
     t.integer  "takenby"
     t.datetime "created_at",  null: false

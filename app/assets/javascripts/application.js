@@ -10,7 +10,9 @@ function main(){
 $('.date').datepicker({
     format: "yyyymmdd",
     weekStart: 1,
-    language: "fr"
+    language: "fr",
+    autoclose: true,
+    todayHighlight: true
 });
 }
 

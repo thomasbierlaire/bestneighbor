@@ -81,7 +81,7 @@ class TrajetsController < ApplicationController
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def trajet_params
-    params.require(:trajet).permit(:destination, :date, :heure, :nbpass)
+    params.require(:trajet).permit(:destination, :date, :nbpass)
   end
 
   def find_trajet
@@ -129,7 +129,7 @@ class TrajetsController < ApplicationController
   ########################"
 # Gestion de l'envoi des mails
 # Certainement "crad" ...
-def dont_take_trajet(current, trajet, user)
+  def dont_take_trajet(current, trajet, user)
       @current = current
       @trajet = trajet
       @user = user
@@ -183,37 +183,6 @@ def dont_take_trajet(current, trajet, user)
     @body = 'Bonjour ' + @uemail + ', ' + 'votre trajet ' + @nom + ' est pris en charge par ' + @cemail + ' !'
 
     email_sendgrid(@uemail, "Bestneighbor - votre trajet est pris en charge", @body)
-  end
-
-  def email_sendgrid (to, subject, body)
-
-    dest = to.to_s
-    sujet = subject.to_s
-    corps = body.to_s
-
-    require 'mail'
-
-    Mail.defaults do
-    delivery_method :smtp, { :address   => "smtp.sendgrid.net",
-                             :port      => 587,
-                             :domain    => "bestneighbor.fr",
-                             :user_name => ENV['SENDGRID_USERNAME'],
-                             :password  => ENV['SENDGRID_PASSWORD'],
-                             :authentication => 'plain',
-                             :enable_starttls_auto => true }
-    end
-
-    mail = Mail.deliver do
-
-      to "#{dest}"
-      from 'contact@bestneighbor.fr'
-      subject "#{sujet}"
-      text_part do
-        body "#{corps}"
-      end
-
-    end
-
   end
 
 end

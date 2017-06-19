@@ -191,35 +191,4 @@ class ListesController < ApplicationController
     email_sendgrid(@uemail, "Bestneighbor - votre liste est prise en charge", @body)
   end
 
-  def email_sendgrid (to, subject, body)
-
-    dest = to.to_s
-    sujet = subject.to_s
-    corps = body.to_s
-
-    require 'mail'
-
-    Mail.defaults do
-    delivery_method :smtp, { :address   => "smtp.sendgrid.net",
-                             :port      => 587,
-                             :domain    => "bestneighbor.fr",
-                             :user_name => ENV['SENDGRID_USERNAME'],
-                             :password  => ENV['SENDGRID_PASSWORD'],
-                             :authentication => 'plain',
-                             :enable_starttls_auto => true }
-    end
-
-    mail = Mail.deliver do
-
-      to "#{dest}"
-      from 'contact@bestneighbor.fr'
-      subject "#{sujet}"
-      text_part do
-        body "#{corps}"
-      end
-
-    end
-
-  end
-
 end

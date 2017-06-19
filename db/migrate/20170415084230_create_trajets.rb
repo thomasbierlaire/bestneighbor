@@ -3,7 +3,6 @@ class CreateTrajets < ActiveRecord::Migration[5.0]
     create_table :trajets do |t|
       t.string :destination
       t.string :date
-      t.time :heure
       t.integer :nbpass
       t.integer :takenby
 
