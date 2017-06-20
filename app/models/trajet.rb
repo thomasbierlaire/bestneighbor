@@ -1,7 +1,7 @@
 class Trajet < ApplicationRecord
   belongs_to :user
 
-  validates :destination, presence: true
-  validates :date, presence: true
-  validates :nbpass, presence: true
+  validates :destination, presence: {message: "Destination à renseigner"}
+  validates :date, presence: {message: "Date à préciser"}
+  validates :nbpass, presence: {message: "Nombre de passagers à renseigner"}
 end
