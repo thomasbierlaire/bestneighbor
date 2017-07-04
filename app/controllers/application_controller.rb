@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
    def email_sendgrid (to, subject, body)
 
     dest = to.to_s
+    sender = "contact@bestneighbor.fr"
     sujet = subject.to_s
     corps = body.to_s
 
@@ -35,15 +36,16 @@ class ApplicationController < ActionController::Base
                              :enable_starttls_auto => true }
     end
 
-    mail = Mail.deliver do
-
+     #mail = QC.enqueue(Mail.deliver do
+     mail = Mail.deliver do
       to "#{dest}"
-      from 'contact@bestneighbor.fr'
+      from "#{sender}"
       subject "#{sujet}"
       text_part do
         body "#{corps}"
       end
 
     end
+
   end
 end

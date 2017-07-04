@@ -19,6 +19,7 @@ gem 'autoprefixer-rails'
 gem 'mail'
 gem 'sendgrid-ruby'
 gem 'sitemap_generator'
+gem 'queue_classic'
 
 group :development, :test do
   gem 'binding_of_caller'
