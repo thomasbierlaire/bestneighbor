@@ -1,7 +1,9 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon navbar-wagon-fixed">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
-    <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i>
+    <!-- <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> -->
+    <%= image_tag "image.ico" %> Best<strong>neighbor</strong>
+    <!--Best<strong>neighbor</strong>-->
   </a>
 
   <!-- Right Navigation -->
@@ -26,9 +28,29 @@
        </div>
 
     <% else %>
+
+    <!-- Profile picture and dropdown -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <!-- <img src="avatar.png" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+          <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", :data => {:toggle=>"dropdown"} %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "Connexion", new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "Inscription", new_user_registration_path %>
+            </li>
+          </ul>
+
+        </div>
+       </div>
+
+      <!--
       <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
       <%= link_to "Inscription", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-link" %>
+      -->
 
     <% end %>
 
