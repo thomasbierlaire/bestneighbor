@@ -13,9 +13,9 @@
         <p>Vous voulez donner un coup de main ou être dépanné ?</p>
 
         <% if user_signed_in? %>
-          <%= link_to "Continuer", choix_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Je continue", choix_path, class: "btn btn-primary btn-lg" %>
           <div class="spacer"></div>
-          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+          <%= link_to "Je me déconnecte", destroy_user_session_path, method: :delete %>
 
         <% else %>
 
