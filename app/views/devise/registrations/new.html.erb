@@ -3,7 +3,7 @@
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "city-2042634_960_720.png" %>');">
 
-  <div class="container text-center">
+<div class="container text-center">
 
           <div class="row">
 
@@ -13,14 +13,14 @@
                 <%= f.error_notification %>
 
                 <div class="form-inputs">
-                  <%= f.input :email, required: true, autofocus: true, label: "Email" %>
+                  <%= f.input :email, required: true, label: "Email" %>
                   <%= f.input :password, required: true, label: "Mot de passe", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
                   <%= f.input :password_confirmation, required: true, label: "Confirmation mot de passe" %>
                   <%= f.input :code_postal, required: true, label: "Code postal" %>
                 </div>
 
                 <div class="form-actions">
-                  <%= f.button :submit, "Confirmer", class: "btn btn-primary btn-lg" %>
+                  <%= f.button :submit, "Inscription", class: "btn btn-primary btn-lg" %>
                 </div>
               <% end %>
 
@@ -34,6 +34,7 @@
   </div>
 
 </div>
+
 
 
 
