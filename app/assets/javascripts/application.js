@@ -6,7 +6,9 @@
 //= require bootstrap-datepicker.fr.min
 //= require_tree .
 
-function main(){
+$(document).ready(function() {
+
+// Gestion saisie date pour les listes et trajets avec le plugin datepicker
 $('.date').datepicker({
     format: "yyyymmdd",
     weekStart: 1,
@@ -14,6 +16,23 @@ $('.date').datepicker({
     autoclose: true,
     todayHighlight: true
 });
-}
 
-$(document).ready(main);
+
+/*
+var hiddenCaddy = $( ".caddy");
+var hiddenHand = $( ".hand");
+var hiddenMail = $( ".mail");
+var hiddenContact = $( ".contact");
+hiddenCaddy.hide();
+hiddenHand.hide();
+hiddenMail.hide();
+hiddenContact.hide();
+$( "#list-subtitle1" ).on( "click", function( event ) {
+  hiddenCaddy.show("slow");
+});
+$( ".caddy" ).on( "click", function( event ) {
+  hiddenHand.show("slow");
+});
+*/
+
+});
