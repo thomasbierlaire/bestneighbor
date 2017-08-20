@@ -21,6 +21,7 @@ gem 'sendgrid-ruby'
 gem 'sitemap_generator'
 gem 'queue_classic'
 gem 'heroku-deflater', :group => :production
+gem 'newrelic_rpm', :group => :production
 
 group :development, :test do
   gem 'binding_of_caller'
