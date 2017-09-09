@@ -1,5 +1,5 @@
 <%= content_for :title, title("Listes de courses") %>
-<%= content_for :description, description("Listes de courses qui peuvent être prises en charge et listes de courses déjà prises en charge") %>
+<%= content_for :description, description("Listes de courses qui peuvent être prises en charge ou listes de courses déjà prises en charge") %>
 
 <div class="container">
 
@@ -7,49 +7,19 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-        <% if @listesd.present? %>
-          <h3 class="text-center">Listes proposées</h3>
-          <% @listesd.each do |ld| %>
-              <div class="product">
-                <div class='product-body'>
-                  <h4><%= ld.nom %></h4>
-                  <h6>Contenu : <%= ld.content %></h6>
-                  <h6>Livraison souhaitée pour le : <%= ld.date_livraison %></h6>
-                </div>
-                <ul class="list-inline product-controls">
-                   <li>
-                     <%= link_to liste_path(ld), method: :takenby do %>
-                      <i class="fa fa-handshake-o" title="prendre en charge"></i>
-                     <% end %>
-                   </li>
-                </ul>
-              </div>
-          <% end %>
+        <% if params[:not_taken] %>
+          <h2>Listes disponibles</h2>
         <% end %>
 
+        <% if params[:taken_by] %>
+          <h2>Listes prises en charge</h2>
+        <% end %>
 
-      <% if @listesp.present? %>
-        <h3 class="text-center">J'ai pris en charge ces listes</h3>
+        <%= paginate @listes %>
+        <%= render @listes %>
+        <%= paginate @listes %>
 
-          <% @listesp.each do |lp| %>
-              <div class="product">
-                <div class='product-body'>
-                  <h4><%= lp.nom %></h4>
-                  <h6>Contenu : <%= lp.content %></h6>
-                  <h6>Livraison souhaitée pour le : <%= lp.date_livraison %></h6>
-                </div>
-                <ul class="list-inline product-controls">
-                   <li>
-                     <%= link_to liste_path(lp), method: :takenby do %>
-                      <i class="fa fa-trash" title="ne plus prendre en charge"></i>
-                     <% end %>
-                   </li>
-                </ul>
-              </div>
-          <% end %>
-      <% end %>
-
-     </div>
+    </div>
 
   </div>
 

@@ -20,6 +20,7 @@ gem 'mail'
 gem 'sendgrid-ruby'
 gem 'sitemap_generator'
 gem 'queue_classic'
+gem 'kaminari'
 gem 'heroku-deflater', :group => :production
 gem 'newrelic_rpm', :group => :production
 

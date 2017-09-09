@@ -1,14 +1,21 @@
 class ListesController < ApplicationController
 
-  before_action :select_listes_dispo, only: [:index]
-  before_action :select_listes_prises, only: [:index]
-  before_action :select_user_liste, only: [:new]
-  before_action :find_liste, only: [:show, :edit, :update, :destroy]
-  before_action :find_liste_and_prop, only: [:takenby]
+  include ListesHelper
+
+  before_action :find_liste, only: [:show, :edit, :update, :destroy, :takenby]
 
   def index
-    @listesd = @listes_dispo
-    @listesp = @listes_prises
+
+    @listes = Liste
+
+    #Listes prises par le current_user
+    @listes = @listes.taken_by(current_user.id) if params[:taken_by]
+
+    #Listes disponibles
+    @listes = @listes.not_taken(current_user.id, current_user.code_postal) if params[:not_taken]
+
+    #Pagination de la liste
+    @listes = @listes.page params[:page]
   end
 
   def show
@@ -17,8 +24,13 @@ class ListesController < ApplicationController
 
   def new
     @liste = Liste.new
-    @ma_liste = @liste_user
-    @takenby = @takenby_user
+    @ma_liste = current_user.listes.first
+    if @ma_liste
+      @takenby = @ma_liste.takenby
+      if @takenby != 0
+        @email = User.find(@takenby).email
+      end
+    end
   end
 
   def create
@@ -44,7 +56,15 @@ class ListesController < ApplicationController
     end
   end
 
+  def destroy
+    @liste.destroy
+    redirect_to choix_path
+  end
+
   def takenby
+
+    @user = @liste.user
+
     if @liste.takenby != current_user.id
       @liste.takenby = current_user.id
       @cas = 1
@@ -69,15 +89,10 @@ class ListesController < ApplicationController
         take_list(current_user, @liste, @user)
       end
 
-      redirect_to listes_path
+      redirect_to choix_path
 
     end
 
-  end
-
-  def destroy
-    @liste.destroy
-    redirect_to choix_path
   end
 
   private
@@ -89,106 +104,6 @@ class ListesController < ApplicationController
 
   def find_liste
     @liste = Liste.find(params[:id])
-  end
-
-  def find_liste_and_prop
-    @liste = Liste.find(params[:id])
-
-    # on récupère le propriétaire de la liste
-    @user = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
-      l.id = '#{@liste.id}' AND u.id = l.user_id")
-
-  end
-
-  def select_listes_dispo
-    #@listes_dispo = Liste.where('user_id != ? AND takenby = ?', current_user.id, 0)
-    # on sélectionne les listes qui n'appartiennent pas au current_user,
-    # qui ne sont pas déjà prises et dont le propriétaire a le même code postal
-    # que le current_user
-    @date = Time.now
-    @jour = @date.strftime("%Y") + @date.strftime("%m") + @date.strftime("%d")
-    @listes_dispo = Liste.find_by_sql("SELECT l.* FROM listes l, users u WHERE
-      l.user_id = u.id AND l.user_id <> '#{current_user.id}' AND l.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}' AND l.date_livraison >= '#{@jour}'
-      order by l.date_livraison")
-
-  end
-
-  def select_user_liste
-
-    # on récupère la liste du user courant
-    @liste_user = Liste.where(user_id: current_user)
-
-    # on récupère le user qui a pris en charge la liste du user courant
-    @liste_user.each do |liste|
-      @takenby_user = User.find_by_sql("SELECT u.* FROM listes l, users u WHERE
-      l.id = '#{liste.id}' AND u.id = l.takenby")
-    end
-
-  end
-
-  def select_listes_prises
-    @listes_prises = Liste.where(takenby: current_user).order(:date_livraison)
-  end
-
-########################"
-# Gestion de l'envoi des mails
-# Certainement "crad" ...
-
-  def dont_take_list(current, liste, user)
-      @current = current
-      @liste = liste
-      @user = user
-
-      @cemail = @current.email
-      @nom = @liste.nom
-      @uemail = @user[0].email
-
-      @body = 'Bonjour ' + @cemail + ', ' + 'vous ne prenez plus en charge la liste ' + @nom + ' de ' + @uemail
-
-      email_sendgrid(@cemail, "Bestneighbor - vous ne prenez plus en charge une liste", @body)
-  end
-
-  def no_list_taken(user, liste, current)
-    @user = user
-    @liste = liste
-    @current = current
-
-    @uemail = @user[0].email
-    @nom = @liste.nom
-    @cemail = @current.email
-
-    @body = 'Bonjour ' + @uemail + ', ' + 'votre liste ' + @nom + " n'est plus prise en charge" + ' par ' + @cemail
-
-    email_sendgrid(@uemail, "Bestneighbor- votre liste n'est plus prise en charge", @body)
-  end
-
-  def take_list(current, liste, user)
-    @current = current
-    @liste = liste
-    @user = user
-
-    @cemail = @current.email
-    @nom = @liste.nom
-    @uemail = @user[0].email
-
-    @body = 'Bonjour ' + @cemail + ', ' + 'vous avez pris en charge la liste ' + @nom + ' de ' + @uemail
-
-    email_sendgrid(@cemail, "Bestneighbor - vous prenez une liste en charge", @body)
-  end
-
-  def list_taken(user, liste, current)
-    @user = user
-    @liste = liste
-    @current = current
-
-    @uemail = @user[0].email
-    @nom = @liste.nom
-    @cemail = @current.email
-
-    @body = 'Bonjour ' + @uemail + ', ' + 'votre liste ' + @nom + ' est prise en charge par ' + @cemail + ' !'
-
-    email_sendgrid(@uemail, "Bestneighbor - votre liste est prise en charge", @body)
   end
 
 end

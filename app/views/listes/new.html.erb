@@ -8,25 +8,16 @@
 
         <% if @ma_liste.present? %>
 
-          <h3>Ma liste</h3>
-
-            <% @ma_liste.each do |liste| %>
-
                    <div class="product">
-                      <div class='product-body'>
-                        <h4><%= liste.nom %></h4>
-                        <h6>Contenu : <%= liste.content %></h6>
-                        <h6>Livraison souhaitée pour le : <%= liste.date_livraison %></h6>
-                      </div>
 
-                      <% if liste.takenby != 0 %>
+                      <%= render @ma_liste %>
+
+                      <% if @ma_liste.takenby != 0 %>
 
                         <h6><strong>
-                          <% @takenby.each do |u| %>
                             Votre liste est prise en charge -
                             Pour la modifier ou la supprimer
-                            contactez votre voisin à l'adresse mail <%= link_to u.email %>
-                          <% end %>
+                            contactez votre voisin à l'adresse mail <%= link_to @email %>
                         </strong></h6>
 
                       <% else %>
@@ -34,13 +25,13 @@
                         <ul class="list-inline product-controls">
 
                            <li>
-                             <%= link_to edit_liste_path(liste) do %>
+                             <%= link_to edit_liste_path(@ma_liste) do %>
                               <i class="fa fa-pencil" title="modifier"></i>
                              <% end %>
                            </li>
 
                            <li>
-                             <%= link_to liste_path(liste), method: :delete do %>
+                             <%= link_to liste_path(@ma_liste), method: :delete do %>
                               <i class="fa fa-trash" title="supprimer"></i>
                              <% end %>
                            </li>
@@ -50,7 +41,6 @@
                       <% end %>
 
                    </div>
-            <% end %>
 
         <% else %>
 
