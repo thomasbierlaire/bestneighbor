@@ -14,18 +14,18 @@
           <div class="row">
 
             <div class="col-sm-4 col-md-4 feature circle">
-              <h4>Je prends une liste en charge</h4>
-              <%= link_to "Voir les listes", listes_path(:not_taken => true), class: "btn btn-primary btn-lg" %>
+              <h4>Prendre en charge une liste</h4>
+              <%= link_to "Listes", listes_path(:not_taken => true), class: "btn btn-primary btn-lg" %>
             </div>
 
             <div class="col-sm-4 col-md-4 feature circle">
-              <h4>J'ai pris ces listes en charge</h4>
-              <%= link_to "Voir les listes", listes_path(:taken_by => true), class: "btn btn-primary btn-lg" %>
+              <h4>Listes prises en charge</h4>
+              <%= link_to "Listes prises", listes_path(:taken_by => true), class: "btn btn-primary btn-lg" %>
             </div>
 
             <div class="col-sm-4 col-md-4 feature circle">
-              <h4>Pas le temps pour une course ?</h4>
-              <%= link_to "Je crée ma liste", new_liste_path, class: "btn btn-primary btn-lg" %>
+              <h4>Se faire dépanner</h4>
+              <%= link_to "Ma liste", new_liste_path, class: "btn btn-primary btn-lg" %>
             </div>
 
           </div>
@@ -51,13 +51,13 @@
           <div class="row">
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <h4>Je prends un trajet en charge</h4>
-              <%= link_to "Voir les trajets", trajets_path, class: "btn btn-primary btn-lg" %>
+              <h4>Trajets pris en charge</h4>
+              <%= link_to "Trajets pris", trajets_path, class: "btn btn-primary btn-lg" %>
             </div>
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <h4>Besoin d'être covoituré ?</h4>
-              <%= link_to "Je crée mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
+              <h4>Se faire dépanner</h4>
+              <%= link_to "Mon trajet", new_trajet_path, class: "btn btn-primary btn-lg" %>
             </div>
 
           </div>
