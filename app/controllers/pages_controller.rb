@@ -9,6 +9,12 @@ class PagesController < ApplicationController
   def choix
 
   end
+  def courses
+
+  end
+  def covoiturage
+
+  end
   def cgu
 
   end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get "/aide" => "pages#aide"
   get "/choix" => "pages#choix"
+  get "/courses" => "pages#courses"
+  get "/covoiturage" => "pages#covoiturage"
   get "/cgu" => "pages#cgu"
 
   resources :listes
