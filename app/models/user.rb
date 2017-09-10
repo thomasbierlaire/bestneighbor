@@ -9,5 +9,6 @@ class User < ApplicationRecord
 
   #:validatable, :confirmable à supprimer pour tester
 
-  devise :database_authenticatable, :trackable, :registerable, :lockable
+  devise :database_authenticatable, :trackable, :registerable, :lockable,
+  :validatable, :confirmable
 end
