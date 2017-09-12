@@ -7,17 +7,10 @@
 
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <h1 class="text-center">Trajet <%= @trajet.destination %> </h1>
+    <%= render @trajet %>
 
-            <div class="product">
-              <div class='product-body'>
-                <h3>Nombre de passagers : <%= @trajet.nbpass %></h3>
-                <h3>Date du trajet : <%= @trajet.date %></h3>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-            <%= link_to "Retour", covoiturage_path %>
+    <div class="spacer"></div>
+    <%= link_to "Retour", covoiturage_path %>
 
      </div>
 

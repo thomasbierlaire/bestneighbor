@@ -1,13 +1,20 @@
 class TrajetsController < ApplicationController
-  before_action :select_trajets_dispo, only: [:index]
-  before_action :select_trajets_pris, only: [:index]
-  before_action :select_user_trajet, only: [:new]
-  before_action :find_trajet, only: [:show, :edit, :update, :destroy]
-  before_action :find_trajet_and_prop, only: [:takenby]
+
+  include TrajetsHelper
+
+  before_action :find_trajet, only: [:show, :edit, :update, :destroy, :takenby]
 
   def index
-    @trajetsd = @trajets_dispo
-    @trajetsp = @trajets_pris
+    @trajets = Trajet
+
+    #Trajets pris par le current_user
+    @trajets = @trajets.taken_by(current_user.id) if params[:taken_by]
+
+    #Trajets disponibles
+    @trajets = @trajets.not_taken(current_user.id, current_user.code_postal) if params[:not_taken]
+
+    #Pagination des trajets
+    @trajets = @trajets.page params[:page]
   end
 
   def show
@@ -16,8 +23,13 @@ class TrajetsController < ApplicationController
 
   def new
     @trajet = Trajet.new
-    @mon_trajet = @trajet_user
-    @takenby = @takenby_user
+    @mon_trajet = current_user.trajets.first
+    if @mon_trajet
+      @takenby = @mon_trajet.takenby
+      if @takenby != 0
+        @email = User.find(@takenby).email
+      end
+    end
   end
 
   def create
@@ -43,7 +55,14 @@ class TrajetsController < ApplicationController
     end
   end
 
+  def destroy
+    @trajet.destroy
+    redirect_to choix_path
+  end
+
   def takenby
+    @user = @trajet.user
+
     if @trajet.takenby != current_user.id
       @trajet.takenby = current_user.id
       @cas = 1
@@ -55,26 +74,22 @@ class TrajetsController < ApplicationController
     if @trajet.save
 
       if @cas == 0
-        # Envoi d'un mail au current_user et au propriétaire de la liste
-        # pour indiquer qu'elle n'est plus prise en charge
+        # Envoi d'un mail au current_user et au propriétaire du trajet
+        # pour indiquer qu'il n'est plus pris en charge
         no_trajet_taken(@user, @trajet, current_user)
         dont_take_trajet(current_user, @trajet, @user)
       end
 
       if @cas == 1
-        # Envoi d'un mail au current_user et au propriétaire de la liste
-        # pour indiquer qu'elle est prise en charge
+        # Envoi d'un mail au current_user et au propriétaire du trajet
+        # pour indiquer qu'ilest pris en charge
         trajet_taken(@user, @trajet, current_user)
         take_trajet(current_user, @trajet, @user)
       end
 
-      redirect_to trajets_path
-    end
-  end
+      redirect_to choix_path
 
-  def destroy
-    @trajet.destroy
-    redirect_to choix_path
+    end
   end
 
   private
@@ -86,103 +101,6 @@ class TrajetsController < ApplicationController
 
   def find_trajet
     @trajet = Trajet.find(params[:id])
-  end
-
-  def find_trajet_and_prop
-    @trajet = Trajet.find(params[:id])
-
-    # on récupère le propriétaire du trajet
-    @user = User.find_by_sql("SELECT u.* FROM trajets t, users u WHERE
-      t.id = '#{@trajet.id}' AND u.id = t.user_id")
-
-  end
-
-  def select_trajets_dispo
-    #@trajets_dispo = Trajet.where('user_id != ? AND takenby = ?', current_user.id, 0)
-    # on sélectionne les trajets qui n'appartiennent pas au current_user,
-    # qui ne sont pas déjà pris et dont le propriétaire a le même code postal
-    # que le current_user
-    @day = Time.now
-    @jour = @day.strftime("%Y") + @day.strftime("%m") + @day.strftime("%d")
-    @trajets_dispo = Trajet.find_by_sql("SELECT t.* FROM trajets t, users u WHERE
-      t.user_id = u.id AND t.user_id <> '#{current_user.id}' AND t.takenby = 0 AND
-      u.code_postal='#{current_user.code_postal}' AND t.date >= '#{@jour}'
-      order by t.date")
-  end
-
-  def select_user_trajet
-
-    # on récupère le trajet du user courant
-    @trajet_user = Trajet.where(user_id: current_user)
-
-    # on récupère le user qui a pris en charge le trajet du user courant
-    @trajet_user.each do |trajet|
-      @takenby_user = User.find_by_sql("SELECT u.* FROM trajets t, users u WHERE
-      t.id = '#{trajet.id}' AND u.id = t.takenby")
-    end
-  end
-
-  def select_trajets_pris
-    @trajets_pris = Trajet.where(takenby: current_user).order(:date)
-  end
-
-  ########################"
-# Gestion de l'envoi des mails
-# Certainement "crad" ...
-  def dont_take_trajet(current, trajet, user)
-      @current = current
-      @trajet = trajet
-      @user = user
-
-      @cemail = @current.email
-      @nom = @trajet.destination
-      @uemail = @user[0].email
-
-      @body = 'Bonjour ' + @cemail + ', ' + 'vous ne prenez plus en charge le trajet ' + @nom + ' de ' + @uemail
-
-      email_sendgrid(@cemail, "Bestneighbor - vous ne prenez plus en charge un trajet", @body)
-  end
-
-  def no_trajet_taken(user, trajet, current)
-    @user = user
-    @trajet = trajet
-    @current = current
-
-    @uemail = @user[0].email
-    @nom = @trajet.destination
-    @cemail = @current.email
-
-    @body = 'Bonjour ' + @uemail + ', ' + 'votre trajet ' + @nom + " n'est plus pris en charge" + ' par ' + @cemail
-
-    email_sendgrid(@uemail, "Bestneighbor- votre trajet n'est plus pris en charge", @body)
-  end
-
-  def take_trajet(current, trajet, user)
-    @current = current
-    @trajet = trajet
-    @user = user
-
-    @cemail = @current.email
-    @nom = @trajet.destination
-    @uemail = @user[0].email
-
-    @body = 'Bonjour ' + @cemail + ', ' + 'vous avez pris en charge le trajet ' + @nom + ' de ' + @uemail
-
-    email_sendgrid(@cemail, "Bestneighbor - vous prenez un trajet en charge", @body)
-  end
-
-  def trajet_taken(user, trajet, current)
-    @user = user
-    @trajet = trajet
-    @current = current
-
-    @uemail = @user[0].email
-    @nom = @trajet.destination
-    @cemail = @current.email
-
-    @body = 'Bonjour ' + @uemail + ', ' + 'votre trajet ' + @nom + ' est pris en charge par ' + @cemail + ' !'
-
-    email_sendgrid(@uemail, "Bestneighbor - votre trajet est pris en charge", @body)
   end
 
 end

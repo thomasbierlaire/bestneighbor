@@ -1,0 +1,30 @@
+<div class="product">
+
+      <div class='product-body'>
+        <h4>Trajet : <%= trajet.destination %> </h4>
+        <h6>Nombre de passagers : <%= trajet.nbpass %></h6>
+        <h6>Date du trajet : <%= trajet.date.to_date.strftime("%d %b %Y") %></h6>
+      </div>
+
+      <ul class="list-inline product-controls">
+
+      <% if params[:not_taken] %>
+        <li>
+          <%= link_to trajet_path(trajet), method: :takenby do %>
+            <i class="fa fa-handshake-o" title="prendre en charge"></i>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if params[:taken_by] %>
+        <li>
+          <%= link_to trajet_path(trajet), method: :takenby do %>
+            <i class="fa fa-trash" title="ne plus prendre en charge"></i>
+          <% end %>
+        </li  >
+      <% end %>
+
+    </ul>
+
+
+</div>
