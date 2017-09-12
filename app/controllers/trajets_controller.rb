@@ -37,7 +37,7 @@ class TrajetsController < ApplicationController
     @trajet.user = current_user
     @trajet.takenby = 0
     if @trajet.save
-      redirect_to choix_path
+      redirect_to covoiturage_path
     else
       render :new
     end
@@ -49,7 +49,7 @@ class TrajetsController < ApplicationController
 
   def update
     if @trajet.update(trajet_params)
-      redirect_to choix_path
+      redirect_to covoiturage_path
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class TrajetsController < ApplicationController
 
   def destroy
     @trajet.destroy
-    redirect_to choix_path
+    redirect_to covoiturage_path
   end
 
   def takenby
@@ -87,7 +87,7 @@ class TrajetsController < ApplicationController
         take_trajet(current_user, @trajet, @user)
       end
 
-      redirect_to choix_path
+      redirect_to covoiturage_path
 
     end
   end

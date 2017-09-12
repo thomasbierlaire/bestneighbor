@@ -25,13 +25,13 @@
                         <ul class="list-inline product-controls">
 
                            <li>
-                             <%= link_to edit_trajet_path(trajet) do %>
+                             <%= link_to edit_trajet_path(@mon_trajet) do %>
                               <i class="fa fa-pencil" title="modifier"></i>
                              <% end %>
                            </li>
 
                            <li>
-                             <%= link_to trajet_path(trajet), method: :delete do %>
+                             <%= link_to trajet_path(@mon_trajet), method: :delete do %>
                               <i class="fa fa-trash" title="supprimer"></i>
                              <% end %>
                            </li>

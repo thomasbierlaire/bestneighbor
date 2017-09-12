@@ -38,7 +38,7 @@ class ListesController < ApplicationController
     @liste.user = current_user
     @liste.takenby = 0
     if @liste.save
-      redirect_to choix_path
+      redirect_to courses_path
     else
       render :new
     end
@@ -50,7 +50,7 @@ class ListesController < ApplicationController
 
   def update
     if @liste.update(liste_params)
-      redirect_to choix_path
+      redirect_to courses_path
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class ListesController < ApplicationController
 
   def destroy
     @liste.destroy
-    redirect_to choix_path
+    redirect_to courses_path
   end
 
   def takenby
@@ -89,7 +89,7 @@ class ListesController < ApplicationController
         take_list(current_user, @liste, @user)
       end
 
-      redirect_to choix_path
+      redirect_to courses_path
 
     end
 
