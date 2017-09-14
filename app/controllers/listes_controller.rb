@@ -1,7 +1,5 @@
 class ListesController < ApplicationController
 
-  include ListesHelper
-
   before_action :find_liste, only: [:show, :edit, :update, :destroy, :takenby]
 
   def index
@@ -78,15 +76,15 @@ class ListesController < ApplicationController
       if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
-        no_list_taken(@user, @liste, current_user)
-        dont_take_list(current_user, @liste, @user)
+        UserMailer.no_list_taken_email(@user, @liste, current_user).deliver_later
+        UserMailer.dont_take_list_email(current_user, @liste, @user).deliver_later
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
-        list_taken(@user, @liste, current_user)
-        take_list(current_user, @liste, @user)
+        UserMailer.list_taken_email(@user, @liste, current_user).deliver_later
+        UserMailer.take_list_email(current_user, @liste, @user).deliver_later
       end
 
       redirect_to courses_path
