@@ -17,35 +17,4 @@ class ApplicationController < ActionController::Base
     { host: ENV['HOST'] || 'localhost:3000' }
    end
 
-   def email_sendgrid (to, subject, body)
-
-    dest = to.to_s
-    sender = "contact@bestneighbor.fr"
-    sujet = subject.to_s
-    corps = body.to_s
-
-    require 'mail'
-
-    Mail.defaults do
-    delivery_method :smtp, { :address   => "smtp.sendgrid.net",
-                             :port      => 587,
-                             :domain    => "bestneighbor.fr",
-                             :user_name => ENV['SENDGRID_USERNAME'],
-                             :password  => ENV['SENDGRID_PASSWORD'],
-                             :authentication => 'plain',
-                             :enable_starttls_auto => true }
-    end
-
-     #mail = QC.enqueue(Mail.deliver do
-     mail = Mail.deliver do
-      to "#{dest}"
-      from "#{sender}"
-      subject "#{sujet}"
-      text_part do
-        body "#{corps}"
-      end
-
-    end
-
-  end
 end

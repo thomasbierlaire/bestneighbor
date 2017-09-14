@@ -2,6 +2,8 @@ class UserMailer < ApplicationMailer
 
    default from: 'contact@bestneighbor.fr'
 
+# Gestion des mails pour les listes de courses
+
    def dont_take_list_email(current, liste, user)
 
       @cemail = current.email
@@ -43,6 +45,52 @@ class UserMailer < ApplicationMailer
     @url  = 'https://bestneighbor.fr/users/sign_in'
 
     mail(to: @uemail, subject: 'Bestneighbor - votre liste est prise en charge')
+
+  end
+
+# Gestion des mails pour les trajets
+
+  def dont_take_trajet_email(current, trajet, user)
+
+      @cemail = current.email
+      @nom = trajet.destination
+      @uemail = user.email
+      @url  = 'https://bestneighbor.fr/users/sign_in'
+
+      mail(to: @cemail, subject: "Bestneighbor - vous ne prenez plus en charge un trajet")
+
+  end
+
+  def no_trajet_taken_email(user, trajet, current)
+
+    @uemail = user.email
+    @nom = trajet.destination
+    @cemail = current.email
+    @url  = 'https://bestneighbor.fr/users/sign_in'
+
+    mail(to: @uemail, subject: "Bestneighbor- votre trajet n'est plus pris en charge")
+
+  end
+
+  def take_trajet_email(current, trajet, user)
+
+    @cemail = current.email
+    @nom = trajet.destination
+    @uemail = user.email
+    @url  = 'https://bestneighbor.fr/users/sign_in'
+
+    mail(to: @cemail, subject: "Bestneighbor - vous prenez un trajet en charge")
+
+  end
+
+  def trajet_taken_email(user, trajet, current)
+
+    @uemail = user.email
+    @nom = trajet.destination
+    @cemail = current.email
+    @url  = 'https://bestneighbor.fr/users/sign_in'
+
+    mail(to: @uemail, subject: "Bestneighbor - votre trajet est pris en charge")
 
   end
 

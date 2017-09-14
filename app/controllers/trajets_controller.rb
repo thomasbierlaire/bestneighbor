@@ -1,7 +1,5 @@
 class TrajetsController < ApplicationController
 
-  include TrajetsHelper
-
   before_action :find_trajet, only: [:show, :edit, :update, :destroy, :takenby]
 
   def index
@@ -76,15 +74,15 @@ class TrajetsController < ApplicationController
       if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire du trajet
         # pour indiquer qu'il n'est plus pris en charge
-        no_trajet_taken(@user, @trajet, current_user)
-        dont_take_trajet(current_user, @trajet, @user)
+        UserMailer.no_trajet_taken_email(@user, @trajet, current_user).deliver_later
+        UserMailer.dont_take_trajet_email(current_user, @trajet, @user).deliver_later
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire du trajet
         # pour indiquer qu'ilest pris en charge
-        trajet_taken(@user, @trajet, current_user)
-        take_trajet(current_user, @trajet, @user)
+        UserMailer.trajet_taken_email(@user, @trajet, current_user).deliver_later
+        UserMailer.take_trajet_email(current_user, @trajet, @user).deliver_later
       end
 
       redirect_to covoiturage_path
