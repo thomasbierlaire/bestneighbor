@@ -1,6 +1,8 @@
 <%= content_for :title, title("Mise à jour de ma liste") %>
 <%= content_for :description, description("Le contenu de la liste et la date de livraison peuvent être modifiés") %>
-
+<%= content_for :other_scripts do %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 
   <div class="container">
     <div class="spacer"></div>

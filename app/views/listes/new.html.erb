@@ -1,5 +1,8 @@
 <%= content_for :title, title("Ma liste de courses") %>
 <%= content_for :description, description("Création, modification et visualisation de ma liste de courses") %>
+<%= content_for :other_scripts do %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 
   <div class="container">
     <div class="spacer"></div>

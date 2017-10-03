@@ -1,6 +1,8 @@
 <%= content_for :title, title("Mise à jour de ma demande de covoiturage") %>
 <%= content_for :description, description("La destination, le nombre de passagers, la date peuvent être modifiés") %>
-
+<%= content_for :other_scripts do %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 
   <div class="container">
     <div class="spacer"></div>
