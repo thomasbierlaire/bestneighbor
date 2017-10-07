@@ -128,7 +128,6 @@ GEM
     queue_classic (3.1.0)
       pg (>= 0.17, < 0.19)
     rack (2.0.3)
-    rack-cors (1.0.1)
     rack-protection (2.0.0)
       rack
     rack-test (0.7.0)
@@ -237,7 +236,6 @@ DEPENDENCIES
   pry-rails
   puma
   queue_classic
-  rack-cors
   rails (= 5.1.4)
   redis
   sass-rails
