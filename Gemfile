@@ -23,6 +23,7 @@ gem 'queue_classic'
 gem 'kaminari'
 gem 'heroku-deflater', :group => :production
 gem 'newrelic_rpm', :group => :production
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'binding_of_caller'
