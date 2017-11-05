@@ -48,6 +48,6 @@
       <%= render 'shared/flashes' %>
       <%= yield %>
       <%= render "shared/footer" %>
-      <%= yield(:other_scripts) %>
+      <%= javascript_include_tag 'application', async: true %>
   </body>
 </html>
