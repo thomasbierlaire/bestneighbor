@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   def courses
 
   end
-  def covoiturage
+  def covoit
 
   end
   def cgu

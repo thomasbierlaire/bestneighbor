@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/aide" => "pages#aide"
   get "/choix" => "pages#choix"
   get "/courses" => "pages#courses"
-  get "/covoiturage" => "pages#covoiturage"
+  get "/covoit" => "pages#covoit"
   get "/cgu" => "pages#cgu"
 
   resources :listes
@@ -17,5 +17,8 @@ Rails.application.routes.draw do
 
   resources :trajets
   post "/trajets/:id" => "trajets#takenby"
+
+  resources :covoiturages
+  post "/covoiturages/:id" => "covoiturages#takenby"
 
 end

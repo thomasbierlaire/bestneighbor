@@ -9,6 +9,7 @@
 $(document).ready(function() {
 
 // Gestion saisie date pour les listes et trajets avec le plugin datepicker
+
 $('.date').datepicker({
     format: "yyyymmdd",
     weekStart: 1,
@@ -16,6 +17,10 @@ $('.date').datepicker({
     autoclose: true,
     todayHighlight: true
 });
+
+/*$('.nbpass').on('focus', function() {
+  console.log("focus");
+});*/
 
 
 /*

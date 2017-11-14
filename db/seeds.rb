@@ -17,6 +17,7 @@
 
 Liste.delete_all
 Trajet.delete_all
+Covoiturage.delete_all
 User.delete_all
 
 users = []
@@ -39,4 +40,8 @@ end
 end
 (21..40).each do |i|
   Trajet.create!(destination: "destination #{i}" , nbpass: "#{i}", date: "20171001", user_id: users[i].id, takenby: 0)
+end
+
+(0..20).each do |i|
+  Covoiturage.create!(destination: "destination #{i}" , nbplaces: "#{i}", , nbdispos: "#{i}", date: "20171212", heure: "10:00", depart: "ici", user_id: users[i].id)
 end

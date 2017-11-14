@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :listes, dependent: :destroy
   has_many :trajets, dependent: :destroy
+  has_many :covoiturages, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :rememberable, :recoverable, :timeoutable and :omniauthable

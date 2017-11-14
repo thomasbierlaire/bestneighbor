@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418122928) do
+ActiveRecord::Schema.define(version: 20171112105414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "covoiturages", force: :cascade do |t|
+    t.string "destination"
+    t.string "date"
+    t.string "heure"
+    t.integer "nbplaces"
+    t.string "depart"
+    t.integer "takenby1"
+    t.integer "nbpass1"
+    t.integer "takenby2"
+    t.integer "nbpass2"
+    t.integer "takenby3"
+    t.integer "nbpass3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "nbdispos"
+    t.index ["user_id"], name: "index_covoiturages_on_user_id"
+  end
 
   create_table "listes", id: :serial, force: :cascade do |t|
     t.string "nom"
@@ -64,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170418122928) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "covoiturages", "users"
   add_foreign_key "listes", "users"
   add_foreign_key "trajets", "users"
 end
