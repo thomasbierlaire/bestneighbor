@@ -1,0 +1,58 @@
+<%= content_for :title, title("Saisie du nombre de passagers") %>
+<%= content_for :description, description("Pour l'instant on propose un seul passager par réservation") %>
+
+  <div class="container">
+    <div class="spacer"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+        <% if params[:not_taken] %>
+
+          <%= simple_form_for @cov do |t| %>
+            <%= t.input :destination, placeholder: "Destination", label: "Destination", disabled: true %>
+            <%= t.input :depart, placeholder: "Départ", label: "Départ", disabled: true %>
+            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date", disabled: true %>
+            <%= t.input :heure, placeholder: "Heure", label: "Heure", disabled: true %>
+            <%= t.input :nbdispos, placeholder: "Places disponibles", label: "Places disponibles", disabled: true %>
+
+            <% if @cov.nbpass1 === 0 and @cov.nbdispos === 3 %>
+              <%= t.input :nbpass1, collection: ["1", "2", "3"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass1 === 0 and @cov.nbdispos === 2 %>
+              <%= t.input :nbpass1, collection: ["1", "2"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass1 === 0 and @cov.nbdispos === 1 %>
+              <%= t.input :nbpass1, collection: ["1"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass2 === 0 and @cov.nbdispos === 3 %>
+              <%= t.input :nbpass2, collection: ["1", "2", "3"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass2 === 0 and @cov.nbdispos === 2 %>
+              <%= t.input :nbpass2, collection: ["1", "2"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass2 === 0 and @cov.nbdispos === 1 %>
+              <%= t.input :nbpass2, collection: ["1"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass3 === 0 and @cov.nbdispos === 3 %>
+              <%= t.input :nbpass3, collection: ["1", "2", "3"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass3 === 0 and @cov.nbdispos === 2 %>
+              <%= t.input :nbpass3, collection: ["1", "2"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% elsif @cov.nbpass3 === 0 and @cov.nbdispos === 1 %>
+              <%= t.input :nbpass3, collection: ["1"], placeholder: "Places à réserver", label: "Places à réserver" %>
+            <% end %>
+
+            <%= t.button :submit, "Enregistrer", class: "btn btn-primary" %>
+          <% end %>
+
+        <% else %>
+
+          <%= simple_form_for @cov do |t| %>
+            <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
+            <%= t.input :depart, placeholder: "Départ", label: "Départ" %>
+            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date" %>
+            <%= t.input :heure, placeholder: "Heure", label: "Heure" %>
+            <%= t.input :nbplaces, placeholder: "Places proposées", label: "Places proposées", disabled: true %>
+            <%= t.input :nbdispos, placeholder: "Places disponibles", label: "Places disponibles", disabled: true %>
+            <%= t.button :submit, "Enregistrer", class: "btn btn-primary" %>
+          <% end %>
+
+        <% end %>
+
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div>

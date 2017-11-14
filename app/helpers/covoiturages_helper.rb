@@ -1,0 +1,2 @@
+module CovoituragesHelper
+end

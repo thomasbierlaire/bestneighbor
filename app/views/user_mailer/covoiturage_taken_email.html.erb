@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Bonjour <%= @uemail %> !</h3>
+    <p>
+      Votre proposition de trajet pour <strong><%= @nom %></strong>
+      (départ le <%= @date %> à <%= @heure %>) est réservée par
+      <%= @cemail %> pour <%= @nbpass %> place(s). Vous pouvez vous contacter dès maintenant.
+    </p>
+    <p>
+      Pour vous connecter au site, vous avez juste à suivre ce lien <%= @url %>.
+    </p>
+    <p>Merci et bonne journée !</p>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<%= content_for :title, title("Listes de trajets") %>
+<%= content_for :description, description("Listes de trajets à chercher, choisis ou proposés") %>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+      <% if params[:not_taken] %>
+        <h2>Chercher un trajet</h2>
+      <% end %>
+
+      <% if params[:taken_by] %>
+        <h2>Mes réservations de trajets</h2>
+      <% end %>
+
+      <% if params[:my_covoits] %>
+        <h2>Mes propositions de trajets</h2>
+      <% end %>
+
+      <%= paginate @covoiturages %>
+      <%= render @covoiturages %>
+      <%= paginate @covoiturages %>
+
+     </div>
+
+  </div>
+
+  <div class="spacer"></div>
+  <% if params[:not_taken] %>
+    <%= link_to "Mes réservations de trajets", covoiturages_path(:taken_by => true) %>
+  <% end %>
+
+</div>
+

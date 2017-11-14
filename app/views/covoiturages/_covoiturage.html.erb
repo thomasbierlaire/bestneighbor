@@ -1,0 +1,50 @@
+<div class="product">
+
+      <div class='product-body'>
+        <h4>Destination : <%= covoiturage.destination %> </h4>
+        <h4>Départ : <%= covoiturage.depart %> </h4>
+        <h6>Date : <%= covoiturage.date.to_date.strftime("%d %b %Y") %></h6>
+        <h6>Heure : <%= covoiturage.heure %></h6>
+        <% if params[:my_covoits] or params[:not_taken] %>
+          <h6>Nombre de places proposées : <%= covoiturage.nbplaces %></h6>
+          <h6>Nombre de places restantes : <%= covoiturage.nbdispos %></h6>
+        <% end %>
+      </div>
+
+      <ul class="list-inline product-controls">
+
+      <% if params[:not_taken] %>
+        <li>
+          <%= link_to edit_covoiturage_path(covoiturage, :not_taken => true) do %>
+            <i class="fa fa-handshake-o" title="réserver"></i>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if params[:taken_by] %>
+        <li>
+          <%= link_to covoiturage_path(covoiturage), method: :takenby do %>
+            <i class="fa fa-trash" title="ne plus réserver"></i>
+          <% end %>
+        </li  >
+      <% end %>
+
+      <% if params[:my_covoits] %>
+        <!--
+        <li>
+          <%= link_to edit_covoiturage_path(covoiturage, :my_covoits => true) do %>
+            <i class="fa fa-pencil" title="modifier"></i>
+          <% end %>
+        </li>
+        -->
+
+        <li>
+          <%= link_to covoiturage_path(covoiturage), method: :delete do %>
+            <i class="fa fa-trash" title="supprimer"></i>
+          <% end %>
+        </li>
+      <% end %>
+
+    </ul>
+
+</div>
