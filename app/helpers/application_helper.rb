@@ -12,7 +12,7 @@ module ApplicationHelper
     if description_content.present?
       description_content << " | Bestneighbor"
     else
-      "Bestneighbor - Services entre voisins - courses et covoiturage" # sinon, par défaut, le title sera "Mon site"
+      "Bestneighbor - Covoiturage entre voisins" # sinon, par défaut, le title sera "Mon site"
     end
   end
 
