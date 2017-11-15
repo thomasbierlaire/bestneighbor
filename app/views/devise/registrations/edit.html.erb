@@ -23,7 +23,7 @@
                   <% end %>
                 -->
 
-                  <%= f.input :password, autocomplete: "off", hint: "Laisser à blanc si vous ne souhaitez pas modifier votre mot de passe", required: false, autofocus: true, label: "Nouveau mot de passe" %>
+                  <%= f.input :password, autocomplete: "off", hint: "NE PAS REMPLIR si vous ne souhaitez pas modifier votre mot de passe", required: false, autofocus: true, label: "Nouveau mot de passe" %>
                   <%= f.input :password_confirmation, required: false, label: "Confirmer le nouveau mot de passe" %>
                   <%= f.input :current_password, hint: "Saisir votre mot de passe actuel pour confirmer les changements", required: true, label: "Mot de passe actuel" %>
                 </div>
