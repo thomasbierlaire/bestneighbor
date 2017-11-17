@@ -4,7 +4,7 @@ class Covoiturage < ApplicationRecord
 
   validates :destination, presence: {message: "Destination à renseigner"}
   validates :date, presence: {message: "Date à préciser"}
-  validates :heure, presence: {message: "Heure à préciser"}
+  validates :heure, presence: {message: "Heure à préciser"}, format: { with: /\A[0-2][0-3]:[0-5][0-9]\z/, message: "Heure à saisir au format HH:MM" }
   validates :nbplaces, presence: {message: "Nombre de places disponibles à renseigner : 1, 2 ou 3"}, inclusion: {in: [1, 2, 3]}
   validates :depart, presence: {message: "Lieu de départ à renseigner"}
   #validates :nbpass1, presence: {message: "Nombre de places à réserver à renseigner : 1, 2 ou 3"}, inclusion: {in: [1, 2, 3]}
