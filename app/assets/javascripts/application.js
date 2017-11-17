@@ -4,6 +4,9 @@
 //= require bootstrap
 //= require bootstrap-datepicker.min
 //= require bootstrap-datepicker.fr.min
+//= require 'net/http'
+//= require 'uri'
+//= require 'json'
 //= require_tree .
 
 $(document).ready(function() {
