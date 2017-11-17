@@ -98,9 +98,9 @@ class CovoituragesController < ApplicationController
 
 #########################################################
 # TEST
-      @phonenumber = "+33630809785"
-      @message = "Votre proposition de trajet du #{@cov.date.to_date.strftime("%d %b %Y")} pour #{@cov.destination} est réservée par #{current_user.email}"
-      send_sms(@phonenumber, @message)
+#      @phonenumber = "+33630809785"
+#      @message = "Votre proposition de trajet du #{@cov.date.to_date.strftime("%d %b %Y")} pour #{@cov.destination} est réservée par #{current_user.email}"
+#      send_sms(@phonenumber, @message)
 
 ############################################################
 
