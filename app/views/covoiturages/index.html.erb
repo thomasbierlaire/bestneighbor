@@ -8,15 +8,15 @@
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
       <% if params[:not_taken] %>
-        <h2>Chercher un trajet</h2>
+        <h4>Chercher un trajet</h4>
       <% end %>
 
       <% if params[:taken_by] %>
-        <h2>Mes réservations de trajets</h2>
+        <h4>Mes réservations de trajets</h4>
       <% end %>
 
       <% if params[:my_covoits] %>
-        <h2>Mes propositions de trajets</h2>
+        <h4>Mes propositions de trajets</h4>
       <% end %>
 
       <%= paginate @covoiturages %>

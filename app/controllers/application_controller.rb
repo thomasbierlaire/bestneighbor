@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
    def configure_permitted_parameters
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:code_postal])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:code_postal, :notel])
    end
 
    # Nécessaire pour la gestion des url des images

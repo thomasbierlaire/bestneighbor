@@ -1,13 +1,11 @@
 <div class="product">
 
       <div class='product-body'>
-        <h4>Destination : <%= covoiturage.destination %> </h4>
-        <h4>Départ : <%= covoiturage.depart %> </h4>
-        <h6>Date : <%= covoiturage.date.to_date.strftime("%d %b %Y") %></h6>
-        <h6>Heure : <%= covoiturage.heure %></h6>
+        <h6>Au départ de <strong><%= covoiturage.depart %></strong> pour <strong><%= covoiturage.destination %></strong></h6>
+        <h6>Le <strong><%= covoiturage.date.to_date.strftime("%d %b %Y") %> à <%= covoiturage.heure %></strong></h6>
         <% if params[:my_covoits] or params[:not_taken] %>
-          <h6>Nombre de places proposées : <%= covoiturage.nbplaces %></h6>
-          <h6>Nombre de places restantes : <%= covoiturage.nbdispos %></h6>
+          <h6>Places proposées : <%= covoiturage.nbplaces %></h6>
+          <h6>Places restantes : <%= covoiturage.nbdispos %></h6>
         <% end %>
       </div>
 

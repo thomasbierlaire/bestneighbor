@@ -13,10 +13,11 @@
                 <%= f.error_notification %>
 
                 <div class="form-inputs">
-                  <%= f.input :email, required: true, label: "Email" %>
-                  <%= f.input :password, required: true, label: "Mot de passe", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-                  <%= f.input :password_confirmation, required: true, label: "Confirmation mot de passe" %>
-                  <%= f.input :code_postal, required: true, label: "Code postal" %>
+                  <%= f.input :email, label: "Email", placeholder: "exemple@mail.fr" %>
+                  <%= f.input :password, label: "Mot de passe" %>
+                  <%= f.input :password_confirmation, label: "Confirmation mot de passe" %>
+                  <%= f.input :code_postal, label: "Code postal", placeholder: "99999" %>
+                  <%= f.input :notel, label: "Mobile (pour être informé par SMS)", placeholder: "0612345678 ou 0712345678" %>
                 </div>
 
                 <div class="form-actions">

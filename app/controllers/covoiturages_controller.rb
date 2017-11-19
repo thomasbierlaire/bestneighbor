@@ -44,6 +44,7 @@ class CovoituragesController < ApplicationController
     @cov.nbpass3 = 0
     @cov.nbdispos = @cov.nbplaces
     if @cov.save
+      flash[:success] = "Woohoo!"
       redirect_to covoit_path
     else
       render :new
@@ -80,28 +81,40 @@ class CovoituragesController < ApplicationController
         (@cov.nbpass1 === nil) ? (@cov.nbpass1 = 1) : (@cov.nbpass1 = @cov.nbpass1)
         @cov.nbdispos = @cov.nbdispos - @cov.nbpass1
         @cas = 1
+        @smsnbpass = @cov.nbpass1
         @cov.save
       elsif @cas2
         (@cov.nbpass2 === nil) ? (@cov.nbpass2 = 1) : (@cov.nbpass2 = @cov.nbpass2)
         @cov.nbdispos = @cov.nbdispos - @cov.nbpass2
         @cas = 2
+        @smsnbpass = @cov.nbpass2
         @cov.save
       elsif @cas3
         (@cov.nbpass3 === nil) ? (@cov.nbpass3 = 1) : (@cov.nbpass3 = @cov.nbpass3)
         @cov.nbdispos = @cov.nbdispos - @cov.nbpass3
         @cas = 3
+        @smsnbpass = @cov.nbpass3
         @cov.save
       end
 
-      UserMailer.covoiturage_taken_email(@user, @cov, current_user, @cas).deliver_later
-      UserMailer.take_covoiturage_email(current_user, @cov, @user, @cas).deliver_later
 
 #########################################################
-# TEST
-#      @phonenumber = "+33630809785"
-#      @message = "Votre proposition de trajet du #{@cov.date.to_date.strftime("%d %b %Y")} pour #{@cov.destination} est réservée par #{current_user.email}"
-#      send_sms(@phonenumber, @message)
+# Envoi mails et SMS
+      UserMailer.covoiturage_taken_email(@user, @cov, current_user, @cas).deliver_later
 
+      (@user.notel != "") ? (@phonenumber = format_tel(@user.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Votre trajet vers #{@cov.destination} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est réservé par #{current_user.email}"
+        send_sms(@phonenumber, @message)
+      end
+
+      UserMailer.take_covoiturage_email(current_user, @cov, @user, @cas).deliver_later
+
+      (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Vous avez réservé #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+        send_sms(@phonenumber, @message)
+      end
 ############################################################
 
       redirect_to covoit_path
@@ -116,17 +129,43 @@ class CovoituragesController < ApplicationController
 
     UserMailer.covoiturage_destroyed_email(current_user, @cov).deliver_later
 
+    (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
+    if @phonenumber != 0
+      @message = "Bestneighbor - Vous avez supprimé votre trajet du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+      send_sms(@phonenumber, @message)
+    end
+
     if @cov.takenby1 != 0
       @takenby1 = User.find(@cov.takenby1)
       UserMailer.nomore_covoiturage_email(@takenby1, @cov, @user).deliver_later
+
+      (@takenby1.notel != "") ? (@phonenumber = format_tel(@takenby1.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        send_sms(@phonenumber, @message)
+      end
     end
+
     if @cov.takenby2 != 0
       @takenby2 = User.find(@cov.takenby2)
       UserMailer.nomore_covoiturage_email(@takenby2, @cov, @user).deliver_later
+
+      (@takenby2.notel != "") ? (@phonenumber = format_tel(@takenby2.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        send_sms(@phonenumber, @message)
+      end
     end
+
     if @cov.takenby3 != 0
       @takenby3 = User.find(@cov.takenby3)
       UserMailer.nomore_covoiturage_email(@takenby3, @cov, @user).deliver_later
+
+      (@takenby3.notel != "") ? (@phonenumber = format_tel(@takenby3.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        send_sms(@phonenumber, @message)
+      end
     end
 
     @cov.destroy
@@ -141,24 +180,43 @@ class CovoituragesController < ApplicationController
     if @cov.takenby1 === current_user.id
       @cov.takenby1 = 0
       @cov.nbdispos = @cov.nbdispos + @cov.nbpass1
+      @smsnbpass = @cov.nbpass1
       @cov.nbpass1 = 0
       @cas = 1
     elsif @cov.takenby2 === current_user.id
       @cov.takenby2 = 0
       @cov.nbdispos = @cov.nbdispos + @cov.nbpass2
+      @smsnbpass = @cov.nbpass2
       @cov.nbpass2 = 0
       @cas = 2
     elsif @cov.takenby3 === current_user.id
       @cov.takenby3 = 0
       @cov.nbdispos = @cov.nbdispos + @cov.nbpass3
+      @smsnbpass = @cov.nbpass3
       @cov.nbpass3 = 0
       @cas = 3
     end
 
     if @cov.save
 
+#########################################################
+# Envoi mails et SMS
       UserMailer.no_covoiturage_taken_email(@user, @cov, current_user, @cas).deliver_later
+
+      (@user.notel != "") ? (@phonenumber = format_tel(@user.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Votre trajet vers #{@cov.destination} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} n'est plus réservé par #{current_user.email}"
+        send_sms(@phonenumber, @message)
+      end
+
       UserMailer.dont_take_covoiturage_email(current_user, @cov, @user, @cas).deliver_later
+
+      (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
+      if @phonenumber != 0
+        @message = "Bestneighbor - Vous avez annulé votre réservation de #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+        send_sms(@phonenumber, @message)
+      end
+############################################################
 
       #if @cas == 0
         # Envoi d'un mail au current_user et au propriétaire du trajet
@@ -188,6 +246,10 @@ class CovoituragesController < ApplicationController
 
   def find_covoiturage
     @cov = Covoiturage.find(params[:id])
+  end
+
+  def format_tel(phonenumber)
+    return phonenb = "+33" + phonenumber[1..9]
   end
 
   def send_sms(phonenumber, message)

@@ -9,11 +9,11 @@
         <% if params[:not_taken] %>
 
           <%= simple_form_for @cov do |t| %>
-            <%= t.input :destination, placeholder: "Destination", label: "Destination", disabled: true %>
-            <%= t.input :depart, placeholder: "Départ", label: "Départ", disabled: true %>
-            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date", disabled: true %>
-            <%= t.input :heure, placeholder: "Heure", label: "Heure", disabled: true %>
-            <%= t.input :nbdispos, placeholder: "Places disponibles", label: "Places disponibles", disabled: true %>
+            <%= t.input :destination, placeholder: "Destination", label: "Destination", disabled: true, :as => :hidden %>
+            <%= t.input :depart, placeholder: "Départ", label: "Départ", disabled: true, :as => :hidden %>
+            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date", disabled: true, :as => :hidden %>
+            <%= t.input :heure, placeholder: "Heure", label: "Heure", disabled: true, :as => :hidden %>
+            <%= t.input :nbdispos, placeholder: "Places disponibles", label: "Places disponibles", disabled: true, :as => :hidden %>
 
             <% if @cov.nbpass1 === 0 and @cov.nbdispos === 3 %>
               <%= t.input :nbpass1, collection: ["1", "2", "3"], placeholder: "Places à réserver", label: "Places à réserver" %>

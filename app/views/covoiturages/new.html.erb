@@ -45,8 +45,8 @@
       -->
 
           <%= simple_form_for @cov do |t| %>
-            <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
             <%= t.input :depart, placeholder: "Départ", label: "Départ" %>
+            <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
             <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date" %>
             <%= t.input :heure, placeholder: "HH:MM", label: "Heure" %>
             <%= t.input :nbplaces, collection: ["1", "2", "3"], placeholder: "Places disponibles", label: "Places disponibles" %>
