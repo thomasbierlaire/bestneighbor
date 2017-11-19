@@ -104,7 +104,7 @@ class CovoituragesController < ApplicationController
 
       (@user.notel != "") ? (@phonenumber = format_tel(@user.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Votre trajet vers #{@cov.destination} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est réservé par #{current_user.email}"
+        @message = "Bestneighbor - Votre trajet du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est réservé par #{current_user.email}"
         send_sms(@phonenumber, @message)
       end
 
@@ -112,7 +112,7 @@ class CovoituragesController < ApplicationController
 
       (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Vous avez réservé #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+        @message = "Bestneighbor - Vous avez réservé #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure}"
         send_sms(@phonenumber, @message)
       end
 ############################################################
@@ -131,7 +131,7 @@ class CovoituragesController < ApplicationController
 
     (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
     if @phonenumber != 0
-      @message = "Bestneighbor - Vous avez supprimé votre trajet du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+      @message = "Bestneighbor - Vous avez supprimé votre trajet du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure}"
       send_sms(@phonenumber, @message)
     end
 
@@ -141,7 +141,7 @@ class CovoituragesController < ApplicationController
 
       (@takenby1.notel != "") ? (@phonenumber = format_tel(@takenby1.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est annulé"
         send_sms(@phonenumber, @message)
       end
     end
@@ -152,7 +152,7 @@ class CovoituragesController < ApplicationController
 
       (@takenby2.notel != "") ? (@phonenumber = format_tel(@takenby2.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est annulé"
         send_sms(@phonenumber, @message)
       end
     end
@@ -163,7 +163,7 @@ class CovoituragesController < ApplicationController
 
       (@takenby3.notel != "") ? (@phonenumber = format_tel(@takenby3.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
+        @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} est annulé"
         send_sms(@phonenumber, @message)
       end
     end
@@ -205,7 +205,7 @@ class CovoituragesController < ApplicationController
 
       (@user.notel != "") ? (@phonenumber = format_tel(@user.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Votre trajet vers #{@cov.destination} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} n'est plus réservé par #{current_user.email}"
+        @message = "Bestneighbor - Votre trajet du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} n'est plus réservé par #{current_user.email}"
         send_sms(@phonenumber, @message)
       end
 
@@ -213,7 +213,7 @@ class CovoituragesController < ApplicationController
 
       (current_user.notel != "") ? (@phonenumber = format_tel(current_user.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
-        @message = "Bestneighbor - Vous avez annulé votre réservation de #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination}"
+        @message = "Bestneighbor - Vous avez annulé votre réservation de #{@smsnbpass} place(s) pour le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure}"
         send_sms(@phonenumber, @message)
       end
 ############################################################
