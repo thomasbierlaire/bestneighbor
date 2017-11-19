@@ -139,7 +139,7 @@ class CovoituragesController < ApplicationController
       @takenby1 = User.find(@cov.takenby1)
       UserMailer.nomore_covoiturage_email(@takenby1, @cov, @user).deliver_later
 
-      (@takenby1.notel != "") ? (@phonenumber = format_tel(@takenby1.notel)) : (@phonenumber = 0)
+      (@takenby1.notel != "")? (@phonenumber = format_tel(@takenby1.notel)) : (@phonenumber = 0)
       if @phonenumber != 0
         @message = "Bestneighbor - Le trajet de #{@user.email} du #{@cov.date.to_date.strftime("%d %b %Y")} à #{@cov.heure} vers #{@cov.destination} est annulé"
         send_sms(@phonenumber, @message)
