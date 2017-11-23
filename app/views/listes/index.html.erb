@@ -8,11 +8,15 @@
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
         <% if params[:not_taken] %>
-          <h2>Prendre en charge une liste</h2>
+          <h4>Prendre une liste en charge</h4>
         <% end %>
 
         <% if params[:taken_by] %>
-          <h2>Listes prises en charge</h2>
+          <h4>Listes prises en charge</h4>
+        <% end %>
+
+        <% if params[:my_listes] %>
+          <h4>Mes listes</h4>
         <% end %>
 
         <%= paginate @listes %>
@@ -24,7 +28,9 @@
   </div>
 
   <div class="spacer"></div>
-  <%= link_to "Retour", courses_path %>
+  <% if params[:not_taken] %>
+    <%= link_to "Listes prises en charge", listes_path(:taken_by => true) %>
+  <% end %>
 
 </div>
 

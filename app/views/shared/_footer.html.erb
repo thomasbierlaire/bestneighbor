@@ -2,20 +2,12 @@
           <div class="container text-center"> <!-- container bootstrap -->
             <div class="row">     <!-- row bootstrap -->
 
-              <div class="col-xs-4">
-                <ul class="list-inline">
-                  <li>
-                    contact@bestneighbor.fr
-                  </li>
-                </ul>
+              <div class="col-xs-6">
+                <%= link_to "Contact", contact_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
+                <%= link_to "Conditions générales", cgu_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
               </div>
 
-              <div class="col-xs-4">
-                <%= link_to "Aide", aide_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
-                <%= link_to "CGU", cgu_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
-              </div>
-
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <ul class="list-inline social">
                   <li>
                     <a href="https://www.facebook.com/Bestneighbor-201971626979870/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>

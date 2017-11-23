@@ -1,16 +1,15 @@
 <div class="product">
 
     <div class='product-body'>
-        <h4><%= liste.nom %></h4>
-        <h6>Contenu : <%= liste.content %></h6>
-        <h6>Livraison souhaitée pour le : <%= liste.date_livraison.to_date.strftime("%d %b %Y") %></h6>
+        <h6>Contenu de la liste <%= liste.nom %> : <%= liste.content %>.</h6>
+        <h6>Livraison souhaitée pour le <strong><%= liste.date_livraison.to_date.strftime("%d %b %Y") %> à <%= liste.heure_livraison %></strong> à l'adresse <%= liste.adresse_livraison %></h6>
     </div>
 
     <ul class="list-inline product-controls">
 
       <% if params[:not_taken] %>
         <li>
-          <%= link_to liste_path(liste), method: :takenby do %>
+          <%= link_to liste_path(liste, :not_taken => true), method: :takenby do %>
             <i class="fa fa-handshake-o" title="prendre en charge"></i>
           <% end %>
         </li>
@@ -20,6 +19,14 @@
         <li>
           <%= link_to liste_path(liste), method: :takenby do %>
             <i class="fa fa-trash" title="ne plus prendre en charge"></i>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if params[:my_listes] %>
+        <li>
+          <%= link_to liste_path(liste), method: :delete do %>
+            <i class="fa fa-trash" title="supprimer"></i>
           <% end %>
         </li>
       <% end %>

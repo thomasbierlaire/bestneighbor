@@ -48,52 +48,28 @@ class UserMailer < ApplicationMailer
 
   end
 
-# Gestion des mails pour les trajets
+  def liste_destroyed_email(current, liste)
 
-  def dont_take_trajet_email(current, trajet, user)
+    @cemail = current.email
+    @nom = liste.nom
+    @url  = 'https://bestneighbor.fr/users/sign_in'
 
-      @cemail = current.email
-      @nom = trajet.destination
-      @uemail = user.email
-      @url  = 'https://bestneighbor.fr/users/sign_in'
-
-      mail(to: @cemail, subject: "Bestneighbor - vous ne prenez plus en charge un trajet")
+    mail(to: @cemail, subject: "Bestneighbor - vous avez supprimé une liste")
 
   end
 
-  def no_trajet_taken_email(user, trajet, current)
+  def nomore_liste_email(user, liste, current)
 
     @uemail = user.email
-    @nom = trajet.destination
+    @nom = liste.nom
     @cemail = current.email
     @url  = 'https://bestneighbor.fr/users/sign_in'
 
-    mail(to: @uemail, subject: "Bestneighbor- votre trajet n'est plus pris en charge")
+    mail(to: @uemail, subject: "Bestneighbor- une liste a été supprimée")
 
   end
 
-  def take_trajet_email(current, trajet, user)
-
-    @cemail = current.email
-    @nom = trajet.destination
-    @uemail = user.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
-
-    mail(to: @cemail, subject: "Bestneighbor - vous prenez un trajet en charge")
-
-  end
-
-  def trajet_taken_email(user, trajet, current)
-
-    @uemail = user.email
-    @nom = trajet.destination
-    @cemail = current.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
-
-    mail(to: @uemail, subject: "Bestneighbor - votre trajet est pris en charge")
-
-  end
-
+# Gestion des mails pour le covoiturage
   def take_covoiturage_email(current, covoiturage, user, cas)
 
     @cemail = current.email

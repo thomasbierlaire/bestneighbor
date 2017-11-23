@@ -1,27 +1,40 @@
 <div class="navbar-wagon">
-  <!-- Logo -->
+
   <a href="/" class="navbar-wagon-brand">
-    <!-- <i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> -->
+
     <%= image_tag "image.ico" %> Best<strong>neighbor</strong>
-    <!--Best<strong>neighbor</strong>-->
+
   </a>
 
-  <!-- Right Navigation -->
+
   <div class="navbar-wagon-right">
 
     <% if user_signed_in? %>
-    <!-- Profile picture and dropdown -->
+
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <!-- <img src="avatar.png" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+
           <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", :data => {:toggle=>"dropdown"} %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li class="dropdown-header">Covoiturage</li>
             <li>
-              <%= link_to "Mes propositions de trajets", covoiturages_path(:my_covoits => true) %>
+              <%= link_to "Mes propositions", covoiturages_path(:my_covoits => true) %>
             </li>
             <li>
-              <%= link_to "Mes réservations de trajets", covoiturages_path(:taken_by => true) %>
+              <%= link_to "Mes réservations", covoiturages_path(:taken_by => true) %>
             </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li class="dropdown-header">Courses</li>
+            <li class="dropdown-item">
+              <%= link_to "Mes listes", listes_path(:my_listes => true) %>
+            </li>
+            <li>
+              <%= link_to "Mes prises en charge", listes_path(:taken_by => true) %>
+            </li>
+
+            <li class="dropdown-header">-----------------------------------</li>
             <li>
               <%= link_to "Mon profil", edit_user_registration_path %>
             </li>
@@ -35,10 +48,10 @@
 
     <% else %>
 
-    <!-- Profile picture and dropdown -->
+
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <!-- <img src="avatar.png" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+
           <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", :data => {:toggle=>"dropdown"} %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
@@ -51,12 +64,6 @@
 
         </div>
        </div>
-
-      <!--
-      <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
-
-      <%= link_to "Inscription", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-link" %>
-      -->
 
     <% end %>
 

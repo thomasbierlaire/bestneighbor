@@ -1,64 +1,30 @@
 <%= content_for :title, title("Ma liste de courses") %>
 <%= content_for :description, description("Création, modification et visualisation de ma liste de courses") %>
 
-  <div class="container">
-    <div class="spacer"></div>
+  <div class="container text-center">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="col-sm-4 col-sm-offset-4">
 
-        <% if @ma_liste.present? %>
+        <h2>Création d'une liste</h2>
+        <%= simple_form_for @liste do |l| %>
 
-                   <div class="product">
+          <div class="form-inputs">
+            <%= l.input :nom, input_html: { placeholder: "Nom liste" }, label: false %>
+            <%= l.input :content, input_html: { placeholder: "Contenu" }, label: false %>
+            <%= l.input :adresse_livraison, input_html: { placeholder: "Adresse de livraison" }, label: false %>
+            <%= l.input :date_livraison, input_html: { class: 'date', placeholder: "Date de livraison souhaitée" }, label: false %>
+            <%= l.input :heure_livraison, input_html: { placeholder: "Heure de livraison souhaitée" }, label: false %>
+          </div>
 
-                      <%= render @ma_liste %>
-
-                      <% if @ma_liste.takenby != 0 %>
-
-                        <h6><strong>
-                            Votre liste est prise en charge -
-                            Pour la modifier ou la supprimer
-                            contactez votre voisin à l'adresse mail <%= link_to @email %>
-                        </strong></h6>
-
-                      <% else %>
-
-                        <ul class="list-inline product-controls">
-
-                           <li>
-                             <%= link_to edit_liste_path(@ma_liste) do %>
-                              <i class="fa fa-pencil" title="modifier"></i>
-                             <% end %>
-                           </li>
-
-                           <li>
-                             <%= link_to liste_path(@ma_liste), method: :delete do %>
-                              <i class="fa fa-trash" title="supprimer"></i>
-                             <% end %>
-                           </li>
-
-                        </ul>
-
-                      <% end %>
-
-                   </div>
-
-        <% else %>
-
-          <%= simple_form_for @liste do |l| %>
-            <%= l.input :nom, placeholder: "Nom de la liste", label: "Nom de la liste" %>
-            <%= l.input :content, placeholder: "Contenu", label: "Contenu" %>
-
-            <%= l.input :date_livraison, input_html: { class: 'date' },placeholder: "Date de livraison demandée", label: "Date de livraison demandée" %>
-
-            <%= l.button :submit, "Créer", class: "btn btn-primary" %>
-          <% end %>
-
+          <div class="form-actions">
+            <%= l.button :submit, "Créer", class: "btn btn-primary btn-block" %>
+          </div>
         <% end %>
 
-      </div>
+     </div>
     </div>
 
-  <div class="spacer"></div>
-  <%= link_to "Retour", courses_path %>
+  </div>
 
- </div>
+  <div class="spacer"></div>
+  <%= link_to "Mes listes", listes_path(:my_listes => true) %>

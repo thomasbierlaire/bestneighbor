@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117214309) do
+ActiveRecord::Schema.define(version: 20171123205700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,24 +36,15 @@ ActiveRecord::Schema.define(version: 20171117214309) do
 
   create_table "listes", id: :serial, force: :cascade do |t|
     t.string "nom"
-    t.string "content"
+    t.text "content"
     t.string "date_livraison"
     t.integer "takenby"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "adresse_livraison"
+    t.string "heure_livraison"
     t.index ["user_id"], name: "index_listes_on_user_id"
-  end
-
-  create_table "trajets", id: :serial, force: :cascade do |t|
-    t.string "destination"
-    t.string "date"
-    t.integer "nbpass"
-    t.integer "takenby"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_trajets_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -86,5 +77,4 @@ ActiveRecord::Schema.define(version: 20171117214309) do
 
   add_foreign_key "covoiturages", "users"
   add_foreign_key "listes", "users"
-  add_foreign_key "trajets", "users"
 end

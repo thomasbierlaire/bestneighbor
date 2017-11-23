@@ -28,14 +28,6 @@
       <% end %>
 
       <% if params[:my_covoits] %>
-        <!--
-        <li>
-          <%= link_to edit_covoiturage_path(covoiturage, :my_covoits => true) do %>
-            <i class="fa fa-pencil" title="modifier"></i>
-          <% end %>
-        </li>
-        -->
-
         <li>
           <%= link_to covoiturage_path(covoiturage), method: :delete do %>
             <i class="fa fa-trash" title="supprimer"></i>

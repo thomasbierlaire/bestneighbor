@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  get "/aide" => "pages#aide"
+  get "/contact" => "pages#contact"
   get "/choix" => "pages#choix"
   get "/courses" => "pages#courses"
   get "/covoit" => "pages#covoit"
@@ -14,9 +14,6 @@ Rails.application.routes.draw do
 
   resources :listes
   post "/listes/:id" => "listes#takenby"
-
-  resources :trajets
-  post "/trajets/:id" => "trajets#takenby"
 
   resources :covoiturages
   post "/covoiturages/:id" => "covoiturages#takenby"

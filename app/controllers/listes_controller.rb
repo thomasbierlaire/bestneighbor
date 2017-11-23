@@ -6,6 +6,9 @@ class ListesController < ApplicationController
 
     @listes = Liste
 
+    #Listes commandées par le current_user
+    @listes = @listes.my_listes(current_user.id) if params[:my_listes]
+
     #Listes prises par le current_user
     @listes = @listes.taken_by(current_user.id) if params[:taken_by]
 
@@ -22,13 +25,6 @@ class ListesController < ApplicationController
 
   def new
     @liste = Liste.new
-    @ma_liste = current_user.listes.first
-    if @ma_liste
-      @takenby = @ma_liste.takenby
-      if @takenby != 0
-        @email = User.find(@takenby).email
-      end
-    end
   end
 
   def create
@@ -55,6 +51,24 @@ class ListesController < ApplicationController
   end
 
   def destroy
+
+    @user = @liste.user
+
+    UserMailer.liste_destroyed_email(current_user, @liste).deliver_later
+
+    @phonenumber = format_tel(current_user.notel)
+    @message = "Bestneighbor - Vous avez supprimé votre liste #{@liste.nom} pour livraison le #{@liste.date_livraison.to_date.strftime("%d %b %Y")}"
+    send_sms(@phonenumber, @message)
+
+    if @liste.takenby != 0
+      @takenby = User.find(@liste.takenby)
+      UserMailer.nomore_liste_email(@takenby, @liste, @user).deliver_later
+
+      @phonenumber = format_tel(@takenby.notel)
+      @message = "Bestneighbor - La liste #{@liste.nom} de #{@user.email} pour livraison le #{@liste.date_livraison.to_date.strftime("%d %b %Y")} est annulée"
+      send_sms(@phonenumber, @message)
+    end
+
     @liste.destroy
     redirect_to courses_path
   end
@@ -77,14 +91,28 @@ class ListesController < ApplicationController
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle n'est plus prise en charge
         UserMailer.no_list_taken_email(@user, @liste, current_user).deliver_later
+        @phonenumber = format_tel(@user.notel)
+        @message = "Bestneighbor - Votre liste #{@liste.nom} n'est plus prise en charge par #{current_user.email}"
+        send_sms(@phonenumber, @message)
+
         UserMailer.dont_take_list_email(current_user, @liste, @user).deliver_later
+        @phonenumber = format_tel(current_user.notel)
+        @message = "Bestneighbor - Vous ne prenez plus en charge la liste #{@liste.nom} de #{@user.email}"
+        send_sms(@phonenumber, @message)
       end
 
       if @cas == 1
         # Envoi d'un mail au current_user et au propriétaire de la liste
         # pour indiquer qu'elle est prise en charge
         UserMailer.list_taken_email(@user, @liste, current_user).deliver_later
+        @phonenumber = format_tel(@user.notel)
+        @message = "Bestneighbor - Votre liste #{@liste.nom} est prise en charge par #{current_user.email}"
+        send_sms(@phonenumber, @message)
+
         UserMailer.take_list_email(current_user, @liste, @user).deliver_later
+        @phonenumber = format_tel(current_user.notel)
+        @message = "Bestneighbor - Vous avez pris en charge la liste #{@liste.nom} de #{@user.email}"
+        send_sms(@phonenumber, @message)
       end
 
       redirect_to courses_path
@@ -97,11 +125,40 @@ class ListesController < ApplicationController
   # Cette fonction permet de protéger le formulaire
   # Seules les données permises seront sauvegardées en base
   def liste_params
-    params.require(:liste).permit(:nom, :content, :date_livraison)
+    params.require(:liste).permit(:nom, :content, :adresse_livraison, :date_livraison, :heure_livraison)
   end
 
   def find_liste
     @liste = Liste.find(params[:id])
+  end
+
+  def format_tel(phonenumber)
+    return phonenb = "+33" + phonenumber[1..9]
+  end
+
+  def send_sms(phonenumber, message)
+    uri = URI.parse("https://api.smspartner.fr/v1/send")
+    request = Net::HTTP::Post.new(uri)
+    request.content_type = "application/json"
+    request.body = JSON.dump({
+      "apiKey" => "7059942ad5244ef71e98d0107f21d1153f9946bf",
+      "phoneNumbers" => "#{phonenumber}",
+      "message" => "#{message}",
+      "sender" => "BNeighbor",
+      "gamme" => "2"
+    })
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    puts "RESPONSE CODE" + response.code
+    puts "RESPONSE BODY" + response.body
+    puts "#{message}" + "#{phonenumber}"
   end
 
 end

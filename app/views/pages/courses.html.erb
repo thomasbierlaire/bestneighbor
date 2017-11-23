@@ -13,19 +13,14 @@
 
           <div class="row">
 
-            <div class="col-sm-4 col-md-4 feature circle">
-              <h4>Prendre en charge une liste</h4>
-              <%= link_to "Listes", listes_path(:not_taken => true), class: "btn btn-primary btn-lg" %>
+            <div class="col-sm-6 col-md-6 feature circle">
+              <%= link_to "Besoin d'une course ?", new_liste_path, class: "btn btn-red btn-lg" %>
             </div>
 
-            <div class="col-sm-4 col-md-4 feature circle">
-              <h4>Listes prises en charge</h4>
-              <%= link_to "Listes prises", listes_path(:taken_by => true), class: "btn btn-primary btn-lg" %>
-            </div>
+            <br>
 
-            <div class="col-sm-4 col-md-4 feature circle">
-              <h4>Se faire dépanner</h4>
-              <%= link_to "Ma liste", new_liste_path, class: "btn btn-primary btn-lg" %>
+            <div class="col-sm-6 col-md-6 feature circle">
+              <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true), class: "btn btn-red btn-lg" %>
             </div>
 
           </div>
@@ -35,3 +30,45 @@
   </div>
 
 </div>
+
+<div class="banner-content">
+
+    <div class="container text-center detail">
+
+          <div class="spacer"></div>
+
+          <div class="row">
+
+              <h5>Besoin d'une course ... comment ça marche ?</h5>
+
+          </div>
+
+          <div class="spacer"></div>
+
+          <div class="row">
+
+            <div class="col-sm-4 col-md-4 feature caddy">
+              <%= image_tag "noun_656300_cc.png", alt: "Créer liste de courses", title: "Créer liste de courses", width: "75", class: "circle" %>
+              <p></p>
+              <h6>Je crée ma liste de courses ...</h6>
+            </div>
+
+            <div class="col-sm-4 col-md-4 feature mail">
+              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "75", class: "circle" %>
+              <p></p>
+              <h6>lorsqu'elle est prise en charge mon voisin et moi recevons un mail et un SMS ...</h6>
+            </div>
+
+            <div class="col-sm-4 col-md-4 feature contact">
+              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "75", class: "circle" %>
+              <p></p>
+              <h6>nous pouvons nous contacter !</h6>
+            </div>
+
+          </div>
+
+    </div>
+  </div>
+
+
+

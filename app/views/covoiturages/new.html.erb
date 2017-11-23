@@ -1,65 +1,29 @@
 <%= content_for :title, title("Proposer un nouveau trajet") %>
 <%= content_for :description, description("Création d'une proposition de trajet") %>
 
-  <div class="container">
-    <div class="spacer"></div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+  <div class="container text-center">
+     <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
 
-        <!--
-        <% if @mon_cov.present? %>
+        <h2>Création d'un trajet</h2>
+        <%= simple_form_for @cov do |t| %>
 
-                   <div class="product">
+          <div class="form-inputs">
+            <%= t.input :depart, input_html: { placeholder: "Départ" }, label: false %>
+            <%= t.input :destination, input_html: { placeholder: "Destination" }, label: false %>
+            <%= t.input :date, input_html: { class: 'date', placeholder: "Date départ" },label: false %>
+            <%= t.input :heure, input_html: { placeholder: "Heure de départ" }, label: false %>
+            <%= t.input :nbplaces, input_html: { placeholder: "Nb de places proposées" }, label: false %>
+          </div>
 
-                      <%= render @mon_cov %>
-
-                      <% if @mon_cov.takenby1 != 0 %>
-
-                        <h6><strong>
-                            Votre trajet est réservé par <%= link_to @email %>
-                        </strong></h6>
-
-                      <% else %>
-
-                        <ul class="list-inline product-controls">
-
-                           <li>
-                             <%= link_to edit_covoiturage_path(@mon_cov) do %>
-                              <i class="fa fa-pencil" title="modifier"></i>
-                             <% end %>
-                           </li>
-
-                           <li>
-                             <%= link_to covoiturage_path(@mon_cov), method: :delete do %>
-                              <i class="fa fa-trash" title="supprimer"></i>
-                             <% end %>
-                           </li>
-
-                        </ul>
-
-                      <% end %>
-
-                   </div>
-
-        <% else %>
-      -->
-
-          <%= simple_form_for @cov do |t| %>
-            <%= t.input :depart, placeholder: "Départ", label: "Départ" %>
-            <%= t.input :destination, placeholder: "Destination", label: "Destination" %>
-            <%= t.input :date, input_html: { class: 'date' },placeholder: "Date", label: "Date" %>
-            <%= t.input :heure, placeholder: "HH:MM", label: "Heure" %>
-            <%= t.input :nbplaces, collection: ["1", "2", "3"], placeholder: "Places disponibles", label: "Places disponibles" %>
-
-            <%= t.button :submit, "Créer", class: "btn btn-primary" %>
-          <% end %>
-
-        <!-- <% end %> -->
+          <div class="form-actions">
+            <%= t.button :submit, "Créer", class: "btn btn-primary btn-block" %>
+          </div>
+        <% end %>
 
       </div>
     </div>
+  </div>
 
   <div class="spacer"></div>
   <%= link_to "Mes propositions de trajets", covoiturages_path(:my_covoits => true) %>
-
- </div>
