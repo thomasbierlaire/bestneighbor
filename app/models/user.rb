@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :listes, dependent: :destroy
-  has_many :trajets, dependent: :destroy
   has_many :covoiturages, dependent: :destroy
 
   validates :email, uniqueness: {message: "Email déjà utilisé"}, presence: {message: "Email à renseigner"}, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "Adresse email incorrecte" }
