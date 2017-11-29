@@ -9,7 +9,7 @@
         <%= simple_form_for @liste do |l| %>
 
           <div class="form-inputs">
-            <%= l.input :nom, input_html: { placeholder: "Nom liste" }, label: false %>
+            <%= l.input :nom, input_html: { placeholder: "Nom liste" }, label: false, autofocus: true %>
             <%= l.input :content, input_html: { placeholder: "Contenu" }, label: false %>
             <%= l.input :adresse_livraison, input_html: { placeholder: "Adresse de livraison" }, label: false %>
             <%= l.input :date_livraison, input_html: { class: 'date', placeholder: "Date de livraison souhaitée" }, label: false %>

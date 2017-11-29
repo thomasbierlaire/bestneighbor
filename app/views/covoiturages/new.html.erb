@@ -9,7 +9,7 @@
         <%= simple_form_for @cov do |t| %>
 
           <div class="form-inputs">
-            <%= t.input :depart, input_html: { placeholder: "Départ" }, label: false %>
+            <%= t.input :depart, input_html: { placeholder: "Départ" }, label: false, autofocus: true %>
             <%= t.input :destination, input_html: { placeholder: "Destination" }, label: false %>
             <%= t.input :date, input_html: { class: 'date', placeholder: "Date départ" },label: false %>
             <%= t.input :heure, input_html: { placeholder: "Heure de départ" }, label: false %>

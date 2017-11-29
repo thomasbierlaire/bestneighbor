@@ -16,7 +16,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Liste.delete_all
-Trajet.delete_all
 Covoiturage.delete_all
 User.delete_all
 
@@ -33,13 +32,6 @@ end
 end
 (21..40).each do |i|
   Liste.create!(nom: "liste #{i}" , content: "content #{i}", date_livraison: "20171001", user_id: users[i].id, takenby: 0)
-end
-
-(0..20).each do |i|
-  Trajet.create!(destination: "destination #{i}" , nbpass: "#{i}", date: "20171001", user_id: users[i].id,  takenby: users[i+10].id)
-end
-(21..40).each do |i|
-  Trajet.create!(destination: "destination #{i}" , nbpass: "#{i}", date: "20171001", user_id: users[i].id, takenby: 0)
 end
 
 (0..20).each do |i|
