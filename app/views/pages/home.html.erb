@@ -9,7 +9,6 @@
       <div class="row">
 
         <h2>Covoiturage et courses entre voisins !</h2>
-
         <p>Vous voulez donner un coup de main ou être dépanné ?</p>
 
         <% if user_signed_in? %>
@@ -33,181 +32,90 @@
   </div>
 </div>
 
-<!--
 <div class="spacer"></div>
 
 <div class="banner-content">
 
-    <div class="container text-center detail">
+  <div class="container text-center detail">
 
-          <div class="row">
+        <div class="spacer"></div>
 
-            <h1 id="list-title1">Courses</h1>
+        <div class="row">
 
+            <h4>Courses ... </h4>
+            <h4>comment ça marche ?</h4>
+
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="row">
+
+          <div class="col-sm-4 col-md-4 feature caddy">
+            <%= image_tag "noun_656300_cc.png", alt: "Créer liste de courses", title: "Créer liste de courses", width: "75", class: "circle" %>
+            <p></p>
+            <h6>Je <strong>crée</strong> ma liste de courses ...</h6>
           </div>
 
-          <div class="row">
-              <h3 id="list-subtitle1">Je prends une liste en charge</h3>
+          <div class="col-sm-4 col-md-4 feature mail">
+            <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "75", class: "circle" %>
+            <p></p>
+            <h6>lorsqu'un voisin la prend en charge lui et moi recevons un <strong>mail</strong> et un <strong>SMS</strong> ...</h6>
           </div>
 
-          <div class="spacer"></div>
-
-          <div class="row">
-
-            <div class="col-sm-6 col-md-3 feature caddy">
-              <%= image_tag "noun_656300_cc.png", alt: "Visualise listes", title: "Visualise listes", width: "100", class: "circle" %>
-              <p></p>
-              <h4>Je visualise les listes en attente ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature hand">
-              <%= image_tag "noun_841327_cc.png", alt: "Je dépanne", title: "Je dépanne", width: "100", class: "circle" %>
-              <p></p>
-              <h4>je prends en charge et je reçois un mail ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature mail">
-              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle" %>
-              <p></p>
-              <h4>avec l'adresse e-mail de mon voisin ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature contact">
-              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle" %>
-              <p></p>
-              <h4>nous pouvons nous contacter !</h4>
-            </div>
-
+          <div class="col-sm-4 col-md-4 feature contact">
+            <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "75", class: "circle" %>
+            <p></p>
+            <h6>nous pouvons nous <strong>contacter</strong> !</h6>
           </div>
 
-    </div>
-
-  </div>
-
-  <div class="banner-content">
-
-    <div class="container text-center detail">
-
-          <div class="spacer"></div>
-
-          <div class="row">
-
-              <h3 id="list-subtitle2">Pas le temps de faire une course ?</h3>
-
-          </div>
-
-          <div class="spacer"></div>
-
-          <div class="row">
-
-            <div class="col-sm-6 col-md-3 feature caddy">
-              <%= image_tag "noun_656300_cc.png", alt: "Ma liste", title: "Ma liste", width: "100", class: "circle" %>
-              <p></p>
-              <h4>Je crée ma liste ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature hand">
-              <%= image_tag "noun_841327_cc.png", alt: "Prise en charge", title: "Prise en charge", width: "100", class: "circle" %>
-              <p></p>
-              <h4>quand elle est prise en charge je reçois un mail ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature mail">
-              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle" %>
-              <p></p>
-              <h4>avec l'adresse e-mail de mon voisin ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature contact">
-              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle" %>
-              <p></p>
-              <h4>nous pouvons nous contacter !</h4>
-            </div>
-
-          </div>
+        </div>
 
     </div>
   </div>
 
-  <div class="separation6"></div>
+<div class="separation6"></div>
 
+<div class="banner-content">
 
-  <div class="banner-content">
+  <div class="container text-center detail">
 
-    <div class="container text-center detail">
+        <div class="spacer"></div>
 
-          <div class="row">
+        <div class="row">
 
-            <h1 class="road-title1">Covoiturage</h1>
+            <h4>Covoiturage ... </h4>
+            <h4>comment ça marche ?</h4>
 
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="row">
+
+          <div class="col-sm-4 col-md-4 feature caddy">
+            <%= image_tag "noun_232814_cc.png", alt: "Chercher trajet", title: "Chercher trajet", width: "75", class: "circle" %>
+            <p></p>
+            <h6>Je <strong>cherche</strong> un trajet proposé par un voisin et je <strong>réserve</strong> ...</h6>
           </div>
 
-          <div class="spacer"></div>
-
-          <div class="row">
-              <h3 class="road-title2">Je propose un trajet</h3>
+          <div class="col-sm-4 col-md-4 feature mail">
+            <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "75", class: "circle" %>
+            <p></p>
+            <h6>mon voisin et moi recevons un <strong>mail</strong> et un <strong>SMS</strong> ...</h6>
           </div>
 
-          <div class="spacer"></div>
-
-          <div class="row">
-
-            <div class="col-sm-12 col-md-12 feature caddy">
-              <%= image_tag "noun_232814_cc.png", alt: "Création trajets", title: "Création trajets", width: "100", class: "circle" %>
-              <p></p>
-            </div>
-
+          <div class="col-sm-4 col-md-4 feature contact">
+            <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "75", class: "circle" %>
+            <p></p>
+            <h6>nous pouvons nous <strong>contacter</strong> !</h6>
           </div>
 
-    </div>
+        </div>
 
   </div>
+</div>
 
-
-<div class="spacer"></div>
-
-  <div class="banner-content">
-
-    <div class="container text-center detail">
-
-          <div class="row trajets">
-                <h3 class="road-title2">Besoin d'être covoituré ?</h3>
-          </div>
-
-          <div class="spacer"></div>
-
-          <div class="row">
-
-            <div class="col-sm-6 col-md-3 feature caddy">
-              <%= image_tag "noun_232814_cc.png", alt: "Mon trajet", title: "Mon trajet", width: "100", class: "circle" %>
-              <p></p>
-              <h4>Je crée mon trajet ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature hand">
-              <%= image_tag "noun_841327_cc.png", alt: "Prise en charge", title: "Prise en charge", width: "100", class: "circle" %>
-              <p></p>
-              <h4>quand il est pris en charge je reçois un mail ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature mail">
-              <%= image_tag "noun_556101_cc.png", alt: "Mail", title: "Mail", width: "100", class: "circle" %>
-              <p></p>
-              <h4>avec l'adresse e-mail de mon voisin ...</h4>
-            </div>
-
-            <div class="col-sm-6 col-md-3 feature contact">
-              <%= image_tag "noun_602639_cc.png", alt: "Contact", title: "Contact", width: "100", class: "circle" %>
-              <p></p>
-              <h4>nous pouvons nous contacter !</h4>
-            </div>
-
-          </div>
-
-    </div>
-
-  </div>
--->
 
 
 
