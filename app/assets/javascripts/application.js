@@ -4,6 +4,9 @@
 //= require bootstrap
 //= require bootstrap-datepicker.min
 //= require bootstrap-datepicker.fr.min
+//= require jquery-fileupload/basic
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require_tree .
 
 $(document).ready(function() {
