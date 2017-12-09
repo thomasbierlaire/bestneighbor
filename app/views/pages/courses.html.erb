@@ -1,9 +1,9 @@
 <%= content_for :title, title("Courses") %>
 <%= content_for :description, description("Actions possibles pour les courses") %>
 
-<div class="banner_listes" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "shopping-cart-304843_960_720.png" %>');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "shopping-cart-304843_960_720.png" %>');">
 
-  <div class="banner-content courses">
+  <div class="banner-content">
 
       <div class="container text-center">
 
@@ -14,13 +14,13 @@
           <div class="row">
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "Besoin d'une course ?", new_liste_path, class: "btn btn-red btn-lg" %>
+              <%= link_to "Besoin d'une course ?", new_liste_path, class: "btn btn-primary btn-lg" %>
             </div>
 
             <br>
 
             <div class="col-sm-6 col-md-6 feature circle">
-              <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true), class: "btn btn-red btn-lg" %>
+              <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true), class: "btn btn-primary btn-lg" %>
             </div>
 
           </div>

@@ -66,6 +66,7 @@
   background-color: #F73F52;
   color: #FFF;
   text-shadow: none;
+  border-radius: $border-radius-base;
 }
 
 .btn-red:hover {
@@ -76,13 +77,5 @@
   color: #FFF;
   top: 1px;
   left: 1px;
-}
-
-.trait-rouge {
-  color: #F73F52;
-}
-
-.trait-bleu {
-  color: #469AE0;
 }
 
