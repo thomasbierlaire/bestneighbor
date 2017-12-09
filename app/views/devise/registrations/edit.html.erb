@@ -23,7 +23,7 @@
                   <%= f.input :avatar, as: :attachinary %>
 
                   <%= f.input :password, autocomplete: "off", hint: "NE PAS REMPLIR si vous ne souhaitez pas modifier votre mot de passe", required: false, label: "Nouveau mot de passe" %>
-                  <!--<%= f.input :password_confirmation, required: false %>-->
+                  <%= f.input :password_confirmation, required: false, label: "Confirmation nouveau mot de passe" %>
 
                   <%= f.input :current_password, hint: "Saisir votre mot de passe pour confirmer les changements", required: true, label: "Mot de passe" %>
 

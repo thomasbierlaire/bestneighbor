@@ -1,7 +1,6 @@
 <%= content_for :title, title("Connexion") %>
 <%= content_for :description, description("Connexion - saisie email et mot de passe") %>
 
-
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "city-2042634_960_720.png" %>');">
 
   <div class="banner-content">
@@ -10,28 +9,30 @@
 
       <div class="row">
 
-              <div class="col-sm-4 col-sm-offset-4 col-lg-4 col-lg-offset-4">
+        <div class="col-sm-4 col-sm-offset-4">
 
-                <h2>Connexion</h2>
-                <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <div class="form-inputs">
-                    <%= f.input :email, input_html: { placeholder: "E-mail" }, label: false, autofocus: true %>
-                    <%= f.input :password, input_html: { placeholder: "Mot de passe" }, label: false %>
-                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-                  </div>
+          <h3>Connexion</h3>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
 
-                  <div class="form-actions">
-                    <%= f.button :submit, "Se connecter", class: "btn btn-primary btn-block" %>
-                  </div>
+            <div class="form-inputs">
+              <%= f.input :email, input_html: { placeholder: "E-mail" }, label: false, autofocus: true %>
+              <%= f.input :password, input_html: { placeholder: "Mot de passe" }, label: false %>
+              <!--<%= f.input :remember_me, label: "Se souvenir de moi", as: :boolean if devise_mapping.rememberable? %>-->
+            </div>
 
-                <% end %>
+            <div class="form-actions">
+              <%= f.button :submit, "Se connecter", class: "btn btn-primary btn-block" %>
+            </div>
 
-                <p></p>
-                <%= render "devise/shared/links" %>
+          <% end %>
 
-              </div>
+          <p></p>
+          <%= render "devise/shared/links" %>
 
         </div>
+
+      </div>
 
     </div>
 
