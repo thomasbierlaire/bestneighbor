@@ -251,6 +251,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  arel
   attachinary
   autoprefixer-rails
   better_errors
@@ -274,6 +275,7 @@ DEPENDENCIES
   pry-rails
   puma
   queue_classic
+  rack
   rails (= 5.1.4)
   redis
   sass-rails
