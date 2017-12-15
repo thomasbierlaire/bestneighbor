@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @neighborsToGet.each do |neighbor|
           if neighbor != current_user
             @phonenumber = format_tel(neighbor.notel)
-            @message = "Bestneighbor - Un nouveau voisin vient de s'inscrire : vous êtes désormais #{@nbNeighbors} voisins !"
+            @message = "Bestneighbor - Un nouveau voisin vient de s'inscrire : #{@nbNeighbors} voisins en tout pour l'instant !"
             send_sms(@phonenumber, @message)
           end
         end
