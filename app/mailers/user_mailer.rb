@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
       @cemail = current.email
       @nom = liste.nom
       @uemail = user.email
-      @url  = 'https://bestneighbor.fr/users/sign_in'
+      @url  = 'https://www.bestneighbor.fr'
 
       mail(to: @cemail, subject: "Bestneighbor - vous ne prenez plus en charge une liste")
 
@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @uemail = user.email
     @nom = liste.nom
     @cemail = current.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: "Bestneighbor- votre liste n'est plus prise en charge")
 
@@ -31,7 +31,7 @@ class UserMailer < ApplicationMailer
     @cemail = current.email
     @nom = liste.nom
     @uemail = user.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @cemail, subject: 'Bestneighbor - vous prenez une liste en charge')
 
@@ -42,7 +42,7 @@ class UserMailer < ApplicationMailer
     @uemail = user.email
     @nom = liste.nom
     @cemail = current.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: 'Bestneighbor - votre liste est prise en charge')
 
@@ -52,7 +52,7 @@ class UserMailer < ApplicationMailer
 
     @cemail = current.email
     @nom = liste.nom
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @cemail, subject: "Bestneighbor - vous avez supprimé une liste")
 
@@ -63,7 +63,7 @@ class UserMailer < ApplicationMailer
     @uemail = user.email
     @nom = liste.nom
     @cemail = current.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: "Bestneighbor- une liste a été supprimée")
 
@@ -87,7 +87,7 @@ class UserMailer < ApplicationMailer
     @date = covoiturage.date.to_date.strftime("%d %b %Y")
     @heure = covoiturage.heure
 
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @cemail, subject: "Bestneighbor - vous avez réservé un trajet")
 
@@ -110,7 +110,7 @@ class UserMailer < ApplicationMailer
     @date = covoiturage.date.to_date.strftime("%d %b %Y")
     @heure = covoiturage.heure
 
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: "Bestneighbor - votre trajet est réservé")
 
@@ -125,7 +125,7 @@ class UserMailer < ApplicationMailer
       @date = covoiturage.date.to_date.strftime("%d %b %Y")
       @heure = covoiturage.heure
 
-      @url  = 'https://bestneighbor.fr/users/sign_in'
+      @url  = 'https://www.bestneighbor.fr'
 
       mail(to: @cemail, subject: "Bestneighbor - vous avez annulé la réservation d'un trajet")
 
@@ -140,7 +140,7 @@ class UserMailer < ApplicationMailer
     @date = covoiturage.date.to_date.strftime("%d %b %Y")
     @heure = covoiturage.heure
 
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: "Bestneighbor- votre trajet n'est plus réservé")
 
@@ -150,7 +150,7 @@ class UserMailer < ApplicationMailer
 
       @cemail = current.email
       @nom = covoiturage.destination
-      @url  = 'https://bestneighbor.fr/users/sign_in'
+      @url  = 'https://www.bestneighbor.fr'
 
       mail(to: @cemail, subject: "Bestneighbor - vous avez supprimé un trajet proposé")
 
@@ -161,7 +161,7 @@ class UserMailer < ApplicationMailer
     @uemail = user.email
     @nom = covoiturage.destination
     @cemail = current.email
-    @url  = 'https://bestneighbor.fr/users/sign_in'
+    @url  = 'https://www.bestneighbor.fr'
 
     mail(to: @uemail, subject: "Bestneighbor- votre réservation a été supprimée")
 
