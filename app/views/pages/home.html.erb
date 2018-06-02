@@ -20,14 +20,14 @@
           -->
 
           <% if @neighbors === 0 %>
-            <p class="nbvoisins">Vous n'avez pas encore de voisins inscrits près de chez vous</p>
-            <p class="info"><em>Parlez en autour de vous !</em></p>
+            <p class="nbvoisins"><strong>Vous n'avez pas encore de voisins inscrits près de chez vous</strong></p>
+            <p class="info"><strong><em>Parlez en autour de vous !</strong></em></p>
           <% elsif @neighbors === 1 %>
-            <p class="nbvoisins"><strong><%= @neighbors %></strong> voisin est inscrit près de chez vous</p>
-            <p class="info"><em>Pour avoir plus de voisins parlez en autour de vous !</em></p>
+            <p class="nbvoisins"><strong><%= @neighbors %> voisin est inscrit près de chez vous<strong></p>
+            <p class="info"><strong><em>Pour avoir plus de voisins parlez en autour de vous !</strong></em></p>
           <% elsif @neighbors < 20 %>
-            <p class="nbvoisins"><strong><%= @neighbors %></strong> voisins sont déjà inscrits près de chez vous</p>
-            <p class="info"><em>Pour avoir plus de voisins parlez en autour de vous !</em></p>
+            <p class="nbvoisins"><strong><%= @neighbors %> voisins sont déjà inscrits près de chez vous</strong></p>
+            <p class="info"><strong><em>Pour avoir plus de voisins parlez en autour de vous !<strong></em></p>
           <% end %>
 
           <!--<%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>-->
