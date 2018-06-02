@@ -8,15 +8,15 @@
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
       <% if params[:not_taken] %>
-        <h4>Chercher un trajet</h4>
+        <h4>Trajets disponibles</h4>
       <% end %>
 
       <% if params[:taken_by] %>
-        <h4>Mes réservations de trajets</h4>
+        <h4>Mes trajets réservés</h4>
       <% end %>
 
       <% if params[:my_covoits] %>
-        <h4>Mes propositions de trajets</h4>
+        <h4>Mes propositions</h4>
       <% end %>
 
       <%= paginate @covoiturages %>
@@ -29,7 +29,7 @@
 
   <div class="spacer"></div>
   <% if params[:not_taken] %>
-    <%= link_to "Mes réservations de trajets", covoiturages_path(:taken_by => true) %>
+    <%= link_to "Mes trajets réservés", covoiturages_path(:taken_by => true) %>
   <% end %>
 
 </div>

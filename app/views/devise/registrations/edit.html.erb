@@ -20,7 +20,7 @@
                   <%= f.input :email, label: false %>
                   <%= f.input :notel , label: false %>
 
-                  <%= f.input :avatar, as: :attachinary %>
+                  <!-- <%= f.input :avatar, as: :attachinary %> -->
 
                   <%= f.input :password, autocomplete: "off", required: false, input_html: { placeholder: "Nouveau mot de passe" }, label: false %>
                   <%= f.input :password_confirmation,  hint: "NE PAS REMPLIR si vous ne souhaitez pas modifier votre mot de passe", required: false, input_html: { placeholder: "Confirmer nouveau mot de passe" }, label: false %>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-actions">
-                  <%= f.button :submit, "Mettre à jour", class: "btn btn-primary btn-lg" %>
+                  <%= f.button :submit, "Mettre à jour", class: "btn btn-warning btn-lg" %>
                 </div>
               <% end %>
 

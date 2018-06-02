@@ -40,7 +40,7 @@ class CovoituragesController < ApplicationController
     @cov.nbdispos = @cov.nbplaces
     if @cov.save
       flash[:success] = "Woohoo!"
-      redirect_to covoit_path
+      redirect_to root_path
     else
       render :new
     end
@@ -109,7 +109,7 @@ class CovoituragesController < ApplicationController
 
 ############################################################
 
-      redirect_to covoit_path
+      redirect_to root_path
     else
       render :edit
     end
@@ -153,7 +153,7 @@ class CovoituragesController < ApplicationController
     end
 
     @cov.destroy
-    redirect_to covoit_path
+    redirect_to root_path
   end
 
   def takenby
@@ -199,7 +199,7 @@ class CovoituragesController < ApplicationController
 
 ############################################################
 
-      redirect_to covoit_path
+      redirect_to root_path
 
     end
   end

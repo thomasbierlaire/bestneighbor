@@ -17,7 +17,7 @@
           </div>
 
           <div class="form-actions">
-            <%= t.button :submit, "Créer", class: "btn btn-primary btn-block" %>
+            <%= t.button :submit, "Créer", class: "btn btn-warning btn-block" %>
           </div>
         <% end %>
 
@@ -26,4 +26,4 @@
   </div>
 
   <div class="spacer"></div>
-  <%= link_to "Mes propositions de trajets", covoiturages_path(:my_covoits => true) %>
+  <%= link_to "Mes propositions", covoiturages_path(:my_covoits => true) %>

@@ -35,7 +35,7 @@
               <%= t.input :nbpass3, collection: ["1"], placeholder: "Places à réserver", label: "Places à réserver" %>
             <% end %>
 
-            <%= t.button :submit, "Enregistrer", class: "btn btn-primary" %>
+            <%= t.button :submit, "Enregistrer", class: "btn btn-warning" %>
           <% end %>
 
         <% else %>
@@ -47,7 +47,7 @@
             <%= t.input :heure, placeholder: "Heure", label: "Heure" %>
             <%= t.input :nbplaces, placeholder: "Places proposées", label: "Places proposées", disabled: true %>
             <%= t.input :nbdispos, placeholder: "Places disponibles", label: "Places disponibles", disabled: true %>
-            <%= t.button :submit, "Enregistrer", class: "btn btn-primary" %>
+            <%= t.button :submit, "Enregistrer", class: "btn btn-warning" %>
           <% end %>
 
         <% end %>

@@ -11,11 +11,13 @@
 
         <% if user_signed_in? %>
 
+          <!--<%= link_to "Covoiturage", covoit_path, class: "btn btn-primary btn-lg" %>
+          <div class="spacer"></div>-->
+
+          <!--
           <%= link_to "Courses", courses_path, class: "btn btn-primary btn-lg" %>
           <div class="spacer"></div>
-
-          <%= link_to "Covoiturage", covoit_path, class: "btn btn-primary btn-lg" %>
-          <div class="spacer"></div>
+          -->
 
           <% if @neighbors === 0 %>
             <p class="nbvoisins">Vous n'avez pas encore de voisins inscrits près de chez vous</p>
@@ -28,14 +30,16 @@
             <p class="info"><em>Pour avoir plus de voisins parlez en autour de vous !</em></p>
           <% end %>
 
-          <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+          <!--<%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>-->
 
         <% else %>
 
-          <h2>Covoiturage et courses entre voisins !</h2>
-          <h4>Vous voulez donner un coup de main ou être dépanné ?</h4>
-
-          <%= link_to "Démarrer", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+          <h2>Covoiturage entre voisins !</h2>
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <!--<h4>Vous voulez donner un coup de main ou être dépanné ?</h4>-->
+          <%= link_to "Démarrer", new_user_registration_path, class: "btn btn-warning btn-lg" %>
 
         <% end %>
 
@@ -47,6 +51,7 @@
 
 <div class="spacer"></div>
 
+<!--
 <div class="banner-content">
 
   <div class="container text-center detail">
@@ -86,8 +91,9 @@
 
     </div>
   </div>
+-->
 
-<div class="separation6"></div>
+<!-- <div class="separation6"></div> -->
 
 <div class="banner-content">
 
@@ -97,8 +103,8 @@
 
         <div class="row">
 
-            <h4>Covoiturage ... </h4>
-            <h5>comment ça marche ?</h5>
+            <!-- <h4>Covoiturage ... </h4> -->
+            <h4>Comment ça marche ?</h4>
 
         </div>
 

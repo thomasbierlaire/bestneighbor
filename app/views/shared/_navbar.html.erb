@@ -8,27 +8,6 @@
 
     <% if user_signed_in? %>
 
-      <!-- Courses with dropdown menu -->
-
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-
-          <a href="#" class="dropdown-toggle navbar-wagon-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
-
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-
-            <li>
-              <%= link_to "Besoin d'une course ?", new_liste_path %>
-            </li>
-            <li>
-              <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true) %>
-            </li>
-
-          </ul>
-
-        </div>
-       </div>
-
       <!-- Covoiturage with dropdown menu -->
 
       <div class="navbar-wagon-item">
@@ -50,6 +29,27 @@
         </div>
        </div>
 
+      <!-- Courses with dropdown menu -->
+      <!--
+
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+
+          <a href="#" class="dropdown-toggle navbar-wagon-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
+            <li>
+              <%= link_to "Besoin d'une course ?", new_liste_path %>
+            </li>
+            <li>
+              <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true) %>
+            </li>
+
+          </ul>
+
+        </div>
+       </div>  -->
 
       <!-- Autres menus -->
 
@@ -110,13 +110,13 @@
           <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
 
-            <li class="dropdown-header">Courses</li>
+            <!-- <li class="dropdown-header">Courses</li>
             <li>
               <%= link_to "Besoin d'une course ?", new_liste_path %>
             </li>
             <li>
               <%= link_to "J'arrive à la res'course !", listes_path(:not_taken => true) %>
-            </li>
+            </li> -->
 
             <li class="dropdown-header">Covoiturage</li>
             <li>
