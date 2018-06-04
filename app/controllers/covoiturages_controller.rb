@@ -39,7 +39,7 @@ class CovoituragesController < ApplicationController
     @cov.nbpass3 = 0
     @cov.nbdispos = @cov.nbplaces
     if @cov.save
-      flash[:success] = "Woohoo!"
+      flash[:notice] = "Votre proposition de trajet est créée"
       redirect_to root_path
     else
       render :new
@@ -109,6 +109,7 @@ class CovoituragesController < ApplicationController
 
 ############################################################
 
+      flash[:notice] = "Votre réservation de trajet est faite"
       redirect_to root_path
     else
       render :edit
@@ -153,6 +154,7 @@ class CovoituragesController < ApplicationController
     end
 
     @cov.destroy
+    flash[:notice] = "Votre proposition de trajet est supprimée"
     redirect_to root_path
   end
 
@@ -199,6 +201,7 @@ class CovoituragesController < ApplicationController
 
 ############################################################
 
+      flash[:notice] = "Votre réservation est annulée"
       redirect_to root_path
 
     end
