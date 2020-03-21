@@ -20,7 +20,13 @@ gem 'jquery-rails'
 gem 'uglifier'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
-gem 'simple_form'
+
+gem "simple_form", ">= 5.0.0"
+gem "actionview", "= 5.1.4"
+gem "sprockets", ">= 3.7.2"
+gem "nokogiri", ">= 1.10.8"
+gem "sinatra", ">= 2.0.2"
+
 gem 'autoprefixer-rails'
 gem 'mail'
 gem 'sendgrid-ruby'
