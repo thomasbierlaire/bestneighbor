@@ -154,7 +154,7 @@ GEM
     queue_classic (0.3.2)
       json
       pg (>= 0.10.1)
-    rack (2.0.3)
+    rack (2.0.8)
     rack-protection (2.0.0)
       rack
     rack-test (0.8.2)
