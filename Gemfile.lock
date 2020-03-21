@@ -150,7 +150,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    puma (3.11.0)
+    puma (3.12.4)
     queue_classic (0.3.2)
       json
       pg (>= 0.10.1)
