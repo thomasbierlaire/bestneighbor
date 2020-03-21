@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
-gem 'rails', '5.1.4'
+gem 'rails', '5.1.6.2'
 gem 'rack'
 gem 'arel'
 gem 'puma'
@@ -22,7 +22,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 
 gem "simple_form", ">= 5.0.0"
-gem "actionview", "= 5.1.4"
+gem "actionview", "= 5.1.6.2"
 gem "sprockets", ">= 3.7.2"
 gem "nokogiri", ">= 1.10.8"
 gem "sinatra", ">= 2.0.2"
