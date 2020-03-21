@@ -9,7 +9,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
-gem 'devise'
+gem 'devise', git: 'https://github.com/plataformatec/devise'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
